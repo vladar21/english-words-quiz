@@ -19,7 +19,15 @@ function getRandomQuestion() {
 }
 
 // Example usage:
-var randomQuestion = getRandomQuestion();
-var questionText = randomQuestion.question;
-var correctAnswer = randomQuestion.answer;
+// var randomQuestion = getRandomQuestion();
+// var questionText = randomQuestion.question;
+// var correctAnswer = randomQuestion.answer;
 
+// Function to display the question
+function displayQuestion() {
+    var questionElement = document.getElementById('question-area');
+    questionElement.textContent = questionText; // Use the question text obtained earlier
+}
+
+// Example usage:
+// displayQuestion();

@@ -8,7 +8,7 @@ The brief description of the quize:
 The user must find right definitions for English's word or right word by his definition. 
 
 The idea of the quiz it is chosen right answer among three, that randomly chosen from another. The words and its definitions are stored in key-value array - englishWords. Structure of word sentence is:
-...json
+```json
 var englishWords = {
     [word]: value,
     features: {
@@ -24,7 +24,7 @@ var englishWords = {
         }
     }
 };
-...
+```
 
 Each answer has a time limit, its 30s, if answer time is got out or user has to click "skip" button - it is wrong answer and go to next answer. Answer by clicking on one of the three answers in the current answers list, or focus + enter for accessibility users.
 When the quiz is finished, there must be detailed information (total time, wrong/right scores, how many was questions, the winners table and the current players place in it).

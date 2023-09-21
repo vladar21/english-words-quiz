@@ -1,3 +1,17 @@
+// Function to start the quiz
+function startQuiz() {
+    // Display the first question and answer options
+    displayNewQuestion();
+
+    // Hide the "Start Quiz" button
+    var startQuizButton = document.getElementById('start-quiz-button');
+    startQuizButton.style.display = 'none';
+}
+
+// Add an event listener to the "Start Quiz" button
+var startQuizButton = document.getElementById('start-quiz-button');
+startQuizButton.addEventListener('click', startQuiz);
+
 // Define quiz data structure
 var englishWords = {
     // Your quiz questions and answers here

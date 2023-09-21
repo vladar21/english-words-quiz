@@ -1,3 +1,6 @@
+// Import the englishWords object
+import englishWords from './englishwordsdata.js';
+
 // Function to start the quiz
 function startQuiz() {
     // Display the first question and answer options
@@ -11,11 +14,6 @@ function startQuiz() {
 // Add an event listener to the "Start Quiz" button
 var startQuizButton = document.getElementById('start-quiz-button');
 startQuizButton.addEventListener('click', startQuiz);
-
-// Define quiz data structure
-var englishWords = {
-    // Your quiz questions and answers here
-};
 
 // Function to get a random question
 function getRandomQuestion() {

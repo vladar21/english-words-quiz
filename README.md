@@ -2,26 +2,28 @@
 
 ## Description
 
-The English Words Quiz is an interactive online quiz designed to test your knowledge of English words and their definitions, or vice versa. This project is built using HTML5, CSS3, and native JavaScript. Whether you're looking to improve your English vocabulary or simply enjoy a challenging quiz, this application is for you.
+The English Words Quiz is an interactive online quiz designed to test knowledge of English words and their definitions, or vice versa. This project is built using HTML5, CSS3, and native JavaScript. Whether you're looking to improve your English vocabulary or simply enjoy a challenging quiz, this application is for you.
 
 The brief description of the quize:
+
 The user must find right definitions for English's word or right word by his definition. 
 
-The idea of the quiz it is chosen right answer among three, that randomly chosen from another. The words and its definitions are stored in key-value array - englishWords. Structure of word sentence is:
+The idea of the quiz is to choose the right answer among a few that are randomly chosen from another. The words and their definitions are stored in a key-value array - englishWords. Structure of the word set is:
 
 ```json
-var englishWords = {
-    [word]: value,
-    features: {
-        'definition': value,
-        'image_url': value,
-        'sound_url': value
-        'translate': {
-             'ua': {
-                  'lang': 'ukrainian
-                   'translation': value,
-                   'sound_url': value
-              }
+{
+    "[word]": "value",
+    "features": {
+        "definition": "value",
+        "image_url": "value",
+        "sound_url": "value"
+        "translate": {
+             "ua": {
+                   "lang": "ukrainian"
+                   "translation": "value",
+                   "sound_url": "value"
+              },
+              ...
         }
     }
 }
@@ -46,7 +48,7 @@ When the quiz is finished, there must be detailed information (total time, wrong
 
 3. **Question Area**: Displays the current question or definition.
 
-4. **Answer List Area**: Presents three answer options, one of which is correct. Users must select the correct answer.
+4. **Answer List Area**: Presents several answer choices, one of which is correct. Users must select the correct answer.
 
 5. **Skip Button**: Users can click the "Skip" button to move to the next question if they are unsure of the answer.
 
@@ -96,7 +98,21 @@ To use the English Words Quiz, follow these steps:
 
 ## Testing
 
-[under construction]
+1. The W3C Markup Validator and W3C CSS Validator Services were used to validate every page of the project to ensure there were no syntax errors in the project.
+
+-   [W3C Markup Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - [Results]()
+-   [W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - [Results]()
+-   [JSHint JavaScript Validator](https://jshint.com/) - [Results]()
+
+2. Accessibility: I confirmed that the colors and fonts chosen are easy to read and accessible by running it through lighthouse in devtools.
+
+![Lighthouse Chrome devtool test results]()
+
+3. I tested that this page works in different browsers: Chrome, Firefox, Mircrosoft Edge.
+
+4. I confirmed that this project is responsive, looks good and functions on all standard screen sizes using the devtools device toolbar.
+
+5. I have confirmed that the form works: requires entries in every field, will only accept an email in the email field, and the submit button works.
 
 ## Bugs
 
@@ -104,17 +120,42 @@ To use the English Words Quiz, follow these steps:
 
 ## Deployment
 
-The English Words Quiz can be deployed to any web hosting platform or server by simply uploading the project files.
+The site was deployed to GitHub pages. The steps to deploy are as follows:
+- In the GitHub repository, navigate to the Settings tab.
+- From the source section drop-down menu, select the Main Branch.
+- Once the main branch has been selected, the page provided the link to the completed website.
+
+The live link can be found here - [English Teacher](https://vladar21.github.io/english-words-quiz/)
 
 ## Credits
 
-This project was created with contributions from:
+### Code
 
-- [contributor 1 Name]
-- [Contributor 2 Name]
-- [Contributor 3 Name]
+-   Idea of site layout and a lot of styles featers by Code Institute education project from this [Love Maths](https://github.com/Code-Institute-Solutions/love-maths-2.0-sourcecode)
 
-Special thanks to [Any Additional Credits or Acknowledgments].
+-   Idea of quiz and words set from this [Cambridge Dictionary +Plus](https://dictionary.cambridge.org/plus/)
+
+### Content
+
+-   All content was written by the developer.
+
+### Media
+
+-   Favicon generator from this [Converter](https://favicon.io/favicon-converter/)
+
+-   Image converter for the images of this site [Image converter](https://www.freeconvert.com/)
+
+-   Image to Readme file from this [Am I Responsive?](https://ui.dev/amiresponsive)
+
+-   Create logo image [FreeConvert](https://www.freeconvert.com/)
+
+### Acknowledgements
+
+-   Special acknowledgments to my sister Eleonora Bikulova for her invaluable input.
+
+-   My Mentor - Oluwafemi Medale - for continuous helpful feedback.
+
+-   Tutor support at Code Institute for their support.
 
 ## License
 

@@ -74,11 +74,9 @@
 /* Word Type */
 .word-type {
     font-style: italic;
-    /* font-weight: bold; */
     letter-spacing: .2rem;
     font-size: 16px;
     text-align: center;
-    /* margin-top: 10px; */
     padding: 5px;
     padding-top: 2px;
     border-radius: 19px;

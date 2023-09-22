@@ -7,6 +7,14 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'Caveat';
+    src: url('../fonts/Caveat/Caveat-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 /* Asterisk wildcard selector to override default styles added by the browser */
 * {
     padding: 0;
@@ -29,8 +37,6 @@
 
 .quizsquare {
     background-color: rgba(39, 34, 34, 0.7);
-    width: 60%;
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -80,9 +86,15 @@
 }
 
 .word-definition {
-    font-size: 20px;
+    font-family: 'Caveat', cursive;
+    color: black;
+    font-size: 230%;
+    line-height: 2rem;
     text-align: center;
     margin-top: 10px;
+    background-color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
 .quiz-field-css {
@@ -105,6 +117,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    margin-top: 15px;
+}
+
+.answers-list {    
+    list-style-type: none;
 }
 
 .answer-option {
@@ -137,7 +154,6 @@
     margin-top: 10px;
     color: white;
     border: none;
-    border-radius: 5px;
     padding: 10px 20px;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
@@ -164,16 +180,15 @@
 .timer-spinner {
     font-size: 24px;
     margin-top: 20px;
-    color: #00bcd4;
     font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #333;
     color: white;
-    border-radius: 5px;
-    width: 100px;
-    height: 40px;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
 }
 
 /* Add animations for the spinner if desired */

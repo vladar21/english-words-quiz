@@ -41,10 +41,11 @@
 .quiz-title-css {
     font-size: 300%;
     align-self: top;
-    background-color: rgba(39, 34, 34, 0.7);
+    background-color: rgba(123, 81, 141, 0.85);
     padding: 15px;
 }
 
 .quiz-field-css {
     background-color: rgba(39, 34, 34, 0.7);
+    padding: 30px;
 }

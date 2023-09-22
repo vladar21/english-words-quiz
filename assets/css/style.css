@@ -24,11 +24,11 @@
 
     color: whitesmoke;
     font-family: 'Lato', sans-serif;
-    background-color: black;
+    background: black url('../images/Tower-Bridge.webp') no-repeat center center/cover;
 }
 
 .quizsquare {
-    background: black url('../images/Tower-Bridge.webp') no-repeat center center/cover;
+    background-color: rgba(39, 34, 34, 0.7);
     width: 60%;
     height: 60vh;
 
@@ -38,14 +38,116 @@
     justify-content: space-around;
 }
 
+/* Quiz Title */
 .quiz-title-css {
-    font-size: 300%;
-    align-self: top;
+    text-align: center;
+    margin: 10px 0;
     background-color: rgba(123, 81, 141, 0.85);
     padding: 15px;
+    border-radius: 5px;
+}
+
+/* Question Area */
+.quiz-task {
+    font-size: 24px;
+    text-align: center;
+}
+
+.definition {
+    font-size: 20px;
+    text-align: center;
+    margin-top: 10px;
 }
 
 .quiz-field-css {
-    background-color: rgba(39, 34, 34, 0.7);
+    background-color:  rgba(0, 188, 212, 0.7);
     padding: 30px;
+}
+
+/* Answer Options */
+.answer-list-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.answer-option {
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.answer-option:hover {
+    background-color: #0056b3; /* Darker color on hover */
+}
+
+/* Skip Button */
+#skip-button {
+    font-size: 18px;
+    margin-top: 10px;
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+#skip-button:hover {
+    background-color: #ff4500; /* Darker color on hover */
+}
+
+/* Timer Spinner */
+.timer-spinner {
+    font-size: 24px;
+    margin-top: 20px;
+    color: #00bcd4;
+    font-weight: bold;
+}
+
+/* Score Area */
+#score-area {
+    font-size: 24px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Start and Stop Quiz Buttons */
+#start-quiz-button,
+#stop-quiz-button {
+    font-size: 18px;
+    margin-top: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+#start-quiz-button:hover,
+#stop-quiz-button:hover {
+    background-color: #45a049; /* Darker color on hover */
+}
+
+/* Modals (Congratulations and Failure) */
+#congratulations-modal,
+#fail-modal {
+    display: none;
+    /* TODO: styles for modal appearance here */
+}
+
+/* Statistic Window */
+#statistic-window {
+    display: none;
+    /* TODO: styles for statistic window appearance here */
 }

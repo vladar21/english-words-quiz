@@ -36,6 +36,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    padding: 15px;
+    border-radius: 5px;
 }
 
 /* Quiz Title */
@@ -47,13 +49,21 @@
     border-radius: 5px;
 }
 
-/* Question Area */
+/* Quiz Task (Question) */
 .quiz-task {
     font-size: 24px;
     text-align: center;
+    margin-bottom: 10px;
 }
 
-.definition {
+/* Word Type */
+.word-type {
+    font-size: 16px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.word-definition {
     font-size: 20px;
     text-align: center;
     margin-top: 10px;
@@ -62,9 +72,11 @@
 .quiz-field-css {
     background-color:  rgba(0, 188, 212, 0.7);
     padding: 30px;
+    border-radius: 5px;
 }
 
-/* Answer Options */
+
+/* Answer List Area (Styled as Radio Buttons) */
 .answer-list-area {
     display: flex;
     flex-direction: column;
@@ -72,12 +84,19 @@
     margin-top: 20px;
 }
 
+.answers-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
 .answer-option {
     font-size: 18px;
     padding: 10px 20px;
     margin: 5px;
-    background-color: #007bff;
-    color: white;
+    background-color: #f0f0f0;
+    color: #333;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -85,14 +104,21 @@
 }
 
 .answer-option:hover {
-    background-color: #0056b3; /* Darker color on hover */
+    background-color: #ddd; /* Slightly darker color on hover */
 }
 
 /* Skip Button */
-#skip-button {
+.control-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+.control-buttons button {
     font-size: 18px;
     margin-top: 10px;
-    background-color: #ff5722;
     color: white;
     border: none;
     border-radius: 5px;
@@ -100,17 +126,46 @@
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
 }
+#skip-button {
+    background-color: #ff5722;
+}
+
+#next-button {
+    background-color:#4caf50;
+}
 
 #skip-button:hover {
     background-color: #ff4500; /* Darker color on hover */
 }
 
-/* Timer Spinner */
+#next-button:hover {
+    background-color: #45a049; /* Darker color on hover */
+}
+
+/* Horizontal Spinner for Timer */
 .timer-spinner {
     font-size: 24px;
     margin-top: 20px;
     color: #00bcd4;
     font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+    width: 100px;
+    height: 40px;
+}
+
+/* Add animations for the spinner if desired */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.timer-spinner.active {
+    animation: spin 1s linear infinite; /* Apply the spin animation when active */
 }
 
 /* Score Area */

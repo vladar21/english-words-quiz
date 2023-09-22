@@ -13,17 +13,34 @@
         <div id="quiz-field" class="quiz-field-css">
             <div id="question-area">
                 <h2 class="quiz-task">Write the word that matches the definition:</h2>
-                <p class="wordtype">noun</p>
-                <p class="definition">​understanding and ​kindness towards other ​people</p>
+                <p class="word-type">noun</p>
+                <p class="word-definition">​understanding and ​kindness towards other ​people</p>
             </div>
             <div id="answer-list-area">
                 <!-- Answer options go here -->
-                <button class="answer-option">inexcusable</button>
-                <button class="answer-option">nerve-racking</button>
-                <button class="answer-option">consider</button>
+                <div class="answers-container">
+                    <h3 id="choose-answer">Сhoose the right answer:</h3>
+                    <div>
+                        <input type="radio" class="answer-option" name="answer-option" value="inexcusable">
+                        <label>inexcusable</label>
+                    </div>
+                   <div>
+                        <input type="radio" class="answer-option" name="answer-option" value="nerve-racking">
+                        <label>nerve-racking</label>
+                    </div>
+                   <div>
+                        <input type="radio" class="answer-option" name="answer-option" value="consider">
+                        <label>consider</label>
+                   </div>
+                </div>                
             </div>
-            <button id="skip-button">Skip</button>
-            <div id="timer-spinner" class="timer-spinner">30</div> <!-- Timer spinner element -->
+            <div class="control-buttons">
+                <button id="skip-button">Skip</button>
+                <div id="timer-spinner" class="timer-spinner">30</div> <!-- Timer spinner element -->
+                <button id="next-button">Next</button>
+            </div>
+            
+            
             <div id="score-area">
                 <!-- Score display goes here -->
             </div>

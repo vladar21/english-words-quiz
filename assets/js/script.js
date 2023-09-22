@@ -1,5 +1,5 @@
 // Import the englishWords object
-import englishWords from './englishwordsdata.js';
+import myWords from ".english-words-data.js";
 
 // Function to start the quiz
 function startQuiz() {

@@ -1,6 +1,3 @@
-// Import the englishWords object
-import myWords from ".english-words-data.js";
-
 // Function to start the quiz
 function startQuiz() {
     // Display the first question and answer options

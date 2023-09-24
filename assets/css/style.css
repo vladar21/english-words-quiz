@@ -330,7 +330,9 @@
 }
 
 /* Winner table styles */
-/* .winners-table {} */
+.winners-table caption {
+    font-size: 80%;
+}
 
 /* Add some styles for the table header */
 .winners-table th {
@@ -371,7 +373,7 @@
 .highlight {
     background-color: rgba(51, 51, 51, 0.7);
     border-radius: 5px;
-    box-shadow: inset 0 0 5px #888;
+    /* box-shadow: inset 0 0 5px #888; */
 }
 
 /* Add some styles for the second class */
@@ -451,8 +453,33 @@
     text-align: left;
   }
 
-   /* Add some styles for the highlighted rows */
-   /* .highlight {
-     background-color: rgba(51, 51, 51, 0.7);
-   } */
+  .winners-table tr {
+    font-size: 65%;
+  }
+
+  .winners-table td {
+    box-shadow: 1px 1px 5px -1px rgb(50, 50, 50);
+  }
+
+  /* Adjust the width and position of the table cells */
+  .winners-table td:nth-child(1) {
+    width: 10%;
+    text-align: center;
+  }
+
+  .winners-table td:nth-child(2) {
+    width: 65%;
+    text-align: left;
+  }
+
+  .winners-table td:nth-child(3) {
+    width: 15%;
+    text-align: center;
+  }
+
+  .winners-table td:nth-child(4) {
+    width: 10%;
+    text-align: center;
+  }
+
 }

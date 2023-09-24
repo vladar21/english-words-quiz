@@ -235,7 +235,7 @@
 #stop-quiz-button {
     font-size: 18px;
     margin-top: 10px;
-    background-color: #4caf50;
+    
     color: white;
     border: none;
     border-radius: 5px;
@@ -244,9 +244,17 @@
     transition: background-color 0.3s ease-in-out;
 }
 
-#start-quiz-button:hover,
-#stop-quiz-button:hover {
+#start-quiz-button {
+    background-color: #4caf50;
+}
+#stop-quiz-button {
+    background-color: #ff5722;
+}
+#start-quiz-button:hover {
     background-color: #45a049; /* Darker color on hover */
+}
+#stop-quiz-button:hover {
+    background-color: #ff4500;
 }
 
 /* Modals (Congratulations and Failure) */

@@ -313,7 +313,7 @@
 #statistic-window {
     /* display: flex; */
     width: 100%;
-    font-size: 210%;
+    /* font-size: 210%; */
 }
 
 #winner-quiz-field {
@@ -330,8 +330,13 @@
 }
 
 /* Winner table styles */
+
+.winners-table {
+    width: 100%;
+}
+
 .winners-table caption {
-    font-size: 80%;
+    font-size: 150%;
 }
 
 /* Add some styles for the table header */
@@ -341,7 +346,7 @@
 }
 
 .winners-table tr {
-    font-size: 65%;
+    font-size: 110%;
 }
 
 .winners-table td {
@@ -384,7 +389,7 @@
 
 /* Style for statistic window controll area */
 .rules-start-settings {
-    width:90%;
+    width:100%;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -393,7 +398,7 @@
 
 .rules-start-settings a {
     font-family: 'Caveat', cursive;
-    font-size: 90%;
+    font-size: 150%;
     /* font-weight: bold; */
     text-decoration: none;
     color: white;
@@ -409,7 +414,7 @@
 
 
 /* Use a media query to make the table responsive */
-@media screen and (max-width: 600px) {
+/* @media screen and (max-width: 600px) { */
   /* Hide the table caption on small screens */
   /* .winners-table caption {
     display: none;
@@ -435,10 +440,17 @@
     justify-content: space-around;
     gap: 10px;
   } */
-}
+/* } */
 
 /* Add some styles for the table on large screens */
 @media screen and (min-width: 600px) {
+  .quizsquare {
+    padding: 30px;
+    padding-top: 20px;
+    border-radius: 5px;
+    width: 70%;
+  }
+
   /* Center the table on the page */
   .winners-table {
     margin: auto;
@@ -453,8 +465,12 @@
     text-align: left;
   }
 
+  .winners-table caption {
+    font-size: 210%;
+  }
+
   .winners-table tr {
-    font-size: 65%;
+    font-size: 180%;
   }
 
   .winners-table td {

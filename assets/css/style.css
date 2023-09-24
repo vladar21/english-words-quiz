@@ -96,7 +96,7 @@
 }
 
 .quiz-field-css {
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     background-color:  rgba(0, 188, 212, 0.7);

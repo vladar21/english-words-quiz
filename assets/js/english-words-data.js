@@ -755,8 +755,8 @@ var englishWords = {
         ],       
     },
     "survey": {
-        "image_url": "assets/images/quiz_images/embrace.webp",
-        "sound_url": "assets/sound/embrace.mp3",
+        "image_url": "assets/images/quiz_images/survey.webp",
+        "sound_url": "assets/sound/survey.mp3",
         "cefr": {
             "level": "C1",
             "title": "Advanced"

@@ -19,7 +19,7 @@ function startQuiz() {
     statisticWindow.style.display = "none";
     // Show quiz area
     let quizField = document.getElementById("quiz-field");
-    quizField.style.display = "block";
+    quizField.style.display = "flex";
 }
 
 // Add an event listener to the "Start Quiz" button

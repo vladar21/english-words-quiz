@@ -197,10 +197,12 @@
 
 #skip-button {
     background-color: rgba(255, 87, 34, 0.7);
+    box-shadow: 2px 2px 15px -2px rgb(50, 50, 50);
 }
 
 #next-button {
     background-color:rgba(76, 175, 80, 0.7);
+    box-shadow: 2px 2px 15px -2px rgb(50, 50, 50);
 }
 
 #skip-button:hover {
@@ -294,6 +296,7 @@
 }
 #stop-quiz-button {
     background-color: rgba(255, 87, 34, 0.7);
+    box-shadow: 2px 2px 15px -2px rgb(50, 50, 50);
 }
 #start-quiz-button:hover {
     background-color: #45a049; /* Darker color on hover */

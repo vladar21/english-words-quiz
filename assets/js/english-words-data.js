@@ -982,4 +982,65 @@ var englishWords = {
             },
         ],       
     },
+    "opt": {
+        "image_url": "assets/images/quiz_images/opt.webp",
+        "sound_url": "assets/sound/opt.mp3",
+        "cefr": {
+            "level": "C1",
+            "title": "Advanced"
+        },
+        "word-types": [
+            {
+                "word-type": "verb",
+                "definitions": [
+                    {
+                        "definition": "to choose something or to decide to do something.",                        
+                        "translate": {
+                            "ru": [
+                                {
+                                    "translation": 'делать выбор',
+                                    "definition": null,
+                                    "sound_url": null,
+                                },
+                                {
+                                    "translation": 'предпочитать',
+                                    "definition": null,
+                                    "sound_url": null,
+                                },  
+                            ],
+                        }
+                    }, 
+                    {
+                        "definition": "to choose or decide not to do something or take part in something.",
+                        "translate": {
+                            "ua": [
+                                {
+                                    "translation": 'вибирати',
+                                    "definition": null,
+                                    "sound_url": null,
+                                },
+                                {
+                                    "translation": 'ухилятися',
+                                    "definition": null,
+                                    "sound_url": null,
+                                },
+                            ],
+                        }
+                    },   
+                    {
+                        "definition": "to make a choice, especially of one thing or possibility instead of others.",
+                        "translate": null
+                    },
+                    {
+                        "definition": "to make a choice, esp. for one thing or possibility in preference to any others.",
+                        "translate": null
+                    },
+                    {
+                        "definition": "to choose one thing or possibility rather than others.",
+                        "translate": null
+                    },
+                ],
+            },
+        ],       
+    },
 };

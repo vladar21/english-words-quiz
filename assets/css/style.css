@@ -353,6 +353,32 @@
     box-shadow: inset 0 0 5px #888;
   }
 
+  /* Style for statistic window controll area */
+  .rules-start-settings {
+    width:90%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+  }
+
+  .rules-start-settings a {
+    font-family: 'Caveat', cursive;
+    font-size: 90%;
+    /* font-weight: bold; */
+    text-decoration: none;
+    color: white;
+    align-self: flex-end;
+    padding: 5px;
+    padding-right: 8px;
+    border-radius: 5px;
+  }
+
+  .rules-start-settings a:hover {
+    background-color: rgba(39, 34, 34, 0.7);
+  }
+
+
 /* Use a media query to make the table responsive */
 @media screen and (max-width: 600px) {
   /* Hide the table caption on small screens */

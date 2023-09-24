@@ -8,6 +8,14 @@ The brief description of the quize:
 
 The user must find right definitions for English's word or right word by his definition. 
 
+The user has opportunity to choose the dificalt level of quiz words. There are six CEFR levels:
+- A0/A1 English (Beginner/Elementary);
+- A2 English (Pre Intermediate);
+- B1 English (Intermediate);
+- B2 English (Upper Intermediate);
+- C1 English (Advanced);
+- C2 English (Proficient). 
+
 The idea of the quiz is to choose the right answer among a few that are randomly chosen from another. The words and their definitions are stored in a key-value array - englishWords. Structure of the word set is:
 
 ```json

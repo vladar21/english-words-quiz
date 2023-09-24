@@ -42,9 +42,20 @@
                 <button id="next-button">Next</button>
             </div>
             
-            <div id="score-area">
-                <!-- Score display goes here -->
+            <div id="score-area" class="score-area">
+                <div class="score-label">
+                    Answered/Total:
+                    <span id="answered-count" class="count">0</span>&nbsp;/&nbsp;
+                    <span id="total-count" class="count">0</span>
+                </div>
+                <div class="score-label">
+                     Right/Wrong:
+                    <span id="right-count" class="count right-count">0</span>&nbsp;/&nbsp;
+                    <span id="wrong-count" class="count wrong-count">0</span>
+                </div>
             </div>
+            
+
             <button id="start-quiz-button">Start Quiz</button>
             <button id="stop-quiz-button">Stop Quiz</button>
         </div>

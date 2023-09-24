@@ -224,10 +224,40 @@
 }
 
 /* Score Area */
-#score-area {
-    font-size: 24px;
+.score-area {
+    font-size: 16px;
     margin-top: 20px;
     text-align: center;
+}
+
+/* Score Label Styles */
+.score-label {
+    display: inline-block;
+    font-size: 1.17em;
+    margin: 5px 10px;
+    background-color: #056774;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+/* Count Styles */
+.count {
+    font-weight: bold;
+}
+
+#answered-count {
+    color: #4caf50;
+}
+#total-count {
+    color: yellow;
+}
+
+.right-count {
+    color: #4caf50;
+}
+
+.wrong-count {
+    color: #ff5722;
 }
 
 /* Start and Stop Quiz Buttons */

@@ -1,11 +1,25 @@
+// Get a reference to the "Start Quiz" button
+var startQuizButton = document.getElementById("start-quiz-button");
+
+// Add a click event listener to the button
+startQuizButton.addEventListener("click", function () {
+   
+});
+
 // Function to start the quiz
 function startQuiz() {
     // Display the first question and answer options
-    displayNewQuestion();
+    // displayNewQuestion();
 
     // Hide the "Start Quiz" button
-    var startQuizButton = document.getElementById('start-quiz-button');
+    let startQuizButton = document.getElementById('start-quiz-button');
     startQuizButton.style.display = 'none';
+    // Hide the start page "statistic-window"
+    let statisticWindow = document.getElementById("statistic-window");
+    statisticWindow.style.display = "none";
+    // Show quiz area
+    let quizField = document.getElementById("quiz-field");
+    quizField.style.display = "block";
 }
 
 // Add an event listener to the "Start Quiz" button

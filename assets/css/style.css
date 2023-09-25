@@ -250,7 +250,8 @@
     display: inline-block;
     font-size: 1.17em;
     margin: 5px 10px;
-    background-color: rgba(5, 103, 116, 0.7);
+    /* background-color: rgba(5, 103, 116, 0.7); */
+    background-color: rgba(123, 81, 141, 0.8);
     padding: 5px 10px;
     border-radius: 5px;
 }
@@ -258,6 +259,8 @@
 /* Count Styles */
 .count {
     font-weight: bold;
+    font-family: 'Caveat', cursive;
+    font-size: 180%;
 }
 
 #answered-count {
@@ -272,7 +275,7 @@
 }
 
 .wrong-count {
-    color: #ff5722;
+    color: #e49d87;
 }
 
 /* Start Button */

@@ -31,10 +31,36 @@ function startQuiz() {
 
 // Function to next turn in the quiz
 function takeAturn() {
+    // check last answer
+    checkLastAnswer();
     // Display new question
     const randomQuestion = getRandomQuestion(englishWords); 
     let currentQuiz = displayQuestion(randomQuestion);
     quizData.push(currentQuiz);
+}
+
+// check last answer
+function checkLastAnswer() {
+    const lastQuiz = quizData[quizData.length - 1]; // Get the last quiz data
+
+    if (lastQuiz) {
+        const answers = lastQuiz.answers;
+        const lastUserAnswer = answers.find(answer => answer.isUserChoice);
+
+        if (lastUserAnswer) {
+            if (lastUserAnswer.isCorrect) {
+                // User's answer is correct
+                const rightCountElement = document.getElementById('right-count');
+                const rightCount = parseInt(rightCountElement.textContent) + 1;
+                rightCountElement.textContent = rightCount;
+            } else {
+                // User's answer is incorrect
+                const wrongCountElement = document.getElementById('wrong-count');
+                const wrongCount = parseInt(wrongCountElement.textContent) + 1;
+                wrongCountElement.textContent = wrongCount;
+            }
+        }
+    }
 }
 
 // Function to get a random question
@@ -108,7 +134,7 @@ function displayQuestion(question) {
 
         // Make sure it's not the same as the correct answer
         if (randomKey !== question.word) {
-            answerOptions.push({ answer: randomKey, isCorrect: false });
+            answerOptions.push({ answer: randomKey, isCorrect: false, isUserChoice: false });
         }
     }
 
@@ -131,6 +157,11 @@ function displayQuestion(question) {
         li.appendChild(label);
 
         answersListElement.appendChild(li);
+
+        // Add an event listener to track user's choice
+        input.addEventListener('change', () => {
+            option.isUserChoice = input.checked;
+        });
     });
 
     // Add the currentQuiz object to the quizData array

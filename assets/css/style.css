@@ -195,7 +195,7 @@
     flex-wrap: wrap; /* Переход на новую строку для каждой кнопки и спиннера */
 }
 
-#skip-button {
+#stop-button {
     background-color: rgba(255, 87, 34, 0.7);
     box-shadow: 2px 2px 15px -2px rgb(50, 50, 50);
 }
@@ -205,7 +205,7 @@
     box-shadow: 2px 2px 15px -2px rgb(50, 50, 50);
 }
 
-#skip-button:hover {
+#stop-button:hover {
     background-color: rgba(255, 69, 0, 0.7); /* Darker color on hover */
 }
 
@@ -275,9 +275,8 @@
     color: #ff5722;
 }
 
-/* Start and Stop Quiz Buttons */
-#start-quiz-button,
-#stop-quiz-button {
+/* Start Button */
+#start-quiz-button {
     font-size: 18px;
     margin-top: 10px;
     font-weight: bold;
@@ -288,21 +287,12 @@
     padding: 10px 20px;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
-}
-
-#start-quiz-button {
     background-color: rgba(76, 175, 80, 0.7);
     box-shadow: 2px 2px 15px -2px rgb(50, 50, 50);
 }
-#stop-quiz-button {
-    background-color: rgba(255, 87, 34, 0.7);
-    box-shadow: 2px 2px 15px -2px rgb(50, 50, 50);
-}
+
 #start-quiz-button:hover {
     background-color: #45a049; /* Darker color on hover */
-}
-#stop-quiz-button:hover {
-    background-color: #ff4500;
 }
 
 /* Modals (Congratulations and Failure) */

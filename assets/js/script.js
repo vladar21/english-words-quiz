@@ -1,6 +1,11 @@
-// Add an event listener to the "Start Quiz" button
+// global variable with data of all quiz events
+var quizData = [];
+
+// Add an event listener to the "Start" and "Skip" button
 var startQuizButton = document.getElementById('start-quiz-button');
 startQuizButton.addEventListener('click', startQuiz);
+var nextQuizButton = document.getElementById('next-button');
+nextQuizButton.addEventListener('click', takeAturn);
 
 // Function to start the quiz
 function startQuiz() {
@@ -20,8 +25,16 @@ function startQuiz() {
 
     // Display new question
     const randomQuestion = getRandomQuestion(englishWords); 
-    displayQuestion(randomQuestion);
+    let currentQuiz = displayQuestion(randomQuestion);
+    quizData.push(currentQuiz);
+}
 
+// Function to next turn in the quiz
+function takeAturn() {
+    // Display new question
+    const randomQuestion = getRandomQuestion(englishWords); 
+    let currentQuiz = displayQuestion(randomQuestion);
+    quizData.push(currentQuiz);
 }
 
 // Function to get a random question
@@ -83,7 +96,7 @@ function displayQuestion(question) {
     const answerOptions = [];
 
     // Add the correct answer to the array
-    answerOptions.push({ answer: question.word, isCorrect: true });
+    answerOptions.push({ answer: question.word, isCorrect: true, isUserChoice: false });
 
     // Add two incorrect answers to the array
     while (answerOptions.length < 3) {
@@ -119,6 +132,14 @@ function displayQuestion(question) {
 
         answersListElement.appendChild(li);
     });
+
+    // Add the currentQuiz object to the quizData array
+    let currentQuiz = {
+        "question": question,
+        "answers": answerOptions
+    };    
+    
+    return currentQuiz;
 }
 
 // Function to shuffle an array randomly

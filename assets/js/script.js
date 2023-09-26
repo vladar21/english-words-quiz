@@ -1,4 +1,6 @@
 let quizData = []; // Array to store quiz data
+// Declare currentQuiz at a higher scope
+let currentQuiz = null;
 // Define the winnersArray variable
 let winnersArray = [];
 // Initialize qty attempts
@@ -6,6 +8,7 @@ let attempt = -1;
 // Initialize a timer variable
 let timer = 0;
 let timerInterval;
+let totalTimeSpent = 0; // Variable to store the total time spent in the current attempt
 // Reference to the timer spinner element
 const timerSpinner = document.querySelector('.timer-spinner');
 // Flag to track whether the timer spinner is visible
@@ -48,7 +51,7 @@ function startQuiz() {
 
     // Display new question
     const randomQuestion = getRandomQuestion(englishWords); 
-    let currentQuiz = displayQuestion(randomQuestion);
+    currentQuiz = displayQuestion(randomQuestion);
     currentQuiz.attempt = attempt;
     quizData.push(currentQuiz);
 }
@@ -57,8 +60,11 @@ function startQuiz() {
 function stopQuiz() {
     // Stop the timer when the user stops the quiz
     stopTimer();
+
     // Record the elapsed time in the currentQuiz.answers object
-    // currentQuiz.answers.timeSpent = timer;
+    if (currentQuiz) {
+        currentQuiz.answers.timeSpent = totalTimeSpent; // Set the total time spent for the current attempt
+    }
 
     // Show the page "statistic-window"
     let statisticWindow = document.getElementById("statistic-window");
@@ -123,7 +129,7 @@ function stopQuiz() {
             <td>${winner.place}</td>
             <td>${getAttemptString(winner.attempt)}</td>
             <td>${winner.scores}</td>
-            <td>
+            <td>${winner.timeSpent}</td>
         `;
         winnersTable.appendChild(row);
        
@@ -154,6 +160,7 @@ function updateAttemptsInTable(winnersTable, attempts) {
 
 // Function to next turn in the quiz
 function takeAturn() {
+    timer = 31 // restore timert value to 30 sec 
     // check last answer
     checkLastAnswer();
     // Display new question
@@ -319,17 +326,21 @@ function startTimer() {
     updateTimerDisplay(); // Update the timer display with the initial time
 
     timerInterval = setInterval(() => {
-        timer--; // Decrement the timer
+        --timer; // Decrement the timer
         updateTimerDisplay(); // Update the timer display
 
         // Check if the timer has reached 0
-        if (timer <= 0) {
+        if (timer < 0) {
             // Time's up, do something (e.g., handle it as you need)
             stopTimer(); // Stop the timer when it reaches 0
             stopQuiz(); // Stop quiz
         } else if (timer <= 10) {
             // If the timer is 10 seconds or less, change the background color to red and make it flash
-            timerSpinner.style.backgroundColor = 'red';
+            timerSpinner.style.backgroundColor = isTimerSpinnerVisible ? 'red' : 'white';
+            timerSpinner.style.color = isTimerSpinnerVisible ? 'white' : 'red';
+
+            // Toggle the flag to control visibility
+            isTimerSpinnerVisible = !isTimerSpinnerVisible;
         }
     }, 1000);
 }
@@ -337,4 +348,5 @@ function startTimer() {
 // Function to stop the timer
 function stopTimer() {
     clearInterval(timerInterval);
+    totalTimeSpent += (30 - timer); // Add the time spent on the current question to the total time
 }

@@ -1,8 +1,16 @@
 let quizData = []; // Array to store quiz data
 // Define the winnersArray variable
 let winnersArray = [];
-// Array of words to use for attempts (e.g., "first," "second," "third," etc.)
+// Initialize qty attempts
 let attempt = -1;
+// Initialize a timer variable
+let timer = 0;
+let timerInterval;
+// Reference to the timer spinner element
+const timerSpinner = document.querySelector('.timer-spinner');
+// Flag to track whether the timer spinner is visible
+let isTimerSpinnerVisible = true;
+// updateTimerDisplay();
 
 // Add an event listener to the "Start" and "Skip" button
 var startQuizButton = document.getElementById('start-quiz-button');
@@ -13,8 +21,12 @@ nextQuizButton.addEventListener('click', takeAturn);
 const stopQuizButton = document.getElementById('stop-button');
 stopQuizButton.addEventListener('click', stopQuiz);
 
+
 // Function to start the quiz
 function startQuiz() {
+
+    // Start the timer when the user proceeds to the next question
+    startTimer();
 
     // Increment attempts when starting a new quiz
     attempt++;
@@ -43,6 +55,11 @@ function startQuiz() {
 
 // Function to finish the quiz
 function stopQuiz() {
+    // Stop the timer when the user stops the quiz
+    stopTimer();
+    // Record the elapsed time in the currentQuiz.answers object
+    // currentQuiz.answers.timeSpent = timer;
+
     // Show the page "statistic-window"
     let statisticWindow = document.getElementById("statistic-window");
     statisticWindow.style.display = "block";
@@ -106,6 +123,7 @@ function stopQuiz() {
             <td>${winner.place}</td>
             <td>${getAttemptString(winner.attempt)}</td>
             <td>${winner.scores}</td>
+            <td>
         `;
         winnersTable.appendChild(row);
        
@@ -275,7 +293,7 @@ function displayQuestion(question) {
         question: question.definition,
         answers: answerOptions,
         scores: 0, // Initialize scores for this quiz
-    };  
+    };
     
     return currentQuiz;
 }
@@ -287,4 +305,36 @@ function shuffleArray(array) {
         [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
+}
+
+ // Function to update the timer display
+ function updateTimerDisplay() {
+    const timerDisplay = document.querySelector('.timer-spinner');
+    timerDisplay.textContent = `${timer}`;
+}
+
+// Function to start the timer
+function startTimer() {
+    timer = 30; // Set the initial time to 30 seconds
+    updateTimerDisplay(); // Update the timer display with the initial time
+
+    timerInterval = setInterval(() => {
+        timer--; // Decrement the timer
+        updateTimerDisplay(); // Update the timer display
+
+        // Check if the timer has reached 0
+        if (timer <= 0) {
+            // Time's up, do something (e.g., handle it as you need)
+            stopTimer(); // Stop the timer when it reaches 0
+            stopQuiz(); // Stop quiz
+        } else if (timer <= 10) {
+            // If the timer is 10 seconds or less, change the background color to red and make it flash
+            timerSpinner.style.backgroundColor = 'red';
+        }
+    }, 1000);
+}
+
+// Function to stop the timer
+function stopTimer() {
+    clearInterval(timerInterval);
 }

@@ -142,6 +142,10 @@ function stopQuiz() {
             <td>${winner.scores}</td>
             <td>${winner.timeSpent}</td>
         `;
+    // Add the .highlight class to the first three rows
+    if (index < 3) {
+        row.classList.add('highlight');
+    }
     winnersTable.appendChild(row);
   });
 }

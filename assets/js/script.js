@@ -87,12 +87,14 @@ function stopQuiz() {
   }, 0);
 
   // Add the total data to the array
-  winnersArray.push({
-    place: 0, // Initialize with 0, will be updated later
-    attempt: attempt, // Calculate attempts value
-    scores: totalCorrectAnswers,
-    timeSpent: totalTimeSpent,
-  });
+  if (totalCorrectAnswers > 0) {
+    winnersArray.push({
+        place: 0, // Initialize with 0, will be updated later
+        attempt: attempt, // Calculate attempts value
+        scores: totalCorrectAnswers,
+        timeSpent: totalTimeSpent,
+      });
+  }
 
   // Get the data from the winners table (excluding the first row)
   const winnersTableData = Array.from(winnersTable.rows)

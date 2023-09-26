@@ -8,7 +8,7 @@ let attempt = -1;
 // Initialize a timer variable
 let timer = 0;
 let timerInterval;
-let totalTimeSpent = 0; // Variable to store the total time spent in the current attempt
+// let totalTimeSpent = 0; // Variable to store the total time spent in the current attempt
 // Reference to the timer spinner element
 const timerSpinner = document.querySelector('.timer-spinner');
 // Flag to track whether the timer spinner is visible
@@ -27,7 +27,6 @@ stopQuizButton.addEventListener('click', stopQuiz);
 
 // Function to start the quiz
 function startQuiz() {
-
     // Start the timer when the user proceeds to the next question
     startTimer();
 
@@ -61,10 +60,13 @@ function stopQuiz() {
     // Stop the timer when the user stops the quiz
     stopTimer();
 
-    // Record the elapsed time in the currentQuiz.answers object
-    if (currentQuiz) {
-        currentQuiz.answers.timeSpent = totalTimeSpent; // Set the total time spent for the current attempt
-    }
+    // Calculate the total time spent for the current attempt
+    const totalTimeSpent = quizData.reduce((totalTime, quiz) => {
+        if (quiz.attempt === attempt) {
+            totalTime += quiz.spentTime;
+        }
+        return totalTime;
+    }, 0);
 
     // Show the page "statistic-window"
     let statisticWindow = document.getElementById("statistic-window");
@@ -87,16 +89,18 @@ function stopQuiz() {
     winnersArray.push({
         place: 0, // Initialize with 0, will be updated later
         attempt: attempt, // Calculate attempts value
-        scores: totalCorrectAnswers
+        scores: totalCorrectAnswers,
+        timeSpent: totalTimeSpent,
     });
 
     // Get the data from the winners table (excluding the first row)
     const winnersTableData = Array.from(winnersTable.rows).slice(1).map(row => {
-        const [place, attempt, scores] = row.cells;
+        const [place, attempt, scores, timeSpent] = row.cells;
         return {
             place: Number(place.textContent),
             attempt: attempt.textContent.trim(), // Use trim to remove leading/trailing whitespace
-            scores: Number(scores.textContent)
+            scores: Number(scores.textContent),
+            timeSpent: Number(timeSpent.textContent), // Corrected property name
         };
     });
 
@@ -106,10 +110,11 @@ function stopQuiz() {
         if (existingWinner) {
             // Update the place if a matching entry exists
             existingWinner.place = data.place;
-        } else {
-            // Add the data if it doesn't exist in winnersArray
-            winnersArray.push(data);
-        }
+        } 
+        // else {
+        //     // Add the data if it doesn't exist in winnersArray
+        //     winnersArray.push(data);
+        // }
     });
 
     // Sort the array by scores in descending order
@@ -134,14 +139,6 @@ function stopQuiz() {
         winnersTable.appendChild(row);
        
     });
-
-    // Call updateAttemptsInTable to update the attempt values in the table
-    // updateAttemptsInTable(winnersTable, attempts);
-}
-
-function getAttemptString(index) {
-    const attemptStrings = ["first", "second", "third", "fourth", "fifth"]; // Add more as needed
-    return attemptStrings[index] || "first";
 }
 
 function getAttemptString(index) {
@@ -160,14 +157,21 @@ function updateAttemptsInTable(winnersTable, attempts) {
 
 // Function to next turn in the quiz
 function takeAturn() {
+    addSpentTimeToLastAttempt();
     timer = 31 // restore timert value to 30 sec 
     // check last answer
     checkLastAnswer();
     // Display new question
     const randomQuestion = getRandomQuestion(englishWords); 
-    let currentQuiz = displayQuestion(randomQuestion);
+    currentQuiz = displayQuestion(randomQuestion);
     currentQuiz.attempt = attempt;
+    currentQuiz.spentTime = 0;
+   
     quizData.push(currentQuiz);
+}
+
+function addSpentTimeToLastAttempt(){
+    quizData[quizData.length - 1].spentTime = 30 - timer;
 }
 
 // check last answer
@@ -296,10 +300,11 @@ function displayQuestion(question) {
     });
 
     // Add the currentQuiz object to the quizData array
-    const currentQuiz = {
+    currentQuiz = {
         question: question.definition,
         answers: answerOptions,
         scores: 0, // Initialize scores for this quiz
+        timeSpent: 0,
     };
     
     return currentQuiz;
@@ -348,5 +353,4 @@ function startTimer() {
 // Function to stop the timer
 function stopTimer() {
     clearInterval(timerInterval);
-    totalTimeSpent += (30 - timer); // Add the time spent on the current question to the total time
 }

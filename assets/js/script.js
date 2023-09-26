@@ -272,6 +272,11 @@ function displayQuestion(question) {
   const quizTaskElement = document.querySelector(".quiz-task");
   const wordTypeElement = document.querySelector(".word-type");
   const wordDefinitionElement = document.querySelector(".word-definition");
+  // Reference to the timer spinner element
+  const timerSpinner = document.querySelector(".timer-spinner");
+  // Set timer background in default color
+  timerSpinner.style.backgroundColor = 'rgba(51, 51, 51, 0.7)';
+  timerSpinner.style.color = 'white';
 
   // Update question elements
   quizTaskElement.textContent = "Guess the word by definition:";

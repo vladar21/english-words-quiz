@@ -124,7 +124,20 @@ To use the English Words Quiz, follow these steps:
 
 ## Bugs
 
-[under construction]
+1. Wrong background colour for timer field when user had10 sec countdown on previous attempt.
+
+See the image below:
+
+![timer background-color bug](assets/images/readme/timer_background_color_bug.jpg)
+
+The solution was to add two lines of code to the "displayQuestion" function with assignments to the default timer background colour and text colour.
+
+See the image below:
+
+![fix the timer background-color bug](assets/images/readme/timer_background_color_bug_fix.jpg)
+
+2. [under constraction]
+
 
 ## Deployment
 

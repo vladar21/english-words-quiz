@@ -148,6 +148,10 @@ function stopQuiz() {
     }
     winnersTable.appendChild(row);
   });
+
+  // Restore default background for quizsquare
+  const quizsquareFieldElement = document.querySelector(".quizsquare");
+  quizsquareFieldElement.style.background = "rgba(39, 34, 34, 0.7)";
 }
 
 function getAttemptString(index) {
@@ -334,6 +338,10 @@ function displayQuestion(question) {
     li.appendChild(label);
 
     answersListElement.appendChild(li);
+
+    const quizsquareFieldElement = document.querySelector(".quizsquare");
+    quizsquareFieldElement.style.background = `rgba(0, 188, 212, 0.7) url(${question.imageUrl}) no-repeat center center/cover`;
+    quizsquareFieldElement.style.opacity = 0.9;
 
     // Add an event listener to track user's choice
     input.addEventListener("change", () => {

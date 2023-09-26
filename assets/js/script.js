@@ -118,8 +118,14 @@ function stopQuiz() {
     }
   });
 
-  // Sort the array by scores in descending order
-  winnersArray.sort((a, b) => b.scores - a.scores);
+  // Sort the array by scores in descending order and, if scores are equal, by time spent in ascending order
+  winnersArray.sort((a, b) => {
+    if (a.scores !== b.scores) {
+      return b.scores - a.scores;
+    } else {
+      return a.timeSpent - b.timeSpent;
+    }
+  });
 
   // Update the 'place' values based on the sorted order
   winnersArray.forEach((winner, index) => {

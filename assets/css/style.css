@@ -99,6 +99,13 @@
     border-radius: 5px;
 }
 
+.word-image {
+    display: block;
+    margin-top: 10px;
+    width: 90%;
+    border: 10px solid #d7fc09;
+}
+
 .quiz-field-css {
     display: none;
     flex-direction: column;
@@ -453,6 +460,12 @@
     border-radius: 5px;
     width: 70%;
   }
+
+  /* styles for word image */
+  .word-image {
+    display: block;
+    width: 60%;
+}
 
   /* Center the table on the page */
   .winners-table {

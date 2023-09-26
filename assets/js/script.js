@@ -355,6 +355,9 @@ function displayQuestion(question) {
     // const quizsquareFieldElement = document.querySelector(".quizsquare");
     // quizsquareFieldElement.style.background = `rgba(0, 188, 212, 0.7) url(${question.imageUrl}) no-repeat center center/contain`;
     // quizsquareFieldElement.style.opacity = 0.9;
+    const imageFieldElement = document.querySelector(".word-image");
+    imageFieldElement.src = question.imageUrl;
+    // imageFieldElement.style.opacity = 0.3;
 
     // Add an event listener to track user's choice
     input.addEventListener("change", () => {

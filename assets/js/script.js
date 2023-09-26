@@ -191,7 +191,20 @@ function updateAttemptsInTable(winnersTable, attempts) {
 // Function to next turn in the quiz
 function takeAturn() {
   addSpentTimeToLastAttempt();
+  
   timer = 31; // restore timert value to 30 sec
+
+
+// Check if any answer option is selected
+const selectedOption = document.querySelector('input[name="answer-option"]:checked');
+
+  if (!selectedOption) {
+      // If no answer option is selected, consider it as an incorrect answer
+      const wrongCountElement = document.getElementById('wrong-count');
+      const wrongCount = parseInt(wrongCountElement.textContent) + 1;
+      wrongCountElement.textContent = wrongCount;
+  }
+
   // check last answer
   checkLastAnswer();
   // Display new question

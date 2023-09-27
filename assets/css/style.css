@@ -67,6 +67,7 @@
 
 /* Quiz Task (Question) */
 .quiz-task {
+    display: none;
     font-size: 24px;
     text-align: center;
     margin-bottom: 10px;
@@ -77,6 +78,7 @@
 
 /* Word Type */
 .word-type {
+    margin-top: 10px;
     font-style: italic;
     letter-spacing: .2rem;
     font-size: 16px;

@@ -177,6 +177,25 @@
     background-color: #ddd; /* Slightly darker color on hover */
 }
 
+/* Styling of the audio element container */
+.play-sound-button {
+    margin: 0;
+    margin-top: 2px;
+    padding:0;
+    background-image: url('../images/button_play.webp');
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    text-align: center;
+    margin-left: 5px;
+    float: right;
+}
+
+  
+
 /* Control buttons area */
 .control-buttons {
     display: flex;

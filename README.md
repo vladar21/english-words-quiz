@@ -164,6 +164,8 @@ The live link can be found here - [English Teacher](https://vladar21.github.io/e
 
 -   Favicon generator from this [Converter](https://favicon.io/favicon-converter/)
 
+-   All of my quiz images were created by [Image Creator, powered by DALL-E](https://www.bing.com/images/create)
+
 -   Image converter for the images of this site [Image converter](https://www.freeconvert.com/)
 
 -   Image to Readme file from this [Am I Responsive?](https://ui.dev/amiresponsive)

@@ -50,11 +50,23 @@
             <!-- <button id="stop-quiz-button">Stop Quiz</button> -->
         </div>
 
-        <div id="congratulations-modal">
+        <div id="rules">
             <!-- Congratulations message goes here -->
         </div>
-        <div id="fail-modal">
-            <!-- Failure message goes here -->
+        <div id="settings">
+            <h2>Settings</h2>
+            <label for="totalWords">Total Words (3 to N):</label>
+            <input type="number" id="totalWords" min="3" max="100" value="10">
+        
+            <h3>CEFR Levels</h3>
+            <div id="cefrLevels">
+                <!-- Checkbox options for CEFR levels will be added here -->
+            </div>
+        
+            <h3>Word Types</h3>
+            <div id="wordTypes">
+                <!-- Checkbox options for word types will be added here -->
+            </div>
         </div>
         <div id="statistic-window">
             <div id="winner-quiz-field" class="winners-results">

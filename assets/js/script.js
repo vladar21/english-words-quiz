@@ -126,7 +126,7 @@ function stopQuiz() {
   quizField.style.display = "none";
 
   // Access the winners' table element's tbody
-  const winnersTable = document.querySelector(".winners-table tbody");
+  const winnersTable = document.querySelector("#winners-table tbody");
 
   // Calculate the total number of correct answers for the current attempt
   const totalCorrectAnswers = quizData.reduce((total, quiz) => {
@@ -230,15 +230,6 @@ function getAttemptString(index) {
     "twenty-first",
   ]; // Add more as needed
   return attemptStrings[index] || "first";
-}
-
-function updateAttemptsInTable(winnersTable, attempts) {
-  winnersTable.querySelectorAll("tr").forEach((row, index) => {
-    const attemptsCell = row.querySelector("td:nth-child(2)");
-    if (attemptsCell) {
-      attemptsCell.textContent = getAttemptString(index + 1);
-    }
-  });
 }
 
 // Function to next turn in the quiz

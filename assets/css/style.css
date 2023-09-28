@@ -414,7 +414,7 @@
 }
 
 .winners-table caption {
-    font-size: 180%;
+    font-size: 210%;
 }
 
 /* Add some styles for the table header */
@@ -494,7 +494,9 @@
     width: 100%;
 }
 
-
+#settings-table {
+    
+}
 
 
 @media screen and (max-width: 600px) {

@@ -30,7 +30,7 @@
             </div>
             <div class="control-buttons">
                 <button id="stop-button">Stop</button>
-                <div id="timer-spinner" class="timer-spinner">30</div> <!-- Timer spinner element -->
+                <div id="timer-spinner" class="timer-spinner">30</div>
                 <button id="next-button">Next</button>
             </div>
             
@@ -68,21 +68,21 @@
 
         <div id="rules">
             <div id="winner-quiz-field" class="winners-results">
-                <table class="winners-table">
-                    <caption>Rules</caption>
-                    <tbody>
-                        <tr>
-                            <td>1. Press the <span class="rules-akcent">Start</span> button to begin the quiz.</td>
-                        </tr>
-                        <tr>
-                            <td>2. Press <span class="rules-akcent">Settings</span> link to make quiz more controllable. In this section you can select:
+                <div class="content-rules">
+                    <h2 class="rules-title">Rules</h2>
+                    <div>
+                        <div>
+                            <p class="highlight">1. Press the <span class="rules-akcent">Start</span> button to begin the quiz.</p>
+                        </div>
+                        <div>
+                            <p class="highlight">2. Press <span class="rules-akcent">Settings</span> link to make quiz more controllable. In this section you can select:
                                 <br><span class="arrow-right"></span> total number of words for quiz;;
                                 <br><span class="arrow-right"></span> cefr levels of words for quiz ('A1', 'B1', 'B2' etc);
                                 <br><span class="arrow-right"></span> types of words for quiz ('noun', 'adjectiv' etc);                      
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3. On the current quiz screen, you can see the following elements:
+                            </p>
+                        </div>
+                        <div>
+                            <p class="highlight">3. On the current quiz screen, you can see the following elements:
                                 <br><span class="arrow-right"></span> at the top - the definition of the word to be guessed;
                                 <br><span class="arrow-right"></span> below image as a clue that may help you guess the correct answer;
                                 <br><span class="arrow-right"></span> below, the word variants for the answer, with audio pronunciation support;
@@ -91,23 +91,23 @@
                                 <br><span class="arrow-right"></span> on the left, the Next question button;
                                 <br><span class="arrow-right"></span> in the bottom left corner - the number of quiz questions already answered and the total number of questions;
                                 <br><span class="arrow-right"></span> in the bottom right corner - the number of correct and incorrect answers in the current attempt.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4. After pressing the <span class="rules-akcent">Stop</span> quiz button, you will be taken to the winners table, where you can see the results of the current attempt and all previous attempts.</td>
-                        </tr>
-                    </tbody>
-                </table>       
-                <div class="rules-start-settings">
+                            </p>
+                        </div>
+                        <div>
+                            <p class="highlight">4. After pressing the <span class="rules-akcent">Stop</span> quiz button, you will be taken to the winners table, where you can see the results of the current attempt and all previous attempts.</p>
+                        </div>
+                    </div>
+                </div>       
+                <!-- <div class="rules-start-settings">
                     <a href="#" class="rules">Rules</a>
                     <button id="start-quiz-button">Start</button>
                     <a href="#" class="settings">Settings</a>
-                </div>         
+                </div>          -->
             </div>
         </div>
         <div id="statistic-window">
             <div id="winner-quiz-field" class="winners-results">
-                <table class="winners-table">
+                <table id="winners-table" class="winners-table">
                     <caption>Winners Results</caption>
                     <thead>
                         <tr>
@@ -121,13 +121,19 @@
 
                     </tbody>
                 </table>
-                <div class="rules-start-settings">
+                <!-- <div class="rules-start-settings">
                     <a href="#" class="rules">Rules</a>
                     <button id="start-quiz-button">Start</button>
                     <a href="#" class="settings">Settings</a>
-                </div>
+                </div> -->
                 
             </div>
+        </div>
+
+        <div class="rules-start-settings">
+            <a href="#" id="rules-link" class="rules-link">Rules</a>
+            <button id="start-quiz-button">Start</button>
+            <a href="#" id="settings-link" class="settings-link">Settings</a>
         </div>
         
     </div>

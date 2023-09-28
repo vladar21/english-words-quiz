@@ -14,18 +14,37 @@ const timerSpinner = document.querySelector(".timer-spinner");
 let isTimerSpinnerVisible = true;
 // updateTimerDisplay();
 
+// Find sectionы you want to hide or show
+let statisticWindow = document.getElementById("statistic-window");
+let quizField = document.getElementById("quiz-field");
+const rulesSection = document.getElementById("rules");
+
 // Add an event listener to the "Start"
 var startQuizButton = document.getElementById("start-quiz-button");
 startQuizButton.addEventListener("click", startQuiz);
-// Add an event listener to the "Next" button
-var nextQuizButton = document.getElementById("next-button");
-nextQuizButton.addEventListener("click", takeAturn);
-// Add an event listener for the "Stop" quiz button
-const stopQuizButton = document.getElementById("stop-button");
-stopQuizButton.addEventListener("click", stopQuiz);
+
+// Find the "Rules" link by its ID
+const rulesLink = document.getElementById("rules-link");
+// Add a click event listener to the "Rules" link
+rulesLink.addEventListener("click", (event) => {
+  event.preventDefault(); // Prevent the link from navigating
+
+  // Hide the current sections and show the "rules" section
+  quizField.style.display = "none";
+  statisticWindow.style.display = "none";
+  rulesSection.style.display = "block";
+
+  // Change background rules-link
+  rulesLink.style.backgroundColor = 'rgba(128, 124, 124, 0.7)';
+
+});
 
 // Function to start the quiz
 function startQuiz() {
+
+  // Hidden rules and settings links, and start quiz button
+  let rulesStartSettingsElement = document.getElementsByClassName('rules-start-settings')[0];
+  rulesStartSettingsElement.style.display = 'none';
   // Start the timer when the user proceeds to the next question
   startTimer();
 
@@ -33,29 +52,39 @@ function startQuiz() {
   attempt++;
 
   // Hide the start page "statistic-window"
-  let statisticWindow = document.getElementById("statistic-window");
   statisticWindow.style.display = "none";
 
   // Show quiz area
   let quizField = document.getElementById("quiz-field");
   quizField.style.display = "flex";
 
-  // Set right and wrong counts to 0
-  const rightCountElement = document.getElementById("right-count");
-  const wrongCountElement = document.getElementById("wrong-count");
-
-  rightCountElement.textContent = "0";
-  wrongCountElement.textContent = "0";
+  // Add an event listener to the "Next" button
+  var nextQuizButton = document.getElementById("next-button");
+  nextQuizButton.addEventListener("click", takeAturn);
+  // Add an event listener for the "Stop" quiz button
+  const stopQuizButton = document.getElementById("stop-button");
+  stopQuizButton.addEventListener("click", stopQuiz);
 
   // Display new question
   const randomQuestion = getRandomQuestion(englishWords);
   currentQuiz = displayQuestion(randomQuestion);
   currentQuiz.attempt = attempt;
   quizData.push(currentQuiz);
+
+    // Set right and wrong counts to 0
+    const rightCountElement = document.getElementById("right-count");
+    const wrongCountElement = document.getElementById("wrong-count");
+  
+    rightCountElement.textContent = "0";
+    wrongCountElement.textContent = "0";
 }
 
 // Function to finish the quiz
 function stopQuiz() {
+    // Show rules and settings links, and start quiz button
+    let rulesStartSettingsElement = document.getElementsByClassName('rules-start-settings')[0];
+    rulesStartSettingsElement.style.display = 'flex';
+
   // Stop the timer when the user stops the quiz
   stopTimer();
 
@@ -68,11 +97,9 @@ function stopQuiz() {
   }, 0);
 
   // Show the page "statistic-window"
-  let statisticWindow = document.getElementById("statistic-window");
   statisticWindow.style.display = "block";
 
   // Hide quiz area
-  let quizField = document.getElementById("quiz-field");
   quizField.style.display = "none";
 
   // Access the winners' table element's tbody

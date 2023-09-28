@@ -14,6 +14,7 @@ const timerSpinner = document.querySelector(".timer-spinner");
 let isTimerSpinnerVisible = true;
 
 // Find sectionы you want to hide or show
+let showStartWindow = document.getElementById("english-words-quiz");
 let statisticWindow = document.getElementById("statistic-window");
 let quizField = document.getElementById("quiz-field");
 const rulesSection = document.getElementById("rules");
@@ -22,6 +23,21 @@ const settingsSection = document.getElementById("settings");
 // Add an event listener to the "Start"
 var startQuizButton = document.getElementById("start-quiz-button");
 startQuizButton.addEventListener("click", startQuiz);
+
+// Add an event listener to the back to start window
+showStartWindow.addEventListener("click", (event) => {
+  event.preventDefault(); // Prevent the link from navigating
+
+  // Hide the current sections and show the "rules" section
+  quizField.style.display = "none";
+  statisticWindow.style.display = "block";
+  rulesSection.style.display = "none";
+  settingsSection.style.display = "none";
+
+  // Change background rules-link
+  rulesLink.style.backgroundColor = 'rgba(128, 124, 124, 0.7)';
+  settingsLink.style.backgroundColor = '';
+});
 
 // Find the "Rules" link by its ID
 const rulesLink = document.getElementById("rules-link");

@@ -17,6 +17,7 @@ let isTimerSpinnerVisible = true;
 let statisticWindow = document.getElementById("statistic-window");
 let quizField = document.getElementById("quiz-field");
 const rulesSection = document.getElementById("rules");
+const settingsSection = document.getElementById("settings");
 
 // Add an event listener to the "Start"
 var startQuizButton = document.getElementById("start-quiz-button");
@@ -32,9 +33,26 @@ rulesLink.addEventListener("click", (event) => {
   quizField.style.display = "none";
   statisticWindow.style.display = "none";
   rulesSection.style.display = "block";
+  settingsSection.style.display = "none";
 
   // Change background rules-link
   rulesLink.style.backgroundColor = 'rgba(128, 124, 124, 0.7)';
+});
+
+// Find the "Settings" link by its ID
+const settingsLink = document.getElementById("settings-link");
+// Add a click event listener to the "Settings" link
+settingsLink.addEventListener("click", (event) => {
+  event.preventDefault(); // Prevent the link from navigating
+
+  // Hide the current sections and show the "rules" section
+  quizField.style.display = "none";
+  statisticWindow.style.display = "none";
+  rulesSection.style.display = "none";
+  settingsSection.style.display = "block";
+
+  // Change background rules-link
+  settingsLink.style.backgroundColor = 'rgba(128, 124, 124, 0.7)';
 
 });
 
@@ -53,6 +71,7 @@ function startQuiz() {
   // Hide the start page "statistic-window"
   statisticWindow.style.display = "none";
   rulesSection.style.display = "none";
+  settingsSection.style.display = "none";
 
   // Show quiz area
   let quizField = document.getElementById("quiz-field");
@@ -71,11 +90,11 @@ function startQuiz() {
   currentQuiz.attempt = attempt;
   quizData.push(currentQuiz);
 
-    // Set right and wrong counts to 0
-    const rightCountElement = document.getElementById("right-count");
-    const wrongCountElement = document.getElementById("wrong-count");
-  
-    rightCountElement.textContent = "0";
+  // Set right and wrong counts to 0
+  const rightCountElement = document.getElementById("right-count");
+  const wrongCountElement = document.getElementById("wrong-count");
+
+  rightCountElement.textContent = "0";
     wrongCountElement.textContent = "0";
 }
 
@@ -87,6 +106,7 @@ function stopQuiz() {
 
   // reset rules-lin background to default
   rulesLink.style.backgroundColor = 'rgba(39, 34, 34, 0.7)';
+  settingsLink.style.backgroundColor = 'rgba(39, 34, 34, 0.7)';
 
   // Stop the timer when the user stops the quiz
   stopTimer();

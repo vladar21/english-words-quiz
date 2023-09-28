@@ -14,12 +14,13 @@ const timerSpinner = document.querySelector(".timer-spinner");
 let isTimerSpinnerVisible = true;
 // updateTimerDisplay();
 
-// Add an event listener to the "Start" and "Skip" button
+// Add an event listener to the "Start"
 var startQuizButton = document.getElementById("start-quiz-button");
 startQuizButton.addEventListener("click", startQuiz);
+// Add an event listener to the "Next" button
 var nextQuizButton = document.getElementById("next-button");
 nextQuizButton.addEventListener("click", takeAturn);
-// Add an event listener for the "Stop Quiz" button
+// Add an event listener for the "Stop" quiz button
 const stopQuizButton = document.getElementById("stop-button");
 stopQuizButton.addEventListener("click", stopQuiz);
 

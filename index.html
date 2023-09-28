@@ -50,10 +50,7 @@
             <!-- <button id="stop-quiz-button">Stop Quiz</button> -->
         </div>
 
-        <div id="rules">
-            <!-- Congratulations message goes here -->
-        </div>
-        <div id="settings">
+        <div id="settings"> 
             <h2>Settings</h2>
             <label for="totalWords">Total Words (3 to N):</label>
             <input type="number" id="totalWords" min="3" max="100" value="10">
@@ -66,6 +63,46 @@
             <h3>Word Types</h3>
             <div id="wordTypes">
                 <!-- Checkbox options for word types will be added here -->
+            </div>
+        </div>
+
+        <div id="rules">
+            <div id="winner-quiz-field" class="winners-results">
+                <table class="winners-table">
+                    <caption>Rules</caption>
+                    <tbody>
+                        <tr>
+                            <td>1. Press the <span class="rules-akcent">Start</span> button to begin the quiz.</td>
+                        </tr>
+                        <tr>
+                            <td>2. Press <span class="rules-akcent">Settings</span> link to make quiz more controllable. In this section you can select:
+                                <br><span class="arrow-right"></span> total number of words for quiz;;
+                                <br><span class="arrow-right"></span> cefr levels of words for quiz ('A1', 'B1', 'B2' etc);
+                                <br><span class="arrow-right"></span> types of words for quiz ('noun', 'adjectiv' etc);                      
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3. On the current quiz screen, you can see the following elements:
+                                <br><span class="arrow-right"></span> at the top - the definition of the word to be guessed;
+                                <br><span class="arrow-right"></span> below image as a clue that may help you guess the correct answer;
+                                <br><span class="arrow-right"></span> below, the word variants for the answer, with audio pronunciation support;
+                                <br><span class="arrow-right"></span> below, the 30-second countdown timer for answering. If you answer later - the quiz will automatically stop;
+                                <br><span class="arrow-right"></span> on the right, the Stop quiz button;
+                                <br><span class="arrow-right"></span> on the left, the Next question button;
+                                <br><span class="arrow-right"></span> in the bottom left corner - the number of quiz questions already answered and the total number of questions;
+                                <br><span class="arrow-right"></span> in the bottom right corner - the number of correct and incorrect answers in the current attempt.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4. After pressing the <span class="rules-akcent">Stop</span> quiz button, you will be taken to the winners table, where you can see the results of the current attempt and all previous attempts.</td>
+                        </tr>
+                    </tbody>
+                </table>       
+                <div class="rules-start-settings">
+                    <a href="#" class="rules">Rules</a>
+                    <button id="start-quiz-button">Start</button>
+                    <a href="#" class="settings">Settings</a>
+                </div>         
             </div>
         </div>
         <div id="statistic-window">

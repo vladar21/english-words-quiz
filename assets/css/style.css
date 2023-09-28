@@ -331,12 +331,69 @@
 
 /* Statistic Window */
 #statistic-window {
+    /* display: block; */
+    display: none;
+    width: 100%;
+    /* font-size: 210%; */
+    /* background-color: rgb(146, 6, 6); */
+}
+
+#rules {
+    display: block;
+    width: 100%;
+}
+
+#rules td {
+    width: 100%;
+    font-size: 100%;
+    text-align: left;
+    background-color: rgba(51, 51, 51, 0.7);
+}
+
+#rules {
+    /* display: none; */
     display: block;
     width: 100%;
     /* font-size: 210%; */
     /* background-color: rgb(146, 6, 6); */
 }
 
+.arrow-right {
+    display: inline-block;
+    margin: 0;
+    margin-top: 3px;
+    padding:0;
+    background-image: url('../images/right_arrow.webp');
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    text-align: center;
+    margin-right: 5px;
+    /* float: left; */
+}
+
+.rules-akcent {
+    background-color: rgba(255, 255, 255, 0.7);
+    color: rgb(51, 51, 51);
+    font-weight: bold;
+    padding: 1px 5px 1px 1px;
+    border-radius: 45%;
+}
+
+#rules .rules {
+    background-color: rgba(39, 34, 34, 0.7);
+}
+
+#settings {
+    display: none;
+    /* display: block; */
+    width: 100%;
+}
+
+/* statistic window styles */
 #winner-quiz-field {
     display: flex;
     flex-direction: column;
@@ -432,36 +489,6 @@
 .rules-start-settings a:hover {
     background-color: rgba(39, 34, 34, 0.7);
 }
-
-
-/* Use a media query to make the table responsive */
-/* @media screen and (max-width: 600px) { */
-  /* Hide the table caption on small screens */
-  /* .winners-table caption {
-    display: none;
-  } */
-
-  /* Make the table rows behave like blocks */
-  /* .winners-table tr {
-    display: block;
-    margin-bottom: 10px;
-  } */
-
-  /* Make the table cells behave like inline-blocks */
-  /* .winners-table td {
-    display: inline-block;
-    vertical-align: top;
-  } */
-
-  /* Control buttons area */
-  /* .control-buttons {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    gap: 10px;
-  } */
-/* } */
 
 @media screen and (max-width: 600px) {
     .quizsquare {

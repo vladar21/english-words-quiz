@@ -1,4 +1,6 @@
 let quizData = []; // Array to store quiz data
+// flag, that true if quiz start, and false - is stop or don't start yet
+let is_quiz_start = false;
 // Declare currentQuiz at a higher scope
 let currentQuiz = null;
 // Define the winnersArray variable
@@ -28,14 +30,16 @@ startQuizButton.addEventListener("click", startQuiz);
 showStartWindow.addEventListener("click", (event) => {
   event.preventDefault(); // Prevent the link from navigating
 
-  // Hide the current sections and show the "rules" section
-  quizField.style.display = "none";
-  statisticWindow.style.display = "block";
-  rulesSection.style.display = "none";
-  settingsSection.style.display = "none";
+  if (!is_quiz_start){
+    // Hide the current sections and show the "statistic" section
+    quizField.style.display = "none";
+    statisticWindow.style.display = "block";
+    rulesSection.style.display = "none";
+    settingsSection.style.display = "none";
+  }
 
   // Change background rules-link
-  rulesLink.style.backgroundColor = 'rgba(128, 124, 124, 0.7)';
+  rulesLink.style.backgroundColor = '';
   settingsLink.style.backgroundColor = '';
 });
 
@@ -75,6 +79,9 @@ settingsLink.addEventListener("click", (event) => {
 
 // Function to start the quiz
 function startQuiz() {
+
+  // start quiz flag to true
+  is_quiz_start = true;
 
   // Hidden rules and settings links, and start quiz button
   let rulesStartSettingsElement = document.getElementsByClassName('rules-start-settings')[0];
@@ -117,6 +124,9 @@ function startQuiz() {
 
 // Function to finish the quiz
 function stopQuiz() {
+  // stop quiz flag to false
+  is_quiz_start = false;
+
   // Show rules and settings links, and start quiz button
   let rulesStartSettingsElement = document.getElementsByClassName('rules-start-settings')[0];
   rulesStartSettingsElement.style.display = 'flex';
@@ -254,7 +264,6 @@ function takeAturn() {
   addSpentTimeToLastAttempt();
   
   timer = 31; // restore timert value to 30 sec
-
 
   // Check if any answer option is selected
   const selectedOption = document.querySelector('input[name="answer-option"]:checked');

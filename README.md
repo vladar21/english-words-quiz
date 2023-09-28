@@ -124,7 +124,7 @@ To use the English Words Quiz, follow these steps:
 
 ## Bugs
 
-1. Wrong background colour for timer field when user had10 sec countdown on previous attempt.
+1. Wrong background colour for timer field when user had 10 sec countdown on previous attempt.
 
 See the image below:
 
@@ -136,8 +136,17 @@ See the image below:
 
 ![fix the timer background-color bug](assets/images/readme/timer_background_color_bug_fix.jpg)
 
-2. [under constraction]
+2. Problem with background toggle to the Rules link. When User got to Rules and then go to another section, Rules background don't change by default.
 
+See the image below:
+
+![Rules background-color bug](assets/images/readme/Bacground_Rules_bug.png)
+
+The solution was remove assingment highlight background color in click handler.
+
+See the image below:
+
+![Fix the Rules background-color bug](assets/images/readme/Bacground_Rules_bug_fix.png)
 
 ## Deployment
 

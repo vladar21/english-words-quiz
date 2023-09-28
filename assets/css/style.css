@@ -66,7 +66,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    /* justify-content: space-around; */
 }
 
 /* Quiz Task (Question) */
@@ -104,12 +104,26 @@
     padding: 5px 10px;
     border-radius: 5px;
 }
-
+.content-task-container {
+    display:flex; 
+    flex-direction: row; 
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
 .word-image {
-    display: block;
+    /* flex: 1; */
+    width: 90%;
+    /* flex: 1; */
+    /* display: block; */
     margin-top: 10px;
-    min-width: 70%;
-    border: 10px solid #d7fc09;
+    /* min-height: 40%; */
+    /* width: 80%; */
+    /* border: 10px solid #d7fc09; */
+}
+
+.img-word-image {
+    width: 100%;
 }
 
 .quiz-field-css {
@@ -123,14 +137,16 @@
 }
 
 /* Answer List Area (Styled as Radio Buttons) */
-.answer-list-area {
+.answer-list-area {    
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 20px;
+    flex: 1;
 }
 
 .answers-container {
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -139,16 +155,18 @@
 }
 
 #choose-answer {
+    align-self: start;
     background-color: #056774;
     padding: 0 10px;
     border-radius: 5px;
 }
 
 .answers-list {    
-    list-style-type: none;
+    flex: 1;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
+    list-style-type: none;
 }
 
 .answer-option {
@@ -501,34 +519,33 @@
 
 
 @media screen and (max-width: 600px) {
-    .quizsquare {
+    /* .quizsquare {
       padding: 10px;
       padding-top: 5px;
       border-radius: 5px;
       width: 95%;
-    }
+    } */
     
 }
 
 /* Add some styles for the table on large screens */
 @media screen and (min-width: 600px) {
-  .body-css {
+  /* .body-css {
     height: 100vh;
-  }
+  } */
 
   .quizsquare {
     /* max-height: 85vh; */
     padding: 30px;
     padding-top: 20px;
     border-radius: 5px;
-    width: 70%;
+    width: 90%;
   }
 
   /* styles for word image */
-  /* .word-image {
-    display: block;
+  .word-image {
     width: 60%;
-  } */
+  }
 
   /* Center the table on the page */
   .winners-table {
@@ -582,37 +599,37 @@
   }
 
   /* answers variants style */
-  .answers-list {    
+  /* .answers-list {    
     list-style-type: none;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     gap: 5px;
-}
+  } */
 
 }
 
 @media screen and (min-width: 800px) {
     .quizsquare {
-        width: 60%;
+        width: 80%;
       }
 }
 
 
 @media screen and (min-width: 1000px) {
     .quizsquare {
-        width: 55%;
+        width: 70%;
       }
 }
 
 @media screen and (min-width: 1200px) {
     .quizsquare {
-        width: 50%;
+        width: 60%;
       }
 }
 
 @media screen and (min-width: 1600px) {
     .quizsquare {
-        width: 45%;
+        width: 50%;
       }
 }

@@ -405,6 +405,14 @@ function displayQuestion(question) {
     const audioSourceElement = document.createElement("source");
     const audioButtonPlayElement = document.createElement("button");
 
+    // add audio url for the current word
+    let currentWord = englishWords[option.answer];
+    audioSourceElement.src = currentWord.sound_url;
+    audioButtonPlayElement.id = option.answer;
+    audioButtonPlayElement.className = 'play-sound-button';
+    audioElement.id = option.answer;
+    audioElement.classList.add("audio-container");
+
     input.type = "radio";
     input.className = "answer-option";
     // input.name = "audio-option";
@@ -415,7 +423,7 @@ function displayQuestion(question) {
 
     audioElement.className = "audio-container";
     audioElement.controls = false;
-    audioSourceElement.src = ""; // You can set the source as needed
+    // audioSourceElement.src = ""; // You can set the source as needed
     
     audioElement.appendChild(audioSourceElement);
   
@@ -441,25 +449,27 @@ function displayQuestion(question) {
         const selectedWord = englishWords[option.answer];
     
         if (selectedWord) {
-        // Play audio for the selected word
-        audioSourceElement.src = selectedWord.sound_url;
+          // Play audio for the selected word
+          // audioSourceElement.src = selectedWord.sound_url;
 
-        audioButtonPlayElement.onclick = function() { // add button play for pronunciation of the word 
-          document.getElementById(option.answer).play();
-        };
-        // audioButtonPlayElement.textContent = "Play";
-        audioButtonPlayElement.id = option.answer;
-        audioButtonPlayElement.className = 'play-sound-button';
+          audioButtonPlayElement.onclick = function() { // add button play for pronunciation of the word 
+            document.getElementById(option.answer).play();
+          };
+          // audioButtonPlayElement.textContent = "Play";
+          // audioButtonPlayElement.id = option.answer;
+          // audioButtonPlayElement.className = 'play-sound-button';
 
-        audioElement.id = option.answer;
-        audioElement.classList.add("audio-container");
-        audioElement.load(); // Load the audio
-        audioElement.play(); // Play the audio
+          // audioElement.id = option.answer;
+          // audioElement.classList.add("audio-container");
+          audioElement.load(); // Load the audio
+          audioElement.play(); // Play the audio
         }
     });
 
-    const imageFieldElement = document.querySelector(".word-image");
-    imageFieldElement.src = question.imageUrl;
+    // const imgWordeElement = document.querySelector(".word-image");
+    const imgWordeElement = document.querySelector(".img-word-image");
+    imgWordeElement.src = question.imageUrl;
+    // divImageElement.style.background = `yellow url(${question.imageUrl}) no-repeat center center/cover`;
 
     // Add an event listener to track user's choice
     input.addEventListener("change", () => {

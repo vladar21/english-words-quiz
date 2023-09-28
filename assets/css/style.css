@@ -113,7 +113,7 @@
 }
 .word-image {
     /* flex: 1; */
-    width: 90%;
+    width: 100%;
     /* flex: 1; */
     /* display: block; */
     margin-top: 10px;
@@ -123,7 +123,9 @@
 }
 
 .img-word-image {
-    width: 100%;
+    /* height: 400px; */
+    /* min-width: 240px; */
+    width:100%;
 }
 
 .quiz-field-css {
@@ -224,7 +226,8 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    gap: 30px;
+    /* gap: 30px; */
+    gap: 12px;
 }
 
 .control-buttons button,
@@ -539,13 +542,10 @@
     padding: 30px;
     padding-top: 20px;
     border-radius: 5px;
-    width: 90%;
+    width: 70%;
   }
 
-  /* styles for word image */
-  .word-image {
-    width: 60%;
-  }
+
 
   /* Center the table on the page */
   .winners-table {
@@ -598,6 +598,10 @@
     text-align: center;
   }
 
+  .control-buttons {
+    gap: 30px;
+  }
+
   /* answers variants style */
   /* .answers-list {    
     list-style-type: none;
@@ -609,27 +613,44 @@
 
 }
 
+@media screen and (min-width: 700px) {
+  .quizsquare {
+    width: 65%;
+  }
+}
+
 @media screen and (min-width: 800px) {
-    .quizsquare {
-        width: 80%;
-      }
+  .quizsquare {
+    width: 65%;
+  }
+
+  /* styles for word image */
+  .word-image {
+    width: 60%;
+  }
 }
 
 
 @media screen and (min-width: 1000px) {
     .quizsquare {
-        width: 70%;
+        width: 60%;
       }
 }
 
 @media screen and (min-width: 1200px) {
     .quizsquare {
-        width: 60%;
+        width: 55%;
+      }
+}
+
+@media screen and (min-width: 1400px) {
+    .quizsquare {
+        width: 50%;
       }
 }
 
 @media screen and (min-width: 1600px) {
     .quizsquare {
-        width: 50%;
+        width: 45%;
       }
 }

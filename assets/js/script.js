@@ -112,7 +112,7 @@ function startQuiz() {
   const wrongCountElement = document.getElementById("wrong-count");
 
   rightCountElement.textContent = "0";
-    wrongCountElement.textContent = "0";
+  wrongCountElement.textContent = "0";
 }
 
 // Function to finish the quiz
@@ -256,8 +256,8 @@ function takeAturn() {
   timer = 31; // restore timert value to 30 sec
 
 
-// Check if any answer option is selected
-const selectedOption = document.querySelector('input[name="answer-option"]:checked');
+  // Check if any answer option is selected
+  const selectedOption = document.querySelector('input[name="answer-option"]:checked');
 
   if (!selectedOption) {
       // If no answer option is selected, consider it as an incorrect answer
@@ -407,7 +407,8 @@ function displayQuestion(question) {
 
     input.type = "radio";
     input.className = "answer-option";
-    input.name = "audio-option";
+    // input.name = "audio-option";
+    input.name = "answer-option";
     input.value = option.answer;
 
     label.textContent = option.answer;

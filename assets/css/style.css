@@ -145,6 +145,9 @@
 
 .answers-list {    
     list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
 }
 
 .answer-option {
@@ -161,7 +164,7 @@
 
 #answer-list-area > div > ul > li {
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     background-color: rgba(255, 255, 255, 0.9);
     padding: 5px 10px;
     border-radius: 5px;
@@ -591,6 +594,15 @@
     width: 20%;
     text-align: center;
   }
+
+  /* answers variants style */
+  .answers-list {    
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 5px;
+}
 
 }
 

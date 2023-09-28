@@ -37,6 +37,7 @@ rulesLink.addEventListener("click", (event) => {
 
   // Change background rules-link
   rulesLink.style.backgroundColor = 'rgba(128, 124, 124, 0.7)';
+  settingsLink.style.backgroundColor = '';
 });
 
 // Find the "Settings" link by its ID
@@ -53,7 +54,7 @@ settingsLink.addEventListener("click", (event) => {
 
   // Change background rules-link
   settingsLink.style.backgroundColor = 'rgba(128, 124, 124, 0.7)';
-
+  rulesLink.style.backgroundColor = '';
 });
 
 // Function to start the quiz
@@ -105,8 +106,8 @@ function stopQuiz() {
   rulesStartSettingsElement.style.display = 'flex';
 
   // reset rules-lin background to default
-  rulesLink.style.backgroundColor = 'rgba(39, 34, 34, 0.7)';
-  settingsLink.style.backgroundColor = 'rgba(39, 34, 34, 0.7)';
+  rulesLink.style.backgroundColor = '';
+  settingsLink.style.backgroundColor = '';
 
   // Stop the timer when the user stops the quiz
   stopTimer();

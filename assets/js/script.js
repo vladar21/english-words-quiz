@@ -12,7 +12,6 @@ let timerInterval;
 const timerSpinner = document.querySelector(".timer-spinner");
 // Flag to track whether the timer spinner is visible
 let isTimerSpinnerVisible = true;
-// updateTimerDisplay();
 
 // Find sectionы you want to hide or show
 let statisticWindow = document.getElementById("statistic-window");
@@ -425,19 +424,13 @@ function displayQuestion(question) {
 
         audioElement.id = option.answer;
         audioElement.classList.add("audio-container");
-        // audioElement.style.width = "0px";
-        // audioElement.style.display = "none";
         audioElement.load(); // Load the audio
         audioElement.play(); // Play the audio
         }
     });
 
-    // const quizsquareFieldElement = document.querySelector(".quizsquare");
-    // quizsquareFieldElement.style.background = `rgba(0, 188, 212, 0.7) url(${question.imageUrl}) no-repeat center center/contain`;
-    // quizsquareFieldElement.style.opacity = 0.9;
     const imageFieldElement = document.querySelector(".word-image");
     imageFieldElement.src = question.imageUrl;
-    // imageFieldElement.style.opacity = 0.3;
 
     // Add an event listener to track user's choice
     input.addEventListener("change", () => {

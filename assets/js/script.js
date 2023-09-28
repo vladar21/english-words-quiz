@@ -53,6 +53,7 @@ function startQuiz() {
 
   // Hide the start page "statistic-window"
   statisticWindow.style.display = "none";
+  rulesSection.style.display = "none";
 
   // Show quiz area
   let quizField = document.getElementById("quiz-field");
@@ -81,9 +82,12 @@ function startQuiz() {
 
 // Function to finish the quiz
 function stopQuiz() {
-    // Show rules and settings links, and start quiz button
-    let rulesStartSettingsElement = document.getElementsByClassName('rules-start-settings')[0];
-    rulesStartSettingsElement.style.display = 'flex';
+  // Show rules and settings links, and start quiz button
+  let rulesStartSettingsElement = document.getElementsByClassName('rules-start-settings')[0];
+  rulesStartSettingsElement.style.display = 'flex';
+
+  // reset rules-lin background to default
+  rulesLink.style.backgroundColor = 'rgba(39, 34, 34, 0.7)';
 
   // Stop the timer when the user stops the quiz
   stopTimer();

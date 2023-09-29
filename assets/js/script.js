@@ -80,6 +80,7 @@ settingsLink.addEventListener("click", (event) => {
 
 // Settings sections variables
 // Set the qty quiz words value
+const totalQuizWordsTd = document.getElementById('totalQuizWordsTd');
 const wordCountSlider = document.getElementById("word-count-slider");
 let totalWordCount = Object.keys(englishWordsInit).length;
 wordCountSlider.min = 3;
@@ -87,33 +88,34 @@ wordCountSlider.max = totalWordCount;
 wordCountSlider.value = totalWordCount;
 const wordCountLabel = document.getElementById("word-count-label");
 wordCountLabel.textContent = wordCountSlider.value;
-setTotalQuizWords();
+totalQuizWordsTd.textContent = Object.keys(englishWordsInit).length;
+
 
 // add listener for change value of word count slider
 wordCountSlider.addEventListener("input", function () {
   wordCountLabel.textContent = wordCountSlider.value;
-  setTotalQuizWords();
-  // let totalQuizWords = parseInt(wordCountSlider.value);
-  // // Convert the englishWordsInit object into an array of keys
-  // const wordKeys = Object.keys(englishWordsInit);
 
-  // // Shuffle the array of keys
-  // const shuffledKeys = shuffleArray(wordKeys);
+  let totalQuizWords = parseInt(wordCountSlider.value);
+  // Convert the englishWordsInit object into an array of keys
+  const wordKeys = Object.keys(englishWordsInit);
 
-  // // Create an object that will hold only the selected words
-  // const selectedWords = {};
+  // Shuffle the array of keys
+  const shuffledKeys = shuffleArray(wordKeys);
 
-  // // Limit the number of selected words
-  // for (let i = 0; i < totalQuizWords; i++) {
-  //  const wordKey = shuffledKeys[i];
-  //  selectedWords[wordKey] = englishWordsInit[wordKey];
-  // //  englishWords[wordKey] = englishWordsInit[wordKey];
-  // }
+  // Create an object that will hold only the selected words
+  const selectedWords = {};
 
-  // // Now, selectedWords contains the randomly selected words
-  // englishWords = selectedWords;
-  // console.log(englishWords);
+  // Limit the number of selected words
+  for (let i = 0; i < totalQuizWords; i++) {
+   const wordKey = shuffledKeys[i];
+   selectedWords[wordKey] = englishWordsInit[wordKey];
+  //  englishWords[wordKey] = englishWordsInit[wordKey];
+  }
 
+  // Now, selectedWords contains the randomly selected words
+  englishWords = selectedWords;
+  console.log(englishWords);
+  totalQuizWordsTd.textContent = Object.keys(englishWords).length;
 });
 
 // Function to start the quiz
@@ -121,9 +123,6 @@ function startQuiz() {
 
   // start quiz flag to true
   is_quiz_start = true;
-
-  // set total quiz words
-  setTotalQuizWords();
 
   // Hidden rules and settings links, and start quiz button
   let rulesStartSettingsElement = document.getElementsByClassName('rules-start-settings')[0];
@@ -586,40 +585,4 @@ function shuffleArray(array) {
     [array[i], array[j]] = [array[j], array[i]];
   }
   return array;
-}
-
-// set Total Quiz Words 
-function setTotalQuizWords(){
-  
-  // // Settings sections variables
-  // // Set the qty quiz words value
-  // const wordCountSlider = document.getElementById("word-count-slider");
-  // let totalWordCount = Object.keys(englishWordsInit).length;
-  // wordCountSlider.min = 3;
-  // wordCountSlider.max = totalWordCount;
-  // wordCountSlider.value = totalWordCount;
-  // const wordCountLabel = document.getElementById("word-count-label");
-  // wordCountLabel.textContent = wordCountSlider.value;
-
-  let totalQuizWords = document.getElementById('totalQuizWords');
-
-  // Convert the englishWordsInit object into an array of keys
-  const wordKeys = Object.keys(englishWordsInit);
-
-  // Shuffle the array of keys
-  const shuffledKeys = shuffleArray(wordKeys);
-
-  // Create an object that will hold only the selected words
-  const selectedWords = {};
-
-  // Limit the number of selected words
-  for (let i = 0; i < totalQuizWords; i++) {
-   const wordKey = shuffledKeys[i];
-   selectedWords[wordKey] = englishWordsInit[wordKey];
-  //  englishWords[wordKey] = englishWordsInit[wordKey];
-  }
-
-  // Now, selectedWords contains the randomly selected words
-  englishWords = selectedWords;
-  console.log(englishWords);
 }

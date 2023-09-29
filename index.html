@@ -81,9 +81,33 @@
                             <td> cefr levels of words for quiz ('A1', 'B1', 'B2' etc)</td>
                             <td>CEFR Levels</td>
                             <td>            
-                                <div id="cefrLevels">
-                                    <!-- Checkbox options for CEFR levels will be added here -->
-                                </div>
+                                <div id="cefr-level-selection">
+                                    <label>
+                                      <input type="checkbox" name="cefr-level" value="A1" />
+                                      A1 (<span id="cefr-level-count-A1">0</span> words)
+                                    </label>
+                                    <label>
+                                      <input type="checkbox" name="cefr-level" value="A2" />
+                                      A2 (<span id="cefr-level-count-A2">0</span> words)
+                                    </label>
+                                    <label>
+                                      <input type="checkbox" name="cefr-level" value="B1" />
+                                      B1 (<span id="cefr-level-count-B1">0</span> words)
+                                    </label>
+                                    <label>
+                                      <input type="checkbox" name="cefr-level" value="B2" />
+                                      B2 (<span id="cefr-level-count-B2">0</span> words)
+                                    </label>
+                                    <label>
+                                      <input type="checkbox" name="cefr-level" value="C1" />
+                                      C1 (<span id="cefr-level-count-C1">0</span> words)
+                                    </label>
+                                    <label>
+                                      <input type="checkbox" name="cefr-level" value="C2" />
+                                      C2 (<span id="cefr-level-count-C2">0</span> words)
+                                    </label>
+                                    
+                                  </div>
                             </td>
                         </tr>
                         <tr class="highlight">
@@ -95,6 +119,10 @@
                                     <!-- Checkbox options for word types will be added here -->
                                 </div>
                             </td>
+                        </tr>
+                        <tr class="highlight total">
+                            <td colspan="3">Total Quiz Words:</td>
+                            <td></td>
                         </tr>
                     </tbody>
                 </table>

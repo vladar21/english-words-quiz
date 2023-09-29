@@ -530,6 +530,14 @@
     width: 100%;
 }
 
+#settings-table .total {
+    font-weight: bold;
+}
+
+#settings-table .total td {
+    text-align: right;
+}
+
 
 @media screen and (max-width: 600px) {
     /* .quizsquare {

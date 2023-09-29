@@ -84,6 +84,7 @@ const wordCountSlider = document.getElementById("word-count-slider");
 let totalWordCount = Object.keys(englishWordsInit).length;
 wordCountSlider.min = 3;
 wordCountSlider.max = totalWordCount;
+wordCountSlider.value = totalWordCount;
 const wordCountLabel = document.getElementById("word-count-label");
 wordCountLabel.textContent = wordCountSlider.value;
 

@@ -521,6 +521,16 @@
 }
 
 
+#settings-table label {
+    font-size: 21px;
+    display: block;
+}
+    
+#settings-table input[type="range"] {
+    width: 100%;
+}
+
+
 @media screen and (max-width: 600px) {
     /* .quizsquare {
       padding: 10px;

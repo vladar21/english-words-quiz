@@ -1,5 +1,5 @@
 
-var englishWords = {    
+var englishWordsInit = {    
     "humanity": {
         "image_url": 'assets/images/quiz_images/humanity.webp',
         "sound_url": 'assets/sound/humanity.mp3',

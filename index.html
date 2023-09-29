@@ -67,15 +67,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr class="highlight">
                             <td>1</td>
                             <td> total number of words for quiz</td>
                             <td>Total Words</td>
                             <td>
-                                <input type="number" id="totalWords" min="3" max="100" value="10">
+                                <label for="word-count-slider"><span id="word-count-label">3</span> words</label>
+                                <input type="range" id="word-count-slider" min="3" max="100" value="3">
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="highlight">
                             <td>2</td>
                             <td> cefr levels of words for quiz ('A1', 'B1', 'B2' etc)</td>
                             <td>CEFR Levels</td>
@@ -85,7 +86,7 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="highlight">
                             <td>3</td>
                             <td> types of words for quiz ('noun', 'adjectiv' etc)</td>
                             <td>Word Types</td>

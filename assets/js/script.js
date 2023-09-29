@@ -87,10 +87,12 @@ wordCountSlider.max = totalWordCount;
 wordCountSlider.value = totalWordCount;
 const wordCountLabel = document.getElementById("word-count-label");
 wordCountLabel.textContent = wordCountSlider.value;
+setTotalQuizWords();
 
 // add listener for change value of word count slider
 wordCountSlider.addEventListener("input", function () {
   wordCountLabel.textContent = wordCountSlider.value;
+  setTotalQuizWords();
   // let totalQuizWords = parseInt(wordCountSlider.value);
   // // Convert the englishWordsInit object into an array of keys
   // const wordKeys = Object.keys(englishWordsInit);
@@ -589,7 +591,17 @@ function shuffleArray(array) {
 // set Total Quiz Words 
 function setTotalQuizWords(){
   
-  let totalQuizWords = parseInt(wordCountSlider.value);
+  // // Settings sections variables
+  // // Set the qty quiz words value
+  // const wordCountSlider = document.getElementById("word-count-slider");
+  // let totalWordCount = Object.keys(englishWordsInit).length;
+  // wordCountSlider.min = 3;
+  // wordCountSlider.max = totalWordCount;
+  // wordCountSlider.value = totalWordCount;
+  // const wordCountLabel = document.getElementById("word-count-label");
+  // wordCountLabel.textContent = wordCountSlider.value;
+
+  let totalQuizWords = document.getElementById('totalQuizWords');
 
   // Convert the englishWordsInit object into an array of keys
   const wordKeys = Object.keys(englishWordsInit);

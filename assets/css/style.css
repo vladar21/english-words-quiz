@@ -552,8 +552,21 @@ input[type="checkbox"]::before {
     transform: scale(1.5);
 }
 
-#totalQuizWords {
-    text-align: center;
+#resetSettingsDefault {
+    font-size: 15px;
+    margin-top: 10px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    background-color:  rgba(123, 81, 141, 0.85);
+}
+
+#resetSettingsDefault:hover {
+    background-color:  rgba(85, 56, 97, 0.85);
 }
 
 /* Add some styles for the table on large screens */

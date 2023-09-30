@@ -78,45 +78,25 @@ settingsLink.addEventListener("click", (event) => {
   rulesLink.style.backgroundColor = '';
 });
 
+// init settings
 initSettings(englishWordsInit);
-
-// Default word count should be equal to the total number of words
-// const defaultWordCount = Object.keys(englishWordsInit).length;
 
 // // Set the initial value for the word count slider
 const wordCountSlider = document.getElementById("word-count-slider");
-// wordCountSlider.min = 3;
-// wordCountSlider.max = defaultWordCount;
-// wordCountSlider.value = defaultWordCount;
-// const wordCountLabel = document.getElementById("word-count-label");
-// wordCountLabel.textContent = defaultWordCount;
-
-// Apply settings initially
-// applySettings();
 
 // add listener for change value of word count slider
-// wordCountSlider.addEventListener("change", applySettings);
+wordCountSlider.addEventListener("change", applyChangeSettings);
 
 // Set event listeners for CEFR checkboxes and word type checkboxes
 const cefrCheckboxes = document.querySelectorAll('input[name="cefr-level"]');
-// cefrCheckboxes.forEach((checkbox) => {
-//   checkbox.addEventListener("change", applySettings);
-// });
-
- // Пройдитесь по всем CEFR levels и обновите счетчики
-//  cefrCheckboxes.forEach((checkbox) => {
-//   const level = checkbox.value;
-//   const count = filterWordsBySettings(englishWordsInit).length;
-
-//   // Найдите соответствующий элемент HTML (например, label) для текущего CEFR level и обновите его содержимое
-//   const labelElement = document.getElementById(`cefr-level-count-${level}`);
-//   labelElement.textContent = count.toString();
-// });
+cefrCheckboxes.forEach((checkbox) => {
+  checkbox.addEventListener("change", applyChangeSettings);
+});
 
 const wordsTypesCheckboxes = document.querySelectorAll('input[name="words-types"]');
-// wordsTypesCheckboxes.forEach((checkbox) => {
-//   checkbox.addEventListener("change", applySettings);
-// });
+wordsTypesCheckboxes.forEach((checkbox) => {
+  checkbox.addEventListener("change", applyChangeSettings);
+});
 
 
 // Function to start the quiz
@@ -590,6 +570,8 @@ function shuffleArray(array) {
 
 
 // work with settings
+
+// parese settings from html
 function parseSettingsFromTable() {
   const settings = {
     cefrLevels: [],
@@ -616,53 +598,28 @@ function parseSettingsFromTable() {
 
 // Function to apply settings, including the default word count
 function applyChangeSettings() {
-  // Get the selected word count from the slider
-  const wordCountSlider = document.getElementById('word-count-slider');
-  const selectedWordCount = parseInt(wordCountSlider.value);
-
-  // Get the selected CEFR levels
-  const selectedCEFRLevels = [];
-  const cefrCheckboxes = document.querySelectorAll('input[name="cefr-level"]:checked');
-  cefrCheckboxes.forEach((checkbox) => {
-    selectedCEFRLevels.push(checkbox.value);
-  });
-
-  // Get the selected word types
-  const selectedWordTypes = [];
-  const wordTypeCheckboxes = document.querySelectorAll('input[name="words-types"]:checked');
-  wordTypeCheckboxes.forEach((checkbox) => {
-    selectedWordTypes.push(checkbox.value);
-  });
+  // Parse the selected settings
+  const selectedSettings = parseSettingsFromTable();
 
   // Filter words based on selected settings
-  const filteredWords = filterWordsBySettings(englishWordsInit, {
-    wordCount: selectedWordCount,
-    cefrLevels: selectedCEFRLevels,
-    wordTypes: selectedWordTypes,
-  });
-
+  const filteredWords = filterWordsBySettings(englishWordsInit, selectedSettings);
+  
   // Update the word display or perform any other actions as needed
-  // updateWordDisplay(filteredWords);
+  updateWordDisplay(filteredWords);
 }
 
 // This function filters words based on the selected settings
 function filterWordsBySettings(englishWordsInit, settings) {
   const allWords = Object.values(englishWordsInit);
   const shuffledWords = shuffleArray(allWords);
-
   const filteredWords = shuffledWords.filter((word) => {
     const cefrMatch = settings.cefrLevels.includes(word.cefr.level);
-    const wordTypeMatch = settings.wordTypes.includes(
-      word["word-types"].map((type) => type["word-type"])
-    );
-
+    const wordTypeMatch = word["word-types"].some((type) => settings.wordTypes.includes(type["word-type"]));
     return cefrMatch && wordTypeMatch;
   });
-
   if (settings.wordCount > 0) {
     return filteredWords.slice(0, settings.wordCount);
   }
-
   return filteredWords;
 }
 
@@ -721,4 +678,40 @@ function initSettings(englishWordsInit) {
   document.getElementById('word-count-slider').value = totalWordsCount;
   document.getElementById('word-count-slider').min = 3;
   document.getElementById('word-count-slider').max = totalWordsCount;
+}
+
+// Function to update the HTML settings table
+function updateWordDisplay(filteredWords) {
+  // Update CEFR levels in the settings table
+  const cefrLevels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+  cefrLevels.forEach((cefrLevel) => {
+    // Find the span element that displays the count for this CEFR level
+    const cefrCountSpan = document.getElementById(`cefr-level-count-${cefrLevel}`);
+    
+    // Filter the words that match the current CEFR level
+    const wordsMatchingCEFR = filteredWords.filter((word) => word.cefr.level === cefrLevel);
+    
+    // Update the count displayed in the span element
+    cefrCountSpan.textContent = wordsMatchingCEFR.length;
+  });
+
+  // Update word types in the settings table
+  const wordTypes = ['noun', 'adjective', 'verb', 'adverb', 'preposition', 'pronoun', 'interjection'];
+  wordTypes.forEach((wordType) => {
+    // Find the span element that displays the count for this word type
+    const wordTypeCountSpan = document.getElementById(`words-types-count-${wordType}`);
+    
+    // Filter the words that match the current word type
+    const wordsMatchingType = filteredWords.filter((word) =>
+      word["word-types"].some((type) => type["word-type"] === wordType)
+    );
+    
+    // Update the count displayed in the span element
+    wordTypeCountSpan.textContent = wordsMatchingType.length;
+  });
+
+  // Update "Total Words" in the settings table
+  const totalWordsCount = filteredWords.length;
+  document.getElementById('word-count-label').textContent = totalWordsCount;
+  document.getElementById('word-count-slider').value = totalWordsCount;
 }

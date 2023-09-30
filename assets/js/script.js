@@ -76,6 +76,12 @@ settingsLink.addEventListener("click", (event) => {
   // Change background rules-link
   settingsLink.style.backgroundColor = 'rgba(128, 124, 124, 0.7)';
   rulesLink.style.backgroundColor = '';
+
+  // Add handler for reset button
+  const resetButton = document.getElementById("resetSettingsDefault");
+  resetButton.addEventListener("click", function () {
+    initSettings(englishWordsInit);
+  });
 });
 
 // init settings
@@ -645,6 +651,7 @@ function initSettings(englishWordsInit) {
       checkbox.disabled = true;
     } else {
       checkbox.disabled = false;
+      checkbox.checked = true;
     }
   });
 
@@ -669,6 +676,7 @@ function initSettings(englishWordsInit) {
       checkbox.disabled = true;
     } else {
       checkbox.disabled = false;
+      checkbox.checked = true;
     }
   });
 

@@ -110,6 +110,9 @@ wordsTypesCheckboxes.forEach((checkbox) => {
 // Function to start the quiz
 function startQuiz() {
 
+  // set quiz settings
+  applyChangeSettings();
+
   // start quiz flag to true
   is_quiz_start = true;
 
@@ -567,14 +570,15 @@ function stopTimer() {
   clearInterval(timerInterval);
 }
 
-// Function to shuffle an array randomly
+// Function to shuffle a copy of an array randomly
 function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
+    const shuffledArray = [...array]; // Создаем копию исходного массива
+    for (let i = shuffledArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+    }
+    return shuffledArray;
   }
-  return array;
-}
 
 
 // work with settings
@@ -611,26 +615,40 @@ function applyChangeSettings() {
 
   // Filter words based on selected settings
   const filteredWords = filterWordsBySettings(englishWordsInit, selectedSettings);
+  englishWords = filteredWords;
   
   // Update the word display or perform any other actions as needed
   updateWordDisplay(filteredWords);
 }
 
-// This function filters words based on the selected settings
 function filterWordsBySettings(englishWordsInit, settings) {
-  const allWords = Object.values(englishWordsInit);
-  const shuffledWords = shuffleArray(allWords);
-  const filteredWords = shuffledWords.filter((word) => {
+  const wordKeys = Object.keys(englishWordsInit); // Get all word keys
+  const shuffledWords = shuffleArray(wordKeys);
+//   const allWords = Object.values(englishWordsInit);
+//   const shuffledWords = shuffleArray(allWords);
+  // Now, we can use the .filter() method to filter words
+  const filteredWords = shuffledWords.filter((wordKey) => {
+    const word = englishWordsInit[wordKey]; // Get the word object for the key
     const cefrMatch = settings.cefrLevels.includes(word.cefr.level);
     const wordTypeMatch = word["word-types"].some((type) => settings.wordTypes.includes(type["word-type"]));
     return cefrMatch && wordTypeMatch;
   });
-  if (settings.wordCount > 0) {
-    return filteredWords.slice(0, settings.wordCount);
-  }
-  return filteredWords;
-}
 
+  // Convert the filtered keys back into word objects
+  //   const filteredWordObjects = filteredWords.map((wordKey) => englishWordsInit[wordKey]);
+  const filteredEnglishWords = {};
+
+  filteredWords.forEach((wordKey) => {
+    if (englishWordsInit.hasOwnProperty(wordKey)) {
+      filteredEnglishWords[wordKey] = englishWordsInit[wordKey];
+    }
+  });
+
+//   if (settings.wordCount > 0) {
+//     return filteredEnglishWords.slice(0, settings.wordCount);
+//   }
+  return filteredEnglishWords;
+}
 
 // init settings
 function initSettings(englishWordsInit) {
@@ -699,29 +717,66 @@ function updateWordDisplay(filteredWords) {
     const cefrCountSpan = document.getElementById(`cefr-level-count-${cefrLevel}`);
     
     // Filter the words that match the current CEFR level
-    const wordsMatchingCEFR = filteredWords.filter((word) => word.cefr.level === cefrLevel);
+    let wordsMatchingCEFR = 0;
+    for (const wordKey in filteredWords) {
+      if (filteredWords.hasOwnProperty(wordKey)) {
+        const word = englishWordsInit[wordKey];
+        if (word.cefr.level === cefrLevel) {
+            wordsMatchingCEFR++;
+        }
+      }
+    }
     
     // Update the count displayed in the span element
-    cefrCountSpan.textContent = wordsMatchingCEFR.length;
+    cefrCountSpan.textContent = wordsMatchingCEFR;
   });
 
   // Update word types in the settings table
-  const wordTypes = ['noun', 'adjective', 'verb', 'adverb', 'preposition', 'pronoun', 'interjection'];
-  wordTypes.forEach((wordType) => {
-    // Find the span element that displays the count for this word type
-    const wordTypeCountSpan = document.getElementById(`words-types-count-${wordType}`);
+//   const wordTypes = ['noun', 'adjective', 'verb', 'adverb', 'preposition', 'pronoun', 'interjection'];
+//   wordTypes.forEach((wordType) => {
+//     // Find the span element that displays the count for this word type
+//     const wordTypeCountSpan = document.getElementById(`words-types-count-${wordType}`);
     
-    // Filter the words that match the current word type
-    const wordsMatchingType = filteredWords.filter((word) =>
-      word["word-types"].some((type) => type["word-type"] === wordType)
-    );
+//     // Filter the words that match the current word type
+//     const wordsMatchingType = filteredWords.filter((word) =>
+//       word["word-types"].some((type) => type["word-type"] === wordType)
+//     );
     
-    // Update the count displayed in the span element
-    wordTypeCountSpan.textContent = wordsMatchingType.length;
-  });
+//     // Update the count displayed in the span element
+//     wordTypeCountSpan.textContent = wordsMatchingType.length;
+//   });
 
   // Update "Total Words" in the settings table
-  const totalWordsCount = filteredWords.length;
+  const totalWordsCount = getObjectLength(filteredWords);
+
+    const wordTypes = ['noun', 'adjective', 'verb', 'adverb', 'preposition', 'pronoun', 'interjection'];
+    const wordTypeCounts = {};
+
+  // Инициализируем счетчики для каждого типа слова
+  wordTypes.forEach((wordType) => {
+    wordTypeCounts[wordType] = 0;
+  });
+
+  // Проходим по словам и увеличиваем счетчики для соответствующих типов слов
+  for (const wordKey in filteredWords) {
+    if (filteredWords.hasOwnProperty(wordKey)) {
+      const word = filteredWords[wordKey];
+      word["word-types"].forEach((type) => {
+        if (wordTypes.includes(type["word-type"])) {
+          wordTypeCounts[type["word-type"]] += 1;
+        }
+      });
+    }
+  }
+
+  wordTypes.forEach((wordType) => {
+      // Find the span element that displays the count for this word type
+      const wordTypeCountSpan = document.getElementById(`words-types-count-${wordType}`);
+      wordTypeCountSpan.textContent = wordTypeCounts[wordType];
+  });
+
+
+
   document.getElementById('word-count-label').textContent = totalWordsCount;
   document.getElementById('word-count-slider').value = totalWordsCount;
   const startButton = document.getElementById('start-quiz-button');
@@ -741,4 +796,9 @@ function checkWordCount() {
     // Call the function to reset settings
     initSettings(englishWordsInit);
   }
+}
+
+// get lenght of object
+function getObjectLength(obj) {
+  return Object.keys(obj).length;
 }

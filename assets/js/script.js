@@ -75,6 +75,7 @@ settingsLink.addEventListener("click", (event) => {
 
   // Change background rules-link
   settingsLink.style.backgroundColor = 'rgba(128, 124, 124, 0.7)';
+  const rulesLink = document.getElementById("rules-link");
   rulesLink.style.backgroundColor = '';
 
   // Add handler for reset button
@@ -82,6 +83,7 @@ settingsLink.addEventListener("click", (event) => {
   resetButton.addEventListener("click", function () {
     initSettings(englishWordsInit);
   });
+
 });
 
 // init settings
@@ -722,4 +724,21 @@ function updateWordDisplay(filteredWords) {
   const totalWordsCount = filteredWords.length;
   document.getElementById('word-count-label').textContent = totalWordsCount;
   document.getElementById('word-count-slider').value = totalWordsCount;
+  const startButton = document.getElementById('start-quiz-button');
+  if (totalWordsCount < 3){   
+    startButton.style.backgroundColor = "grey";
+    startButton.disabled = true;
+  } else {
+    startButton.style.backgroundColor = 'rgba(76, 175, 80, 0.9)';
+    startButton.disabled = false;
+  }
+}
+
+// Function to check the total count of selected words
+function checkWordCount() {
+  const selectedWordCount = 3;
+  if (selectedWordCount < 3) {
+    // Call the function to reset settings
+    initSettings(englishWordsInit);
+  }
 }

@@ -112,14 +112,8 @@
     align-items: center;
 }
 .word-image {
-    /* flex: 1; */
     width: 100%;
-    /* flex: 1; */
-    /* display: block; */
     margin-top: 10px;
-    /* min-height: 40%; */
-    /* width: 80%; */
-    /* border: 10px solid #d7fc09; */
 }
 
 .img-word-image {
@@ -226,7 +220,6 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    /* gap: 30px; */
     gap: 12px;
 }
 
@@ -563,16 +556,6 @@ input[type="checkbox"]::before {
     text-align: center;
 }
 
-@media screen and (max-width: 600px) {
-    /* .quizsquare {
-      padding: 10px;
-      padding-top: 5px;
-      border-radius: 5px;
-      width: 95%;
-    } */
-    
-}
-
 /* Add some styles for the table on large screens */
 @media screen and (min-width: 600px) {
   /* .body-css {
@@ -663,15 +646,6 @@ input[type="checkbox"]::before {
   .control-buttons {
     gap: 30px;
   }
-
-  /* answers variants style */
-  /* .answers-list {    
-    list-style-type: none;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    gap: 5px;
-  } */
 
 }
 

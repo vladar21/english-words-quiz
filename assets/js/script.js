@@ -15,6 +15,9 @@ let timerInterval;
 const timerSpinner = document.querySelector(".timer-spinner");
 // Flag to track whether the timer spinner is visible
 let isTimerSpinnerVisible = true;
+// get total tasks count
+const totalCountElement = document.getElementById('total-count');
+let totalCountElementValue = 0;
 
 // Find sectionы you want to hide or show
 let showStartWindow = document.getElementById("english-words-quiz");
@@ -153,6 +156,13 @@ function startQuiz() {
 
   rightCountElement.textContent = "0";
   wrongCountElement.textContent = "0";
+
+  // Get the container elements for the answered and total counts
+  const answeredCountElement = document.getElementById('answered-count');
+
+  answeredCountElement.textContent = "0";
+  totalCountElementValue = getObjectLength(englishWords);
+  totalCountElement.textContent = totalCountElementValue;
 }
 
 // Function to finish the quiz
@@ -310,6 +320,15 @@ function takeAturn() {
 
   // check last answer
   checkLastAnswer();
+
+  // update quiz count and check that current question is last question
+  const answeredCountElement = document.getElementById('answered-count');
+  const answered = parseInt(answeredCountElement.textContent) + 1;
+  answeredCountElement.textContent = answered;
+  if (answered >= totalCountElementValue){
+    stopQuiz();
+  }
+
   // Display new question
   const randomQuestion = getRandomQuestion(englishWords);
   currentQuiz = displayQuestion(randomQuestion);
@@ -810,8 +829,6 @@ function updateWordDisplay(filteredWords) {
         checkbox.checked = true;
     }
   });
-
-
 
   document.getElementById('word-count-label').textContent = totalWordsCount;
   document.getElementById('word-count-slider').value = totalWordsCount;

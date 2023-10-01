@@ -160,6 +160,15 @@ See the image below:
 
 ![Fix the variants of the words is missing bug](assets/images/readme/variants_words_missing_bug_fix.jpg)
 
+4. The problem with working with the englishWordsInit object is that if I modify englishWords after englishWords = englishWordsInit by removing word definitions or whole words, this also affects englishWordsInit because they share references to the same nested objects and arrays.
+
+The solution was to create a deep copy of englishWordsInit. In JavaScript, it can achieve by using the JSON.parse() and JSON.stringify() methods. Here's how I can do it:
+
+ ```
+let englishWords = JSON.parse(JSON.stringify(englishWordsInit));
+ ```
+
+
 ## Deployment
 
 The site was deployed to GitHub pages. The steps to deploy are as follows:

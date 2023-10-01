@@ -1,80 +1,216 @@
 # English Words Quiz
 
+A web application for learning English vocabulary by testing your knowledge of words and their definitions - English Vocabulary Quiz App.
+
 ## Description
 
-The English Words Quiz is an interactive online quiz designed to test knowledge of English words and their definitions, or vice versa. This project is built using HTML5, CSS3, and native JavaScript. Whether you're looking to improve your English vocabulary or simply enjoy a challenging quiz, this application is for you.
+The English Words Quiz is an interactive online quiz designed to test knowledge of English words and their definitions. This project is built using HTML5, CSS3, and native JavaScript. Whether you're looking to improve your English vocabulary or simply enjoy a challenging quiz, this application is for you.
 
-The brief description of the quize:
+![English Words Quiz Responsive](/assets/images/readme/EnglishWordsQuizResponsive.jpg)
 
-The user must find right definitions for English's word or right word by his definition. 
+### Quiz Overview
 
-The user has opportunity to choose the dificalt level of quiz words. There are six CEFR levels:
-- A0/A1 English (Beginner/Elementary);
-- A2 English (Pre Intermediate);
-- B1 English (Intermediate);
-- B2 English (Upper Intermediate);
-- C1 English (Advanced);
-- C2 English (Proficient). 
+The English Words Quiz presents players with a series of questions, where they must choose the right answer from a selection of options. Questions are randomly generated, and players can test their knowledge in follow mode:
 
-The idea of the quiz is to choose the right answer among a few that are randomly chosen from another. The words and their definitions are stored in a key-value array - englishWords. Structure of the word set is:
+**Definition to Word**: The user must find the correct word that matches a given definition.
 
-```json
-{
-    "[word]": "value",
-    "features": {
-        "definition": "value",
-        "image_url": "value",
-        "sound_url": "value"
-        "translate": {
-             "ua": {
-                   "lang": "ukrainian"
-                   "translation": "value",
-                   "sound_url": "value"
-              },
-              ...
-        }
-    }
-}
-```
+### Features
 
-Each answer has a time limit, its 30s, if answer time is got out or user has to click "skip" button - it is wrong answer and go to next answer. Answer by clicking on one of the three answers in the current answers list, or focus + enter for accessibility users.
-When the quiz is finished, there must be detailed information (total time, wrong/right scores, how many was questions, the winners table and the current players place in it).
+- Each question has a 30-second time limit. If the timer runs out or the user chooses to click the "Skip" button, the answer is considered incorrect, and the quiz proceeds to the next question.
+
+- Players can answer questions by clicking on one of the three answer options or by using keyboard shortcuts, such as focusing on an option and pressing "Enter" for accessibility users.
+
+![English Words Quiz Responsive](/assets/images/readme/QuizField.jpg)
+
+- After completing the quiz, players can view detailed statistics, including total time, scores, the number of questions attempted, and their ranking on the leaderboard.
+
+![English Words Quiz Leaderboard](/assets/images/readme/QuizLeaderboard.jpg)
+
+### Settings
+
+Before starting the quiz, users have the option to customize their experience in the **Settings** section:
+
+- **Total Words**: Choose the total number of words in the quiz. Find the right balance between a quick game and an in-depth challenge.
+
+- **CEFR Levels**: Select the difficulty level of quiz words from six CEFR levels:
+  - A0/A1 English (Beginner/Elementary)
+  - A2 English (Pre Intermediate)
+  - B1 English (Intermediate)
+  - B2 English (Upper Intermediate)
+  - C1 English (Advanced)
+  - C2 English (Proficient)
+
+- **Word Types**: Customize the types of words that will appear in the quiz, directly influencing the definitions shown. Available word types include:
+  - Noun
+  - Adjective
+  - Verb
+  - Adverb
+  - Preposition
+  - Pronoun
+  - Interjection
+
+  ![English Words Quiz Leaderboard](/assets/images/readme/QuizSettings.jpg)
+
+### Audio and Visual Elements
+
+Each word in the quiz is accompanied by audio pronunciation and an image to enhance the learning experience. Listen to correct pronunciation and visualize words to reinforce your English vocabulary.
 
 ## User Goals
 
 - Improve English vocabulary.
 - Test knowledge of English words and their definitions.
-- Enjoy an engaging and educational quiz experience.
-- Choose between two play modes: finding word definitions or matching definitions to words.
+- Enjoy an engaging and educational quiz experience by finding word definitions.
+- Benefit from audio pronunciation and visual images to enhance language learning.
 - View detailed statistics upon completing the quiz.
 
-## Features
+## Features Implemented
 
-1. **Black Mode Background**: Enjoy a sleek and immersive quiz experience with a black mode background.
+The English Words Quiz project includes the following features:
 
-2. **Quiz Field**: The main quiz area where questions and answers are displayed.
+1. **Word Definitions Quiz:** Users can test their knowledge of English vocabulary by finding the right definitions for English words.
 
-3. **Question Area**: Displays the current question or definition.
+2. **Word-Definition Matching Quiz:** Users can match English word definitions to the correct words.
 
-4. **Answer List Area**: Presents several answer choices, one of which is correct. Users must select the correct answer.
+3. **Difficulty Levels:** Users can choose from six different CEFR difficulty levels to customize their quiz experience.
 
-5. **Skip Button**: Users can click the "Skip" button to move to the next question if they are unsure of the answer.
+4. **Audio Pronunciation:** Users can play audio pronunciation of words to improve their listening skills.
 
-6. **Correct and Incorrect Score Area**: Keeps track of the user's score, showing the number of correct and incorrect answers.
+5. **Multiple-Choice Questions:** Questions are presented as multiple-choice, making it easy for users to select the correct answer.
 
-7. **Control Area**: Provides options to start and stop the quiz.
+6. **Timer:** Each question has a time limit of 30 seconds, adding an element of challenge to the quiz.
 
-8. **Winner's Congratulations Modal Window**: Displays a congratulatory message to the user upon successfully completing the quiz.
+7. **Skip Questions:** Users can skip questions when they are unsure or running out of time.
 
-9. **Fail Window for Lost Cases**: Shows a message to the user in case they fail to answer a question correctly.
+8. **Detailed Statistics:** After completing the quiz, users can view detailed statistics, including total time, right and wrong scores, the number of questions attempted, and their place in the winners' table.
 
-10. **Countdown Spinner for Answer Time**: There is a countdown timer for each question, set at 30 seconds. If time runs out, or the user clicks "Skip," it's considered a wrong answer.
+9. **Responsive Design:** The project is responsive and works well on various screen sizes.
 
-11. **Total Time and Statistic Window**: After completing the quiz, users receive detailed information, including total time, scores, the number of questions attempted, and their place on the leaderboard.
+## Special Object: `englishWordsInit`
 
-12. **Play Mode Switch**: Allows users to choose between two play modes: looking for a word by its definition or finding a definition by a word.
+The core of the project is the `englishWordsInit` object. This object contains a comprehensive set of English words, their definitions, audio pronunciations and tips images, difficulty levels, translations and word types. It serves as the foundation for the quiz questions and answers. The structure of this object allows for dynamic quiz generation based on user-selected difficulty levels.
 
-Items 2,3,4,5,6 - must have background images from the EnglishWords array, which must be from the current word imageUrl field.
+```json
+const englishWordsInit = {    
+    ...,
+    "embrace": {
+        "image_url": "assets/images/quiz_images/embrace.webp",
+        "sound_url": "assets/sound/embrace.mp3",
+        "cefr": {
+            "level": "C1",
+            "title": "Advanced"
+        },
+        "word-types": [
+            {
+                "word-type": "noun",
+                "definitions": [
+                    {
+                        "definition": "the action of putting your arms around someone.",
+                        "translate": {
+                            "ru": [
+                                {
+                                    "translation": 'объятие',
+                                    "definition": null,
+                                    "sound_url": null,
+                                },
+                            ],
+                        }
+                    },
+                    {
+                        "definition": "a clasping in the arms; a hug.",
+                        "translate": {
+                            "ua": [
+                                {
+                                    "translation": 'обійми',
+                                    "definition": null,
+                                    "sound_url": null,
+                                }, 
+                            ],
+                        }
+                    },
+                ],
+            },
+            {
+                "word-type": "verb",
+                "definitions": [
+                    {
+                        "definition": "If you embrace someone, you put your arms around them, and if two people embrace, they put their arms around each other.",                        
+                        "translate": {
+                            "ru": [
+                                {
+                                    "translation": 'обнимать',
+                                    "definition": null,
+                                    "sound_url": null,
+                                },
+                                {
+                                    "translation": 'обниматься',
+                                    "definition": null,
+                                    "sound_url": null,
+                                },  
+                            ],
+                        }
+                    },
+                    {
+                        "definition": "to accept new ideas, beliefs, methods, etc in an enthusiastic way.",
+                        "translate": {
+                            "ru": [
+                                {
+                                    "translation": 'воспринимать',
+                                    "definition": null,
+                                    "sound_url": null,
+                                }, 
+                                {
+                                    "translation": 'принимать',
+                                    "definition": null,
+                                    "sound_url": null,
+                                }, 
+                            ],
+                        }
+                    },
+                    {
+                        "definition": "to include a number of things.",
+                        "translate": {
+                            "ru": [
+                                {
+                                    "translation": 'включать в себя',
+                                    "definition": null,
+                                    "sound_url": null,
+                                },
+                            ],
+                        }
+                    },
+                    {
+                        "definition": "to take (a person etc) in the arms; to hug.",
+                        "translate": {
+                            "ua": [
+                                {
+                                    "translation": 'обнімати',
+                                    "definition": null,
+                                    "sound_url": null,
+                                },
+                            ],
+                        }
+                    },   
+                    {
+                        "definition": "to accept something enthusiastically.",
+                        "translate": null
+                    },
+                    {
+                        "definition": "to hold someone tightly with both arms to express love, liking, or sympathy, or when greeting or leaving someone.",
+                        "translate": null
+                    },
+                    {
+                        "definition": "to include something, often as one of a number of things.",
+                        "translate": null
+                    },
+                ],
+            },
+        ],       
+    },
+    ...
+
+};
+```
+
 
 ## Technologies Used
 
@@ -90,19 +226,34 @@ To use the English Words Quiz, follow these steps:
 
 2. Open the `index.html` file in your web browser.
 
-3. Start the quiz by clicking the "Start Quiz" button in the control area.
+3. Explore the "Rules" section to understand how the quiz works and what to expect.
 
-4. Answer the questions by selecting the correct answer or clicking "Skip" when needed.
+4. For more control over your quiz experience, use the "Settings" button to customize options like difficulty level, types of words and the number of words in the quiz.
 
-5. After completing the quiz, view your detailed statistics.
+5. Start the quiz by clicking the "Start Quiz" button in the control area.
+
+6. Answer the questions by selecting the correct answer or clicking "Skip" when needed.
+
+7. After completing the quiz, view your detailed statistics.
 
 ## Future Enhancements
 
-- Adding more words and definitions to expand the quiz content.
-- Adding sound per word, and mode three for this case (looking for word by its sound).
-- Implementing user accounts and leaderboards for competition.
-- Enhancing accessibility features for a wider audience.
-- Integrating social sharing options for users to challenge friends.
+The English Words Quiz project has great potential for expansion and improvement. Here are some exciting future enhancements to consider:
+
+1. **Images and Sound Options:** Allow users to customize their quiz experience by toggling image and sound options on or off. This would cater to users who prefer quizzes without images or audio.
+
+2. **Expanded Word Database:** Continuously update and expand the `englishWordsInit` object with more words, definitions, and media files to provide users with a broader vocabulary challenge.
+
+3. **User Profiles and Leaderboards:** Implement user accounts and leaderboards to enable users to compete with others and track their progress over time.
+
+4. **Enhanced Accessibility:** Further enhance accessibility features to make the quiz accessible to an even wider audience, including users with disabilities.
+
+5. **Social Sharing:** Integrate social sharing options, allowing users to share their quiz results and challenge friends, creating a sense of competition and engagement.
+
+6. **Translation Quizzes:** Introduce translation quizzes, allowing users to practice translating words or phrases between different languages. Initially, support four translation directions: English to Ukrainian, Ukrainian to English, English to Russian, and Russian to English. Expand this feature to include more languages in the future.
+
+These enhancements will make the English Words Quiz project even more versatile and appealing to a broader user base, allowing users to improve their language skills in multiple ways.
+
 
 ## Testing
 
@@ -124,61 +275,54 @@ To use the English Words Quiz, follow these steps:
 
 ## Bugs
 
-1. Wrong background colour for timer field when user had 10 sec countdown on previous attempt.
+### 1. Timer Background Color Bug
 
-See the image below:
+- **Description:** In some cases, the timer background color displayed incorrectly when the user had a 10-second countdown on the previous attempt.
 
-![timer background-color bug](/assets/images/readme/timer_background_color_bug.jpg)
+  ![Timer Background Color Bug](/assets/images/readme/timer_background_color_bug.jpg)
 
-The solution was to add two lines of code to the "displayQuestion" function with assignments to the default timer background colour and text colour.
+- **Solution:** The issue was resolved by adding two lines of code to the "displayQuestion" function, setting the default timer background color and text color.
 
-See the image below:
+  ![Fix the Timer Background Color Bug](/assets/images/readme/timer_background_color_bug_fix.jpg)
 
-![fix the timer background-color bug](/assets/images/readme/timer_background_color_bug_fix.jpg)
+### 2. Rules Background Color Bug
 
-2. Problem with background toggle to the Rules link. When User got to Rules and then go to another section, Rules background don't change by default.
+- **Description:** There was an issue with the background color toggle for the "Rules" link. When the user visited the "Rules" section and then navigated to another section, the "Rules" background color did not change by default.
 
-See the image below:
+  ![Rules Background Color Bug](/assets/images/readme/Bacground_Rules_bug.png)
 
-![Rules background-color bug](/assets/images/readme/Bacground_Rules_bug.png)
+- **Solution:** The problem was fixed by removing the assignment of the highlight background color in the click handler.
 
-The solution was remove assingment highlight background color in click handler.
+  ![Fix the Rules Background Color Bug](/assets/images/readme/Bacground_Rules_bug_fix.png)
 
-See the image below:
+### 3. Missing Variants of Words
 
-![Fix the Rules background-color bug](/assets/images/readme/Bacground_Rules_bug_fix.png)
+- **Description:** Instead of displaying variants of words, numbers were shown for some questions.
 
-3. The problem with variants of the words is missing, instead - number.
+  ![Variants of Words Missing Bug](/assets/images/readme/variants_words_missing_bug.jpg)
 
-See the image below:
+- **Solution:** The issue was resolved by updating the main data object, "englishWords."
 
-![Variants of the words is missing bug](/assets/images/readme/variants_words_missing_bug.jpg)
+  ![Fix the Variants of Words Missing Bug](/assets/images/readme/variants_words_missing_bug_fix.jpg)
 
-The solution was to update the main data object - englishWords.
+### 4. Reference Issue with "englishWordsInit"
 
-See the image below:
+- **Description:** Modifying "englishWords" after assigning it from "englishWordsInit" affected "englishWordsInit" because they shared references to the same nested objects and arrays.
 
-![Fix the variants of the words is missing bug](/assets/images/readme/variants_words_missing_bug_fix.jpg)
+- **Solution:** To prevent this issue, a deep copy of "englishWordsInit" was created using the `JSON.parse()` and `JSON.stringify()` methods:
 
-4. The problem with working with the englishWordsInit object is that if I modify englishWords after englishWords = englishWordsInit by removing word definitions or whole words, this also affects englishWordsInit because they share references to the same nested objects and arrays.
+  ```javascript
+  let englishWords = JSON.parse(JSON.stringify(englishWordsInit));
 
-The solution was to create a deep copy of englishWordsInit. In JavaScript, it can achieve by using the JSON.parse() and JSON.stringify() methods. Here's how I can do it:
+### 5. Slider Issue in Settings Page
 
- ```
-let englishWords = JSON.parse(JSON.stringify(englishWordsInit));
- ```
+- **Description:** There was a problem with the slider in the settings page, where its max value didn't dynamically adjust for different settings, causing confusion for users.
 
-5. In the settings page the slider doesn't work correctly. Its max value doesn't change for others.
+  ![Slider Bug](/assets/images/readme/slider_bug.jpg)
 
-See the image below:
+- **Solution:** The issue was resolved by adding a listener to the settings slider, ensuring that its max value adapts to different settings, providing a more user-friendly experience.
 
-![slider don't correct work bug](/assets/images/readme/slider_bug.jpg)
-
-The solution was to add handler for this in settings slider's addListener.
-
-See the image below:
-
-![Fix the slider don't correct work bug](/assets/images/readme/slider_bug_fix.jpg)
+  ![Fix the Slider Bug](/assets/images/readme/slider_bug_fix.jpg)
 
 
 ## Deployment
@@ -188,7 +332,7 @@ The site was deployed to GitHub pages. The steps to deploy are as follows:
 - From the source section drop-down menu, select the Main Branch.
 - Once the main branch has been selected, the page provided the link to the completed website.
 
-The live link can be found here - [English Teacher](https://vladar21.github.io/english-words-quiz/)
+The live link can be found here - [English Words Quiz](https://vladar21.github.io/english-words-quiz/)
 
 ## Credits
 
@@ -212,7 +356,6 @@ The live link can be found here - [English Teacher](https://vladar21.github.io/e
 
 -   Image to Readme file from this [Am I Responsive?](https://ui.dev/amiresponsive)
 
--   Create logo image [FreeConvert](https://www.freeconvert.com/)
 
 ### Acknowledgements
 

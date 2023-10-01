@@ -18,6 +18,8 @@ let isTimerSpinnerVisible = true;
 // get total tasks count
 const totalCountElement = document.getElementById('total-count');
 let totalCountElementValue = 0;
+// Initialize a variable to keep track of the current word index
+let currentWordIndex = 0;
 
 // Find sectionы you want to hide or show
 let showStartWindow = document.getElementById("english-words-quiz");
@@ -373,10 +375,16 @@ function getRandomQuestion(englishWords) {
   const wordKeys = Object.keys(englishWords);
 
   // Randomly select a word key
-  const randomWordKey = wordKeys[Math.floor(Math.random() * wordKeys.length)];
+//   const randomWordKey = wordKeys[Math.floor(Math.random() * wordKeys.length)];
 
   // Get the word object for the selected key
-  const wordObject = englishWords[randomWordKey];
+//   const wordObject = englishWords[randomWordKey];
+
+// Get the word key at the current index
+const currentWordKey = wordKeys[currentWordIndex];
+
+// Get the word object for the current key
+const wordObject = englishWords[currentWordKey];
 
   // Get a random word-type object from the "word-types" array
   const randomWordType =
@@ -392,7 +400,8 @@ function getRandomQuestion(englishWords) {
 
   // Construct the question object
   const question = {
-    word: randomWordKey,
+    // word: randomWordKey,
+    word: currentWordKey,
     wordType: randomWordType["word-type"],
     definition: randomDefinition.definition,
     translations: randomDefinition.translate,
@@ -401,7 +410,8 @@ function getRandomQuestion(englishWords) {
     cefrLevel: wordObject.cefr.level,
     cefrTitle: wordObject.cefr.title,
   };
-
+// Increment the current word index for the next question
+currentWordIndex++;
   return question;
 }
 

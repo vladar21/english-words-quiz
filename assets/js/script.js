@@ -97,8 +97,13 @@ initSettings();
 // // Set the initial value for the word count slider
 const wordCountSlider = document.getElementById("word-count-slider");
 
+ // update label value if slider value is changed
+const sliderLabel = document.getElementById('word-count-label');
+wordCountSlider.addEventListener("input", function() {
+  sliderLabel.textContent = wordCountSlider.value;
+});
+
 // add listener for change value of word count slider
-// wordCountSlider.addEventListener("change", applyChangeSettings);
 wordCountSlider.addEventListener("change", function(event){
   const newWordCount = event.target.value;
   // Update wordCount with the new value

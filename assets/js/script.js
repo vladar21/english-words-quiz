@@ -782,6 +782,15 @@ function initSettings() {
   document.getElementById("word-count-slider").value = totalWordsCount;
   document.getElementById("word-count-slider").min = 3;
   document.getElementById("word-count-slider").max = totalWordsCount;
+    // change disabled and background in start quiz button for different cases
+    const startButton = document.getElementById("start-quiz-button");
+    if (totalWordsCount < 3) {
+      startButton.style.backgroundColor = "grey";
+      startButton.disabled = true;
+    } else {
+      startButton.style.backgroundColor = "rgba(76, 175, 80, 0.9)";
+      startButton.disabled = false;
+    }
 }
 
 // Function to update the HTML settings table
@@ -873,6 +882,7 @@ function updateWordDisplay(filteredWords) {
     }
   });
 
+  // change disabled and background in start quiz button for different cases
   document.getElementById("word-count-label").textContent = totalWordsCount;
   document.getElementById("word-count-slider").value = totalWordsCount;
   const startButton = document.getElementById("start-quiz-button");

@@ -148,6 +148,18 @@ See the image below:
 
 ![Fix the Rules background-color bug](assets/images/readme/Bacground_Rules_bug_fix.png)
 
+3. The problem with variants of the words is missing, instead - number.
+
+See the image below:
+
+![Variants of the words is missing bug](assets/images/readme/variants_words_missing_bug.jpg)
+
+The solution was to update the main data object - englishWords.
+
+See the image below:
+
+![Fix the variants of the words is missing bug](assets/images/readme/variants_words_missing_bug_fix.jpg)
+
 ## Deployment
 
 The site was deployed to GitHub pages. The steps to deploy are as follows:

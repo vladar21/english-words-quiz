@@ -2,6 +2,8 @@
 
 A web application for learning English vocabulary by testing your knowledge of words and their definitions - English Vocabulary Quiz App.
 
+[View the live project here.](https://vladar21.github.io/english-words-quiz/)
+
 ## Description
 
 The English Words Quiz is an interactive online quiz designed to test knowledge of English words and their definitions. This project is built using HTML5, CSS3, and native JavaScript. Whether you're looking to improve your English vocabulary or simply enjoy a challenging quiz, this application is for you.

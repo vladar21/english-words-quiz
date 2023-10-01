@@ -128,37 +128,37 @@ To use the English Words Quiz, follow these steps:
 
 See the image below:
 
-![timer background-color bug](assets/images/readme/timer_background_color_bug.jpg)
+![timer background-color bug](/assets/images/readme/timer_background_color_bug.jpg)
 
 The solution was to add two lines of code to the "displayQuestion" function with assignments to the default timer background colour and text colour.
 
 See the image below:
 
-![fix the timer background-color bug](assets/images/readme/timer_background_color_bug_fix.jpg)
+![fix the timer background-color bug](/assets/images/readme/timer_background_color_bug_fix.jpg)
 
 2. Problem with background toggle to the Rules link. When User got to Rules and then go to another section, Rules background don't change by default.
 
 See the image below:
 
-![Rules background-color bug](assets/images/readme/Bacground_Rules_bug.png)
+![Rules background-color bug](/assets/images/readme/Bacground_Rules_bug.png)
 
 The solution was remove assingment highlight background color in click handler.
 
 See the image below:
 
-![Fix the Rules background-color bug](assets/images/readme/Bacground_Rules_bug_fix.png)
+![Fix the Rules background-color bug](/assets/images/readme/Bacground_Rules_bug_fix.png)
 
 3. The problem with variants of the words is missing, instead - number.
 
 See the image below:
 
-![Variants of the words is missing bug](assets/images/readme/variants_words_missing_bug.jpg)
+![Variants of the words is missing bug](/assets/images/readme/variants_words_missing_bug.jpg)
 
 The solution was to update the main data object - englishWords.
 
 See the image below:
 
-![Fix the variants of the words is missing bug](assets/images/readme/variants_words_missing_bug_fix.jpg)
+![Fix the variants of the words is missing bug](/assets/images/readme/variants_words_missing_bug_fix.jpg)
 
 4. The problem with working with the englishWordsInit object is that if I modify englishWords after englishWords = englishWordsInit by removing word definitions or whole words, this also affects englishWordsInit because they share references to the same nested objects and arrays.
 
@@ -167,6 +167,18 @@ The solution was to create a deep copy of englishWordsInit. In JavaScript, it ca
  ```
 let englishWords = JSON.parse(JSON.stringify(englishWordsInit));
  ```
+
+5. In the settings page the slider doesn't work correctly. Its max value doesn't change for others.
+
+See the image below:
+
+![slider don't correct work bug](/assets/images/readme/slider_bug.jpg)
+
+The solution was to add handler for this in settings slider's addListener.
+
+See the image below:
+
+![Fix the slider don't correct work bug](/assets/images/readme/slider_bug_fix.jpg)
 
 
 ## Deployment

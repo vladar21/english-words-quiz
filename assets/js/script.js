@@ -81,13 +81,13 @@ settingsLink.addEventListener("click", (event) => {
   // Add handler for reset button
   const resetButton = document.getElementById("resetSettingsDefault");
   resetButton.addEventListener("click", function () {
-    initSettings(englishWordsInit);
+    initSettings();
   });
 
 });
 
 // init settings
-initSettings(englishWordsInit);
+initSettings();
 
 // // Set the initial value for the word count slider
 const wordCountSlider = document.getElementById("word-count-slider");
@@ -580,7 +580,6 @@ function shuffleArray(array) {
     return shuffledArray;
   }
 
-
 // work with settings
 
 // parese settings from html
@@ -614,50 +613,78 @@ function applyChangeSettings() {
   const selectedSettings = parseSettingsFromTable();
 
   // Filter words based on selected settings
-  const filteredWords = filterWordsBySettings(englishWordsInit, selectedSettings);
+  const filteredWords = filterWordsBySettings(englishWords, selectedSettings);
   englishWords = filteredWords;
   
   // Update the word display or perform any other actions as needed
   updateWordDisplay(filteredWords);
 }
 
-function filterWordsBySettings(englishWordsInit, settings) {
-  const wordKeys = Object.keys(englishWordsInit); // Get all word keys
-  const shuffledWords = shuffleArray(wordKeys);
-//   const allWords = Object.values(englishWordsInit);
-//   const shuffledWords = shuffleArray(allWords);
-  // Now, we can use the .filter() method to filter words
-  const filteredWords = shuffledWords.filter((wordKey) => {
-    const word = englishWordsInit[wordKey]; // Get the word object for the key
-    const cefrMatch = settings.cefrLevels.includes(word.cefr.level);
-    const wordTypeMatch = word["word-types"].some((type) => settings.wordTypes.includes(type["word-type"]));
-    return cefrMatch && wordTypeMatch;
-  });
+function filterWordsBySettings(englishWords, settings) {
 
-  // Convert the filtered keys back into word objects
-  //   const filteredWordObjects = filteredWords.map((wordKey) => englishWordsInit[wordKey]);
-  const filteredEnglishWords = {};
+  // Копируем исходные слова в новый объект, чтобы не модифицировать исходные данные
+  const filteredWords = { ...englishWords };
 
-  filteredWords.forEach((wordKey) => {
-    if (englishWordsInit.hasOwnProperty(wordKey)) {
-      filteredEnglishWords[wordKey] = englishWordsInit[wordKey];
+  // Удаляем определения и слова без определений в соответствии с настройками word-types
+  for (const wordKey in filteredWords) {
+    if (filteredWords.hasOwnProperty(wordKey)) {
+      const word = filteredWords[wordKey];
+
+      word["word-types"] = word["word-types"].filter((type) => {
+        const shouldIncludeType = settings.wordTypes.includes(type["word-type"]);
+        if (!shouldIncludeType) {
+          // Убираем определение, если оно не соответствует настройкам
+          return false;
+        }
+        return true;
+      });
+
+      if (word["word-types"].length === 0) {
+        // Если у слова больше нет определений, убираем его из filteredWords
+        delete filteredWords[wordKey];
+      }
     }
-  });
+  }
 
-//   if (settings.wordCount > 0) {
-//     return filteredEnglishWords.slice(0, settings.wordCount);
-//   }
-  return filteredEnglishWords;
-}
+    englishWords = Object.keys(filteredWords).reduce((result, wordKey) => {
+      const word = filteredWords[wordKey];
+      const cefrMatch = settings.cefrLevels.includes(word.cefr.level);
+      
+      // Фильтрация по типам слов
+    //   const filteredWordTypes = word["word-types"].filter((type) =>
+    //     settings.wordTypes.includes(type["word-type"])
+    //   );
+  
+      // Если Word Types настроен так, чтобы удалять слова без определений,
+      // то удаляем слова без определений
+    //   if (settings.wordTypes.includes("DeleteWordsWithoutDefinitions")) {
+    //     word.definitions = word.definitions.filter((definition) =>
+    //       filteredWordTypes.some((type) => type["word-type"] === definition["word-type"])
+    //     );
+    //   }
+  
+      // Если найдено совпадение по CEFR и по типам слов, добавляем слово в результат
+    //   if (cefrMatch && filteredWordTypes.length > 0) {
+      if (cefrMatch > 0) {
+        result[wordKey] = word;
+      }
+      
+      return result;
+    }, {});
+  
+    return englishWords;
+  }
+  
 
 // init settings
-function initSettings(englishWordsInit) {
+function initSettings() {
   // Iterate through all CEFR levels and words
   const cefrCheckboxes = document.querySelectorAll('input[name="cefr-level"]');
   cefrCheckboxes.forEach((checkbox) => {
     const cefrLevel = checkbox.value;
     const cefrCountSpan = document.getElementById(`cefr-level-count-${cefrLevel}`);
-    const words = Object.values(englishWordsInit);
+    englishWords = JSON.parse(JSON.stringify(englishWordsInit));
+    const words = Object.values(englishWords);
 
     // Filter words by CEFR level
     const filteredWords = words.filter((word) => word.cefr.level === cefrLevel);
@@ -680,7 +707,8 @@ function initSettings(englishWordsInit) {
   wordTypeCheckboxes.forEach((checkbox) => {
     const wordType = checkbox.value;
     const wordTypeCountSpan = document.getElementById(`words-types-count-${wordType}`);
-    const words = Object.values(englishWordsInit);
+    
+    const words = Object.values(englishWords);
 
     // Filter words by word type and variations
     const filteredWords = words.filter((word) =>
@@ -701,7 +729,7 @@ function initSettings(englishWordsInit) {
   });
 
   // Update the "Total Words" value to the total number of words
-  const totalWordsCount = Object.values(englishWordsInit).length;
+  const totalWordsCount = Object.values(englishWords).length;
   document.getElementById('word-count-label').textContent = totalWordsCount;
   document.getElementById('word-count-slider').value = totalWordsCount;
   document.getElementById('word-count-slider').min = 3;
@@ -720,7 +748,7 @@ function updateWordDisplay(filteredWords) {
     let wordsMatchingCEFR = 0;
     for (const wordKey in filteredWords) {
       if (filteredWords.hasOwnProperty(wordKey)) {
-        const word = englishWordsInit[wordKey];
+        const word = filteredWords[wordKey];
         if (word.cefr.level === cefrLevel) {
             wordsMatchingCEFR++;
         }
@@ -731,33 +759,18 @@ function updateWordDisplay(filteredWords) {
     cefrCountSpan.textContent = wordsMatchingCEFR;
   });
 
-  // Update word types in the settings table
-//   const wordTypes = ['noun', 'adjective', 'verb', 'adverb', 'preposition', 'pronoun', 'interjection'];
-//   wordTypes.forEach((wordType) => {
-//     // Find the span element that displays the count for this word type
-//     const wordTypeCountSpan = document.getElementById(`words-types-count-${wordType}`);
-    
-//     // Filter the words that match the current word type
-//     const wordsMatchingType = filteredWords.filter((word) =>
-//       word["word-types"].some((type) => type["word-type"] === wordType)
-//     );
-    
-//     // Update the count displayed in the span element
-//     wordTypeCountSpan.textContent = wordsMatchingType.length;
-//   });
-
   // Update "Total Words" in the settings table
   const totalWordsCount = getObjectLength(filteredWords);
 
     const wordTypes = ['noun', 'adjective', 'verb', 'adverb', 'preposition', 'pronoun', 'interjection'];
     const wordTypeCounts = {};
 
-  // Инициализируем счетчики для каждого типа слова
+  // Initialise counters for each word type
   wordTypes.forEach((wordType) => {
     wordTypeCounts[wordType] = 0;
   });
 
-  // Проходим по словам и увеличиваем счетчики для соответствующих типов слов
+  // Go through the words and increase the counters for the corresponding word types
   for (const wordKey in filteredWords) {
     if (filteredWords.hasOwnProperty(wordKey)) {
       const word = filteredWords[wordKey];
@@ -794,7 +807,7 @@ function checkWordCount() {
   const selectedWordCount = 3;
   if (selectedWordCount < 3) {
     // Call the function to reset settings
-    initSettings(englishWordsInit);
+    initSettings();
   }
 }
 

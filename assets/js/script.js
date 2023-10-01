@@ -17,7 +17,7 @@ const timerSpinner = document.querySelector(".timer-spinner");
 // Flag to track whether the timer spinner is visible
 let isTimerSpinnerVisible = true;
 // get total tasks count
-const totalCountElement = document.getElementById('total-count');
+const totalCountElement = document.getElementById("total-count");
 let totalCountElementValue = 0;
 // Initialize a variable to keep track of the current word index
 let currentWordIndex = 0;
@@ -37,7 +37,7 @@ startQuizButton.addEventListener("click", startQuiz);
 showStartWindow.addEventListener("click", (event) => {
   event.preventDefault(); // Prevent the link from navigating
 
-  if (!is_quiz_start){
+  if (!is_quiz_start) {
     // Hide the current sections and show the "statistic" section
     quizField.style.display = "none";
     statisticWindow.style.display = "block";
@@ -46,8 +46,8 @@ showStartWindow.addEventListener("click", (event) => {
   }
 
   // Change background rules-link
-  rulesLink.style.backgroundColor = '';
-  settingsLink.style.backgroundColor = '';
+  rulesLink.style.backgroundColor = "";
+  settingsLink.style.backgroundColor = "";
 });
 
 // Find the "Rules" link by its ID
@@ -63,8 +63,8 @@ rulesLink.addEventListener("click", (event) => {
   settingsSection.style.display = "none";
 
   // Change background rules-link
-  rulesLink.style.backgroundColor = 'rgba(128, 124, 124, 0.7)';
-  settingsLink.style.backgroundColor = '';
+  rulesLink.style.backgroundColor = "rgba(128, 124, 124, 0.7)";
+  settingsLink.style.backgroundColor = "";
 });
 
 // Find the "Settings" link by its ID
@@ -80,16 +80,15 @@ settingsLink.addEventListener("click", (event) => {
   settingsSection.style.display = "block";
 
   // Change background rules-link
-  settingsLink.style.backgroundColor = 'rgba(128, 124, 124, 0.7)';
+  settingsLink.style.backgroundColor = "rgba(128, 124, 124, 0.7)";
   const rulesLink = document.getElementById("rules-link");
-  rulesLink.style.backgroundColor = '';
+  rulesLink.style.backgroundColor = "";
 
   // Add handler for reset button
   const resetButton = document.getElementById("resetSettingsDefault");
   resetButton.addEventListener("click", function () {
     initSettings();
   });
-
 });
 
 // init settings
@@ -99,7 +98,23 @@ initSettings();
 const wordCountSlider = document.getElementById("word-count-slider");
 
 // add listener for change value of word count slider
-wordCountSlider.addEventListener("change", applyChangeSettings);
+// wordCountSlider.addEventListener("change", applyChangeSettings);
+wordCountSlider.addEventListener("change", function(event){
+  const newWordCount = event.target.value;
+  // Update wordCount with the new value
+  let wordCount = parseInt(newWordCount);
+
+  // Filter the englishWords object to contain exactly wordCount words
+  englishWords = Object.keys(englishWords)
+    .slice(0, wordCount)
+    .reduce((result, wordKey) => {
+      const word = englishWords[wordKey];
+      result[wordKey] = word;
+      return result;
+    }, {});
+
+    applyChangeSettings();
+});
 
 // Set event listeners for CEFR checkboxes and word type checkboxes
 const cefrCheckboxes = document.querySelectorAll('input[name="cefr-level"]');
@@ -107,15 +122,15 @@ cefrCheckboxes.forEach((checkbox) => {
   checkbox.addEventListener("change", applyChangeSettings);
 });
 
-const wordsTypesCheckboxes = document.querySelectorAll('input[name="words-types"]');
+const wordsTypesCheckboxes = document.querySelectorAll(
+  'input[name="words-types"]'
+);
 wordsTypesCheckboxes.forEach((checkbox) => {
   checkbox.addEventListener("change", applyChangeSettings);
 });
 
-
 // Function to start the quiz
 function startQuiz() {
-
   // set quiz settings
   applyChangeSettings();
 
@@ -123,8 +138,10 @@ function startQuiz() {
   is_quiz_start = true;
 
   // Hidden rules and settings links, and start quiz button
-  let rulesStartSettingsElement = document.getElementsByClassName('rules-start-settings')[0];
-  rulesStartSettingsElement.style.display = 'none';
+  let rulesStartSettingsElement = document.getElementsByClassName(
+    "rules-start-settings"
+  )[0];
+  rulesStartSettingsElement.style.display = "none";
   // Start the timer when the user proceeds to the next question
   startTimer();
 
@@ -162,7 +179,7 @@ function startQuiz() {
   wrongCountElement.textContent = "0";
 
   // Get the container elements for the answered and total counts
-  const answeredCountElement = document.getElementById('answered-count');
+  const answeredCountElement = document.getElementById("answered-count");
 
   answeredCountElement.textContent = "0";
   totalCountElementValue = getObjectLength(englishWords);
@@ -175,12 +192,14 @@ function stopQuiz() {
   is_quiz_start = false;
 
   // Show rules and settings links, and start quiz button
-  let rulesStartSettingsElement = document.getElementsByClassName('rules-start-settings')[0];
-  rulesStartSettingsElement.style.display = 'flex';
+  let rulesStartSettingsElement = document.getElementsByClassName(
+    "rules-start-settings"
+  )[0];
+  rulesStartSettingsElement.style.display = "flex";
 
   // reset rules-lin background to default
-  rulesLink.style.backgroundColor = '';
-  settingsLink.style.backgroundColor = '';
+  rulesLink.style.backgroundColor = "";
+  settingsLink.style.backgroundColor = "";
 
   // Stop the timer when the user stops the quiz
   stopTimer();
@@ -214,11 +233,11 @@ function stopQuiz() {
   // Add the total data to the array
   if (totalCorrectAnswers > 0) {
     winnersArray.push({
-        place: 0, // Initialize with 0, will be updated later
-        attempt: attempt, // Calculate attempts value
-        scores: totalCorrectAnswers,
-        timeSpent: totalTimeSpent,
-      });
+      place: 0, // Initialize with 0, will be updated later
+      attempt: attempt, // Calculate attempts value
+      scores: totalCorrectAnswers,
+      timeSpent: totalTimeSpent,
+    });
   }
 
   // Get the data from the winners table (excluding the first row)
@@ -271,7 +290,7 @@ function stopQuiz() {
         `;
     // Add the .highlight class to the first three rows
     if (index < 3) {
-        row.classList.add('highlight');
+      row.classList.add("highlight");
     }
     winnersTable.appendChild(row);
   });
@@ -309,27 +328,29 @@ function getAttemptString(index) {
 // Function to next turn in the quiz
 function takeAturn() {
   addSpentTimeToLastAttempt();
-  
+
   timer = 31; // restore timert value to 30 sec
 
   // Check if any answer option is selected
-  const selectedOption = document.querySelector('input[name="answer-option"]:checked');
+  const selectedOption = document.querySelector(
+    'input[name="answer-option"]:checked'
+  );
 
   if (!selectedOption) {
-      // If no answer option is selected, consider it as an incorrect answer
-      const wrongCountElement = document.getElementById('wrong-count');
-      const wrongCount = parseInt(wrongCountElement.textContent) + 1;
-      wrongCountElement.textContent = wrongCount;
+    // If no answer option is selected, consider it as an incorrect answer
+    const wrongCountElement = document.getElementById("wrong-count");
+    const wrongCount = parseInt(wrongCountElement.textContent) + 1;
+    wrongCountElement.textContent = wrongCount;
   }
 
   // check last answer
   checkLastAnswer();
 
   // update quiz count and check that current question is last question
-  const answeredCountElement = document.getElementById('answered-count');
+  const answeredCountElement = document.getElementById("answered-count");
   const answered = parseInt(answeredCountElement.textContent) + 1;
   answeredCountElement.textContent = answered;
-  if (answered >= totalCountElementValue){
+  if (answered >= totalCountElementValue) {
     stopQuiz();
   }
 
@@ -373,9 +394,9 @@ function checkLastAnswer() {
 
 // Function to get a random question
 function getRandomQuestion(englishWordsRandomQuestion) {
-// Get all word keys
-const wordKeys = Object.keys(englishWordsRandomQuestion);
-    // Get a random index to select a word
+  // Get all word keys
+  const wordKeys = Object.keys(englishWordsRandomQuestion);
+  // Get a random index to select a word
   const randomIndex = Math.floor(Math.random() * wordKeys.length);
 
   // Get the selected word key
@@ -408,147 +429,149 @@ const wordKeys = Object.keys(englishWordsRandomQuestion);
     cefrTitle: wordObject.cefr.title,
   };
 
-    // Remove the used word from englishWords
-    delete englishWordsRandomQuestion[selectedWordKey];
+  // Remove the used word from englishWords
+  delete englishWordsRandomQuestion[selectedWordKey];
 
   return question;
 }
 
 // Function to display the question
 function displayQuestion(question) {
-    // Get DOM elements
-    const quizTaskElement = document.querySelector(".quiz-task");
-    const wordTypeElement = document.querySelector(".word-type");
-    const wordDefinitionElement = document.querySelector(".word-definition");
-    const answersListElement = document.querySelector(".answers-list");
-    const imgWordeElement = document.querySelector(".img-word-image");
-    const timerSpinner = document.querySelector(".timer-spinner");
-  
-    // Set timer background in default color
-    timerSpinner.style.backgroundColor = 'rgba(51, 51, 51, 0.7)';
-    timerSpinner.style.color = 'white';
-  
-    // Update question elements
-    quizTaskElement.textContent = "Guess the word by definition:";
-    wordTypeElement.textContent = question.wordType;
-    wordDefinitionElement.textContent = question.definition;
-    imgWordeElement.src = question.imageUrl;
-  
-    // Clear any previous answer options
-    answersListElement.innerHTML = "";
-  
-    // Create an array to hold answer options (translations)
-    const answerOptions = [];
-  
-    // Add the correct answer to the array
+  // Get DOM elements
+  const quizTaskElement = document.querySelector(".quiz-task");
+  const wordTypeElement = document.querySelector(".word-type");
+  const wordDefinitionElement = document.querySelector(".word-definition");
+  const answersListElement = document.querySelector(".answers-list");
+  const imgWordeElement = document.querySelector(".img-word-image");
+  const timerSpinner = document.querySelector(".timer-spinner");
+
+  // Set timer background in default color
+  timerSpinner.style.backgroundColor = "rgba(51, 51, 51, 0.7)";
+  timerSpinner.style.color = "white";
+
+  // Update question elements
+  quizTaskElement.textContent = "Guess the word by definition:";
+  wordTypeElement.textContent = question.wordType;
+  wordDefinitionElement.textContent = question.definition;
+  imgWordeElement.src = question.imageUrl;
+
+  // Clear any previous answer options
+  answersListElement.innerHTML = "";
+
+  // Create an array to hold answer options (translations)
+  const answerOptions = [];
+
+  // Add the correct answer to the array
+  answerOptions.push({
+    answer: question.word,
+    isCorrect: true,
+    isUserChoice: false,
+  });
+
+  // Create a list of unique incorrect answers
+  const uniqueIncorrectAnswers = [];
+
+  while (uniqueIncorrectAnswers.length < 2) {
+    // Get an array of keys (words) from englishWords
+    const wordKeys = Object.keys(englishWords);
+
+    // Select a random key from the array
+    const randomKey = wordKeys[Math.floor(Math.random() * wordKeys.length)];
+
+    // Make sure it's not the same as the correct answer and not already in uniqueIncorrectAnswers
+    if (
+      randomKey !== question.word &&
+      !uniqueIncorrectAnswers.includes(randomKey)
+    ) {
+      uniqueIncorrectAnswers.push(randomKey);
+    }
+  }
+
+  // Add unique incorrect answers to the array
+  uniqueIncorrectAnswers.forEach((randomKey) => {
     answerOptions.push({
-      answer: question.word,
-      isCorrect: true,
+      answer: randomKey,
+      isCorrect: false,
       isUserChoice: false,
     });
-  
-    // Create a list of unique incorrect answers
-    const uniqueIncorrectAnswers = [];
-  
-    while (uniqueIncorrectAnswers.length < 2) {
-      // Get an array of keys (words) from englishWords
-      const wordKeys = Object.keys(englishWords);
-  
-      // Select a random key from the array
-      const randomKey = wordKeys[Math.floor(Math.random() * wordKeys.length)];
-  
-      // Make sure it's not the same as the correct answer and not already in uniqueIncorrectAnswers
-      if (randomKey !== question.word && !uniqueIncorrectAnswers.includes(randomKey)) {
-        uniqueIncorrectAnswers.push(randomKey);
-      }
-    }
-  
-    // Add unique incorrect answers to the array
-    uniqueIncorrectAnswers.forEach((randomKey) => {
-      answerOptions.push({
-        answer: randomKey,
-        isCorrect: false,
-        isUserChoice: false,
-      });
-    });
-  
-    // Randomly shuffle the answer options
-    const shuffledOptions = shuffleArray(answerOptions);
-  
-    // Add answer options to the DOM
-    shuffledOptions.forEach((option) => {
-      const li = document.createElement("li");
-      const input = document.createElement("input");
-      const label = document.createElement("label");
-      const audioElement = document.createElement("audio");
-      const audioSourceElement = document.createElement("source");
-      const audioButtonPlayElement = document.createElement("button");
-  
-      // Add audio url for the current word
-      let currentWord = englishWords[option.answer];
-      audioSourceElement.src = currentWord.sound_url;
-      audioButtonPlayElement.id = option.answer;
-      audioButtonPlayElement.className = 'play-sound-button';
-      audioButtonPlayElement.onclick = function() {
-        document.getElementById(option.answer).play();
-      };
-      audioElement.id = option.answer;
-      audioElement.classList.add("audio-container");
-  
-      input.type = "radio";
-      input.className = "answer-option";
-      input.name = "answer-option";
-      input.value = option.answer;
-  
-      label.textContent = option.answer;
-  
-      audioElement.className = "audio-container";
-      audioElement.controls = false;
-  
-      audioElement.appendChild(audioSourceElement);
-  
-      li.appendChild(input);
-      li.appendChild(label);
-      li.appendChild(audioElement);
-      li.appendChild(audioButtonPlayElement);
-  
-      answersListElement.appendChild(li);
-  
-      // Add an event listener to track user's choice
-      input.addEventListener("change", () => {
-        option.isUserChoice = input.checked;
-  
-        // Stop any previously playing audio
-        const allAudioElements = document.querySelectorAll(".word-audio");
-        allAudioElements.forEach((audioElement) => {
-          audioElement.pause();
-        });
-  
-        // Find the selected word in englishWords
-        const selectedWord = englishWords[option.answer];
-  
-        if (selectedWord) {
-          // Play audio for the selected word
-          audioButtonPlayElement.onclick = function() {
-            document.getElementById(option.answer).play();
-          };
-          audioElement.load(); // Load the audio
-          audioElement.play(); // Play the audio
-        }
-      });
-    });
-  
-    // Add the currentQuiz object to the quizData array
-    currentQuiz = {
-      question: question.definition,
-      answers: answerOptions,
-      scores: 0, // Initialize scores for this quiz
-      timeSpent: 0,
+  });
+
+  // Randomly shuffle the answer options
+  const shuffledOptions = shuffleArray(answerOptions);
+
+  // Add answer options to the DOM
+  shuffledOptions.forEach((option) => {
+    const li = document.createElement("li");
+    const input = document.createElement("input");
+    const label = document.createElement("label");
+    const audioElement = document.createElement("audio");
+    const audioSourceElement = document.createElement("source");
+    const audioButtonPlayElement = document.createElement("button");
+
+    // Add audio url for the current word
+    let currentWord = englishWords[option.answer];
+    audioSourceElement.src = currentWord.sound_url;
+    audioButtonPlayElement.id = option.answer;
+    audioButtonPlayElement.className = "play-sound-button";
+    audioButtonPlayElement.onclick = function () {
+      document.getElementById(option.answer).play();
     };
-  
-    return currentQuiz;
-  }
-  
+    audioElement.id = option.answer;
+    audioElement.classList.add("audio-container");
+
+    input.type = "radio";
+    input.className = "answer-option";
+    input.name = "answer-option";
+    input.value = option.answer;
+
+    label.textContent = option.answer;
+
+    audioElement.className = "audio-container";
+    audioElement.controls = false;
+
+    audioElement.appendChild(audioSourceElement);
+
+    li.appendChild(input);
+    li.appendChild(label);
+    li.appendChild(audioElement);
+    li.appendChild(audioButtonPlayElement);
+
+    answersListElement.appendChild(li);
+
+    // Add an event listener to track user's choice
+    input.addEventListener("change", () => {
+      option.isUserChoice = input.checked;
+
+      // Stop any previously playing audio
+      const allAudioElements = document.querySelectorAll(".word-audio");
+      allAudioElements.forEach((audioElement) => {
+        audioElement.pause();
+      });
+
+      // Find the selected word in englishWords
+      const selectedWord = englishWords[option.answer];
+
+      if (selectedWord) {
+        // Play audio for the selected word
+        audioButtonPlayElement.onclick = function () {
+          document.getElementById(option.answer).play();
+        };
+        audioElement.load(); // Load the audio
+        audioElement.play(); // Play the audio
+      }
+    });
+  });
+
+  // Add the currentQuiz object to the quizData array
+  currentQuiz = {
+    question: question.definition,
+    answers: answerOptions,
+    scores: 0, // Initialize scores for this quiz
+    timeSpent: 0,
+  };
+
+  return currentQuiz;
+}
 
 // Function to shuffle an array randomly
 function shuffleArray(array) {
@@ -599,13 +622,13 @@ function stopTimer() {
 
 // Function to shuffle a copy of an array randomly
 function shuffleArray(array) {
-    const shuffledArray = [...array]; // Создаем копию исходного массива
-    for (let i = shuffledArray.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
-    }
-    return shuffledArray;
+  const shuffledArray = [...array]; // Создаем копию исходного массива
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
   }
+  return shuffledArray;
+}
 
 // work with settings
 
@@ -618,7 +641,9 @@ function parseSettingsFromTable() {
   };
 
   const table = document.getElementById("settings-table");
-  const checkboxes = table.querySelectorAll('input[name="cefr-level"]:checked, input[name="words-types"]:checked');
+  const checkboxes = table.querySelectorAll(
+    'input[name="cefr-level"]:checked, input[name="words-types"]:checked'
+  );
   const wordCountSlider = document.getElementById("word-count-slider");
 
   checkboxes.forEach((checkbox) => {
@@ -642,66 +667,51 @@ function applyChangeSettings() {
   // Filter words based on selected settings
   const filteredWords = filterWordsBySettings(englishWords, selectedSettings);
   englishWords = filteredWords;
-  
+
   // Update the word display or perform any other actions as needed
   updateWordDisplay(filteredWords);
 }
 
 function filterWordsBySettings(englishWords, settings) {
-
-  // Копируем исходные слова в новый объект, чтобы не модифицировать исходные данные
+  // Copy the source words into a new object so that we don't modify the original data
   const filteredWords = { ...englishWords };
 
-  // Удаляем определения и слова без определений в соответствии с настройками word-types
+  // Remove definitions and words without definitions according to the word-types settings
   for (const wordKey in filteredWords) {
     if (filteredWords.hasOwnProperty(wordKey)) {
       const word = filteredWords[wordKey];
 
       word["word-types"] = word["word-types"].filter((type) => {
-        const shouldIncludeType = settings.wordTypes.includes(type["word-type"]);
+        const shouldIncludeType = settings.wordTypes.includes(
+          type["word-type"]
+        );
         if (!shouldIncludeType) {
-          // Убираем определение, если оно не соответствует настройкам
+          // Remove the definition if it does not match the settings
           return false;
         }
         return true;
       });
 
       if (word["word-types"].length === 0) {
-        // Если у слова больше нет определений, убираем его из filteredWords
+        // If the word has no more definitions, remove it from filteredWords
         delete filteredWords[wordKey];
       }
     }
   }
 
-    englishWords = Object.keys(filteredWords).reduce((result, wordKey) => {
-      const word = filteredWords[wordKey];
-      const cefrMatch = settings.cefrLevels.includes(word.cefr.level);
-      
-      // Фильтрация по типам слов
-    //   const filteredWordTypes = word["word-types"].filter((type) =>
-    //     settings.wordTypes.includes(type["word-type"])
-    //   );
-  
-      // Если Word Types настроен так, чтобы удалять слова без определений,
-      // то удаляем слова без определений
-    //   if (settings.wordTypes.includes("DeleteWordsWithoutDefinitions")) {
-    //     word.definitions = word.definitions.filter((definition) =>
-    //       filteredWordTypes.some((type) => type["word-type"] === definition["word-type"])
-    //     );
-    //   }
-  
-      // Если найдено совпадение по CEFR и по типам слов, добавляем слово в результат
-    //   if (cefrMatch && filteredWordTypes.length > 0) {
-      if (cefrMatch > 0) {
-        result[wordKey] = word;
-      }
-      
-      return result;
-    }, {});
-  
-    return englishWords;
-  }
-  
+  englishWords = Object.keys(filteredWords).reduce((result, wordKey) => {
+    const word = filteredWords[wordKey];
+    const cefrMatch = settings.cefrLevels.includes(word.cefr.level);
+
+    if (cefrMatch > 0) {
+      result[wordKey] = word;
+    }
+
+    return result;
+  }, {});
+
+  return englishWords;
+}
 
 // init settings
 function initSettings() {
@@ -709,7 +719,9 @@ function initSettings() {
   const cefrCheckboxes = document.querySelectorAll('input[name="cefr-level"]');
   cefrCheckboxes.forEach((checkbox) => {
     const cefrLevel = checkbox.value;
-    const cefrCountSpan = document.getElementById(`cefr-level-count-${cefrLevel}`);
+    const cefrCountSpan = document.getElementById(
+      `cefr-level-count-${cefrLevel}`
+    );
     englishWords = JSON.parse(JSON.stringify(englishWordsInit));
     const words = Object.values(englishWords);
 
@@ -730,11 +742,15 @@ function initSettings() {
   });
 
   // Iterate through all word types and variations
-  const wordTypeCheckboxes = document.querySelectorAll('input[name="words-types"]');
+  const wordTypeCheckboxes = document.querySelectorAll(
+    'input[name="words-types"]'
+  );
   wordTypeCheckboxes.forEach((checkbox) => {
     const wordType = checkbox.value;
-    const wordTypeCountSpan = document.getElementById(`words-types-count-${wordType}`);
-    
+    const wordTypeCountSpan = document.getElementById(
+      `words-types-count-${wordType}`
+    );
+
     const words = Object.values(englishWords);
 
     // Filter words by word type and variations
@@ -757,31 +773,33 @@ function initSettings() {
 
   // Update the "Total Words" value to the total number of words
   const totalWordsCount = Object.values(englishWords).length;
-  document.getElementById('word-count-label').textContent = totalWordsCount;
-  document.getElementById('word-count-slider').value = totalWordsCount;
-  document.getElementById('word-count-slider').min = 3;
-  document.getElementById('word-count-slider').max = totalWordsCount;
+  document.getElementById("word-count-label").textContent = totalWordsCount;
+  document.getElementById("word-count-slider").value = totalWordsCount;
+  document.getElementById("word-count-slider").min = 3;
+  document.getElementById("word-count-slider").max = totalWordsCount;
 }
 
 // Function to update the HTML settings table
 function updateWordDisplay(filteredWords) {
   // Update CEFR levels in the settings table
-  const cefrLevels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+  const cefrLevels = ["A1", "A2", "B1", "B2", "C1", "C2"];
   cefrLevels.forEach((cefrLevel) => {
     // Find the span element that displays the count for this CEFR level
-    const cefrCountSpan = document.getElementById(`cefr-level-count-${cefrLevel}`);
-    
+    const cefrCountSpan = document.getElementById(
+      `cefr-level-count-${cefrLevel}`
+    );
+
     // Filter the words that match the current CEFR level
     let wordsMatchingCEFR = 0;
     for (const wordKey in filteredWords) {
       if (filteredWords.hasOwnProperty(wordKey)) {
         const word = filteredWords[wordKey];
         if (word.cefr.level === cefrLevel) {
-            wordsMatchingCEFR++;
+          wordsMatchingCEFR++;
         }
       }
     }
-    
+
     // Update the count displayed in the span element
     cefrCountSpan.textContent = wordsMatchingCEFR;
 
@@ -790,19 +808,27 @@ function updateWordDisplay(filteredWords) {
 
     // Update the checkbox state and disabled property based on CEFR level existence
     if (!wordsMatchingCEFR) {
-        checkbox.checked = false;
-        checkbox.disabled = true;
+      checkbox.checked = false;
+      checkbox.disabled = true;
     } else {
-        checkbox.disabled = false;
-        checkbox.checked = true;
+      checkbox.disabled = false;
+      checkbox.checked = true;
     }
   });
 
   // Update "Total Words" in the settings table
   const totalWordsCount = getObjectLength(filteredWords);
 
-    const wordTypes = ['noun', 'adjective', 'verb', 'adverb', 'preposition', 'pronoun', 'interjection'];
-    const wordTypeCounts = {};
+  const wordTypes = [
+    "noun",
+    "adjective",
+    "verb",
+    "adverb",
+    "preposition",
+    "pronoun",
+    "interjection",
+  ];
+  const wordTypeCounts = {};
 
   // Initialise counters for each word type
   wordTypes.forEach((wordType) => {
@@ -823,29 +849,33 @@ function updateWordDisplay(filteredWords) {
 
   wordTypes.forEach((wordType) => {
     // Find the span element that displays the count for this word type
-    const wordTypeCountSpan = document.getElementById(`words-types-count-${wordType}`);
+    const wordTypeCountSpan = document.getElementById(
+      `words-types-count-${wordType}`
+    );
     wordTypeCountSpan.textContent = wordTypeCounts[wordType];
     // Find the checkbox element
-    const checkbox = document.getElementById(`words-types-checkbox-${wordType}`);
+    const checkbox = document.getElementById(
+      `words-types-checkbox-${wordType}`
+    );
 
     // Update the checkbox state and disabled property based on CEFR level existence
     if (!wordTypeCounts[wordType]) {
-        checkbox.checked = false;
-        checkbox.disabled = true;
+      checkbox.checked = false;
+      checkbox.disabled = true;
     } else {
-        checkbox.disabled = false;
-        checkbox.checked = true;
+      checkbox.disabled = false;
+      checkbox.checked = true;
     }
   });
 
-  document.getElementById('word-count-label').textContent = totalWordsCount;
-  document.getElementById('word-count-slider').value = totalWordsCount;
-  const startButton = document.getElementById('start-quiz-button');
-  if (totalWordsCount < 3){   
+  document.getElementById("word-count-label").textContent = totalWordsCount;
+  document.getElementById("word-count-slider").value = totalWordsCount;
+  const startButton = document.getElementById("start-quiz-button");
+  if (totalWordsCount < 3) {
     startButton.style.backgroundColor = "grey";
     startButton.disabled = true;
   } else {
-    startButton.style.backgroundColor = 'rgba(76, 175, 80, 0.9)';
+    startButton.style.backgroundColor = "rgba(76, 175, 80, 0.9)";
     startButton.disabled = false;
   }
 }

@@ -757,6 +757,18 @@ function updateWordDisplay(filteredWords) {
     
     // Update the count displayed in the span element
     cefrCountSpan.textContent = wordsMatchingCEFR;
+
+    // Find the checkbox element
+    const checkbox = document.getElementById(`cefr-checkbox-${cefrLevel}`);
+
+    // Update the checkbox state and disabled property based on CEFR level existence
+    if (!wordsMatchingCEFR) {
+        checkbox.checked = false;
+        checkbox.disabled = true;
+    } else {
+        checkbox.disabled = false;
+        checkbox.checked = true;
+    }
   });
 
   // Update "Total Words" in the settings table
@@ -783,9 +795,20 @@ function updateWordDisplay(filteredWords) {
   }
 
   wordTypes.forEach((wordType) => {
-      // Find the span element that displays the count for this word type
-      const wordTypeCountSpan = document.getElementById(`words-types-count-${wordType}`);
-      wordTypeCountSpan.textContent = wordTypeCounts[wordType];
+    // Find the span element that displays the count for this word type
+    const wordTypeCountSpan = document.getElementById(`words-types-count-${wordType}`);
+    wordTypeCountSpan.textContent = wordTypeCounts[wordType];
+    // Find the checkbox element
+    const checkbox = document.getElementById(`words-types-checkbox-${wordType}`);
+
+    // Update the checkbox state and disabled property based on CEFR level existence
+    if (!wordTypeCounts[wordType]) {
+        checkbox.checked = false;
+        checkbox.disabled = true;
+    } else {
+        checkbox.disabled = false;
+        checkbox.checked = true;
+    }
   });
 
 

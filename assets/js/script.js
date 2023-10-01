@@ -1,5 +1,6 @@
 let quizData = []; // Array to store quiz data
 let englishWords = {};
+let englishWordsRandomQuestion = {};
 // flag, that true if quiz start, and false - is stop or don't start yet
 let is_quiz_start = false;
 // Declare currentQuiz at a higher scope
@@ -146,8 +147,9 @@ function startQuiz() {
   const stopQuizButton = document.getElementById("stop-button");
   stopQuizButton.addEventListener("click", stopQuiz);
 
+  englishWordsRandomQuestion = JSON.parse(JSON.stringify(englishWords));
   // Display new question
-  const randomQuestion = getRandomQuestion(englishWords);
+  const randomQuestion = getRandomQuestion(englishWordsRandomQuestion);
   currentQuiz = displayQuestion(randomQuestion);
   currentQuiz.attempt = attempt;
   quizData.push(currentQuiz);
@@ -332,7 +334,7 @@ function takeAturn() {
   }
 
   // Display new question
-  const randomQuestion = getRandomQuestion(englishWords);
+  const randomQuestion = getRandomQuestion(englishWordsRandomQuestion);
   currentQuiz = displayQuestion(randomQuestion);
   currentQuiz.attempt = attempt;
   currentQuiz.spentTime = 0;
@@ -370,21 +372,17 @@ function checkLastAnswer() {
 }
 
 // Function to get a random question
-function getRandomQuestion(englishWords) {
-  // Get all word keys
-  const wordKeys = Object.keys(englishWords);
+function getRandomQuestion(englishWordsRandomQuestion) {
+// Get all word keys
+const wordKeys = Object.keys(englishWordsRandomQuestion);
+    // Get a random index to select a word
+  const randomIndex = Math.floor(Math.random() * wordKeys.length);
 
-  // Randomly select a word key
-//   const randomWordKey = wordKeys[Math.floor(Math.random() * wordKeys.length)];
+  // Get the selected word key
+  const selectedWordKey = wordKeys[randomIndex];
 
   // Get the word object for the selected key
-//   const wordObject = englishWords[randomWordKey];
-
-// Get the word key at the current index
-const currentWordKey = wordKeys[currentWordIndex];
-
-// Get the word object for the current key
-const wordObject = englishWords[currentWordKey];
+  const wordObject = englishWords[selectedWordKey];
 
   // Get a random word-type object from the "word-types" array
   const randomWordType =
@@ -400,8 +398,7 @@ const wordObject = englishWords[currentWordKey];
 
   // Construct the question object
   const question = {
-    // word: randomWordKey,
-    word: currentWordKey,
+    word: selectedWordKey,
     wordType: randomWordType["word-type"],
     definition: randomDefinition.definition,
     translations: randomDefinition.translate,
@@ -410,147 +407,148 @@ const wordObject = englishWords[currentWordKey];
     cefrLevel: wordObject.cefr.level,
     cefrTitle: wordObject.cefr.title,
   };
-// Increment the current word index for the next question
-currentWordIndex++;
+
+    // Remove the used word from englishWords
+    delete englishWordsRandomQuestion[selectedWordKey];
+
   return question;
 }
 
 // Function to display the question
 function displayQuestion(question) {
-  // Get DOM elements
-  const quizTaskElement = document.querySelector(".quiz-task");
-  const wordTypeElement = document.querySelector(".word-type");
-  const wordDefinitionElement = document.querySelector(".word-definition");
-  // Reference to the timer spinner element
-  const timerSpinner = document.querySelector(".timer-spinner");
-  // Set timer background in default color
-  timerSpinner.style.backgroundColor = 'rgba(51, 51, 51, 0.7)';
-  timerSpinner.style.color = 'white';
-
-  // Update question elements
-  quizTaskElement.textContent = "Guess the word by definition:";
-  wordTypeElement.textContent = question.wordType;
-  wordDefinitionElement.textContent = question.definition;
-
-  // Clear any previous answer options
-  const answersListElement = document.querySelector(".answers-list");
-  answersListElement.innerHTML = "";
-
-  // Create an array to hold answer options (translations)
-  const answerOptions = [];
-
-  // Add the correct answer to the array
-  answerOptions.push({
-    answer: question.word,
-    isCorrect: true,
-    isUserChoice: false,
-  });
-
-  // Add two incorrect answers to the array
-  while (answerOptions.length < 3) {
-    // Get an array of keys (words) from englishWords
-    const wordKeys = Object.keys(englishWords);
-
-    // Select a random key from the array
-    const randomKey = wordKeys[Math.floor(Math.random() * wordKeys.length)];
-
-    // Make sure it's not the same as the correct answer
-    if (randomKey !== question.word) {
+    // Get DOM elements
+    const quizTaskElement = document.querySelector(".quiz-task");
+    const wordTypeElement = document.querySelector(".word-type");
+    const wordDefinitionElement = document.querySelector(".word-definition");
+    const answersListElement = document.querySelector(".answers-list");
+    const imgWordeElement = document.querySelector(".img-word-image");
+    const timerSpinner = document.querySelector(".timer-spinner");
+  
+    // Set timer background in default color
+    timerSpinner.style.backgroundColor = 'rgba(51, 51, 51, 0.7)';
+    timerSpinner.style.color = 'white';
+  
+    // Update question elements
+    quizTaskElement.textContent = "Guess the word by definition:";
+    wordTypeElement.textContent = question.wordType;
+    wordDefinitionElement.textContent = question.definition;
+    imgWordeElement.src = question.imageUrl;
+  
+    // Clear any previous answer options
+    answersListElement.innerHTML = "";
+  
+    // Create an array to hold answer options (translations)
+    const answerOptions = [];
+  
+    // Add the correct answer to the array
+    answerOptions.push({
+      answer: question.word,
+      isCorrect: true,
+      isUserChoice: false,
+    });
+  
+    // Create a list of unique incorrect answers
+    const uniqueIncorrectAnswers = [];
+  
+    while (uniqueIncorrectAnswers.length < 2) {
+      // Get an array of keys (words) from englishWords
+      const wordKeys = Object.keys(englishWords);
+  
+      // Select a random key from the array
+      const randomKey = wordKeys[Math.floor(Math.random() * wordKeys.length)];
+  
+      // Make sure it's not the same as the correct answer and not already in uniqueIncorrectAnswers
+      if (randomKey !== question.word && !uniqueIncorrectAnswers.includes(randomKey)) {
+        uniqueIncorrectAnswers.push(randomKey);
+      }
+    }
+  
+    // Add unique incorrect answers to the array
+    uniqueIncorrectAnswers.forEach((randomKey) => {
       answerOptions.push({
         answer: randomKey,
         isCorrect: false,
         isUserChoice: false,
       });
-    }
-  }
-
-  // Randomly shuffle the answer options
-  const shuffledOptions = shuffleArray(answerOptions);
-
-  // Add answer options to the DOM
-  shuffledOptions.forEach((option) => {
-    const li = document.createElement("li");
-    const input = document.createElement("input");
-    const label = document.createElement("label");
-    const audioElement = document.createElement("audio");
-    const audioSourceElement = document.createElement("source");
-    const audioButtonPlayElement = document.createElement("button");
-
-    // add audio url for the current word
-    let currentWord = englishWords[option.answer];
-    audioSourceElement.src = currentWord.sound_url;
-    audioButtonPlayElement.id = option.answer;
-    audioButtonPlayElement.className = 'play-sound-button';
-    audioButtonPlayElement.onclick = function() { // add button play for pronunciation of the word 
-      document.getElementById(option.answer).play();
-    };
-    audioElement.id = option.answer;
-    audioElement.classList.add("audio-container");
-
-    input.type = "radio";
-    input.className = "answer-option";
-    input.name = "answer-option";
-    input.value = option.answer;
-
-    label.textContent = option.answer;
-
-    audioElement.className = "audio-container";
-    audioElement.controls = false;
-    
-    audioElement.appendChild(audioSourceElement);
+    });
   
-    li.appendChild(input);
-    li.appendChild(label);
-    li.appendChild(audioElement);
-
-    li.appendChild(audioButtonPlayElement);
-
-    answersListElement.appendChild(li);
-
-    // Add an event listener to track user's choice
-    input.addEventListener("change", () => {
+    // Randomly shuffle the answer options
+    const shuffledOptions = shuffleArray(answerOptions);
+  
+    // Add answer options to the DOM
+    shuffledOptions.forEach((option) => {
+      const li = document.createElement("li");
+      const input = document.createElement("input");
+      const label = document.createElement("label");
+      const audioElement = document.createElement("audio");
+      const audioSourceElement = document.createElement("source");
+      const audioButtonPlayElement = document.createElement("button");
+  
+      // Add audio url for the current word
+      let currentWord = englishWords[option.answer];
+      audioSourceElement.src = currentWord.sound_url;
+      audioButtonPlayElement.id = option.answer;
+      audioButtonPlayElement.className = 'play-sound-button';
+      audioButtonPlayElement.onclick = function() {
+        document.getElementById(option.answer).play();
+      };
+      audioElement.id = option.answer;
+      audioElement.classList.add("audio-container");
+  
+      input.type = "radio";
+      input.className = "answer-option";
+      input.name = "answer-option";
+      input.value = option.answer;
+  
+      label.textContent = option.answer;
+  
+      audioElement.className = "audio-container";
+      audioElement.controls = false;
+  
+      audioElement.appendChild(audioSourceElement);
+  
+      li.appendChild(input);
+      li.appendChild(label);
+      li.appendChild(audioElement);
+      li.appendChild(audioButtonPlayElement);
+  
+      answersListElement.appendChild(li);
+  
+      // Add an event listener to track user's choice
+      input.addEventListener("change", () => {
         option.isUserChoice = input.checked;
-    
+  
         // Stop any previously playing audio
         const allAudioElements = document.querySelectorAll(".word-audio");
         allAudioElements.forEach((audioElement) => {
-            audioElement.pause();
+          audioElement.pause();
         });
-    
+  
         // Find the selected word in englishWords
         const selectedWord = englishWords[option.answer];
-    
+  
         if (selectedWord) {
           // Play audio for the selected word
-          audioButtonPlayElement.onclick = function() { // add button play for pronunciation of the word 
+          audioButtonPlayElement.onclick = function() {
             document.getElementById(option.answer).play();
           };
           audioElement.load(); // Load the audio
           audioElement.play(); // Play the audio
         }
+      });
     });
-
-    const imgWordeElement = document.querySelector(".img-word-image");
-    imgWordeElement.src = question.imageUrl;
-    // divImageElement.style.background = `yellow url(${question.imageUrl}) no-repeat center center/cover`;
-
-    // Add an event listener to track user's choice
-    input.addEventListener("change", () => {
-      option.isUserChoice = input.checked;
-    });
-
-  });
-
-  // Add the currentQuiz object to the quizData array
-  currentQuiz = {
-    question: question.definition,
-    answers: answerOptions,
-    scores: 0, // Initialize scores for this quiz
-    timeSpent: 0,
-  };
-
-  return currentQuiz;
-}
+  
+    // Add the currentQuiz object to the quizData array
+    currentQuiz = {
+      question: question.definition,
+      answers: answerOptions,
+      scores: 0, // Initialize scores for this quiz
+      timeSpent: 0,
+    };
+  
+    return currentQuiz;
+  }
+  
 
 // Function to shuffle an array randomly
 function shuffleArray(array) {

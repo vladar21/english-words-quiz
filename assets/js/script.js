@@ -227,6 +227,7 @@ function startQuiz() {
  * @returns {void}
  */
 function stopQuiz() {
+  addSpentTimeToLastAttempt();
   // stop quiz flag to false
   is_quiz_start = false;
 
@@ -606,6 +607,19 @@ function displayQuestion(question) {
     li.appendChild(audioButtonPlayElement);
 
     answersListElement.appendChild(li);
+
+    // Add a click event handler for each <li>
+    li.addEventListener('click', () => {
+      // Find the radio button inside the <li>
+      const radio = li.querySelector('input[type="radio"]');
+  
+      // Check the radio button
+      radio.checked = true;
+  
+      // Trigger a change event on the radio button to ensure it reflects its checked state
+      const event = new Event('change', { bubbles: true });
+      radio.dispatchEvent(event);
+    });
 
     // Add an event listener to track user's choice
     input.addEventListener("change", () => {

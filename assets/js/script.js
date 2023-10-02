@@ -162,7 +162,7 @@ allCheckboxes.forEach((checkbox) => {
 
       // Calculate the position of the tooltip relative to the checkbox
       const checkboxPosition = checkbox.getBoundingClientRect();
-      let tooltipTop = checkboxPosition.top - tooltipElement.clientHeight - 10;
+      let tooltipTop = checkboxPosition.top; // - tooltipElement.clientHeight - 10;
 
       // Ensure the tooltip stays within the mobile screen boundaries
       if (tooltipTop < 0) {
@@ -178,12 +178,12 @@ allCheckboxes.forEach((checkbox) => {
       // Set a timer to remove the tooltip after 3 seconds
       setTimeout(() => {
         tooltipElement.remove();
-      }, 1500);
+      }, 1000);
 
       // Add a mouseout event listener to remove the tooltip on mouseout
-      checkbox.addEventListener("mouseout", () => {
-        tooltipElement.remove();
-      });
+      // checkbox.addEventListener("mouseout", () => {
+      //   tooltipElement.remove();
+      // });
     }
   });
 });
@@ -254,12 +254,12 @@ function setStartButtonStyle(totalWordsCount) {
       // Set a timer to remove the tooltip after 3 seconds
       setTimeout(() => {
         tooltipElement.remove();
-      }, 1500);
+      }, 1000);
 
       // Remove the tooltip on mouseout
-      startButton.addEventListener("mouseout", () => {
-        tooltipElement.remove();
-      });
+      // startButton.addEventListener("mouseout", () => {
+      //   tooltipElement.remove();
+      // });
     });
 
     // Add a mouseout (hover out) event listener for the disabled state

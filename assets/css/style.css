@@ -592,7 +592,7 @@ input[type="checkbox"]::before {
     cursor: pointer;
     font-size: 18px;  
     color: white;
-    font-size: bold;
+    font-weight: bold;
 }  
 
 /* Tooltip styles */

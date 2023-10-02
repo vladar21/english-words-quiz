@@ -20,7 +20,7 @@ The English Words Quiz presents players with a series of questions, where they m
 
 - Each question has a 30-second time limit. If the timer runs out or the user chooses to click the "Skip" button, the answer is considered incorrect, and the quiz proceeds to the next question.
 
-- Players can answer questions by clicking on one of the three answer options or by using keyboard shortcuts, such as focusing on an option and pressing "Enter" for accessibility users.
+- Players can answer questions by clicking on one of the three answer options.
 
 ![English Words Quiz Responsive](/assets/images/readme/QuizField.jpg)
 
@@ -96,19 +96,7 @@ The project's scope encompasses:
 - Populating the quiz database with a diverse range of English words.
 - Creating a responsive design for seamless access on various devices.
 - Incorporating audio and visual aids for word pronunciation and definitions.
-- Implementing user accounts for tracking progress and quiz history.
-
-## Project Structure
-
-The English Words Quiz project is structured as follows:
-
-1. **Home Page**: A welcoming landing page with an introduction to the quiz.
-2. **Quiz Interface**: The core quiz section where users answer questions.
-3. **Scoreboard**: Displays the user's score and progress.
-4. **Settings**: Allows users to customize quiz parameters.
-5. **Word Library**: Provides access to a library of English words and their details.
-6. **User Profile**: Stores user information, progress, and quiz history.
-7. **Contact Us**: A page for user inquiries, feedback, or support requests.
+- Implementing leaderboard for tracking progress and quiz history.
 
 ## Design and Layout
 
@@ -269,7 +257,6 @@ const englishWordsInit = {
 
 };
 ```
-
 
 ## Technologies Used
 

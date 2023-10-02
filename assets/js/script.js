@@ -53,7 +53,8 @@ const rulesLink = document.getElementById("rules-link");
 // Add a click event listener to the "Rules" link
 rulesLink.addEventListener("click", (event) => {
   event.preventDefault(); // Prevent the link from navigating
-
+  // Add an event listener click close button event
+  closeButtonHandler('closeButtonRules');
   // Hide the current sections and show the "rules" section
   quizField.style.display = "none";
   statisticWindow.style.display = "none";
@@ -87,6 +88,8 @@ settingsLink.addEventListener("click", (event) => {
   resetButton.addEventListener("click", function () {
     initSettings();
   });
+  // Add an event listener click close button event
+  closeButtonHandler('closeButtonSettings');
 });
 
 // init settings
@@ -131,6 +134,31 @@ const wordsTypesCheckboxes = document.querySelectorAll(
 wordsTypesCheckboxes.forEach((checkbox) => {
   checkbox.addEventListener("change", applyChangeSettings);
 });
+
+/**
+ * close button handler.
+ * 
+ * @returns {void}
+ */
+function closeButtonHandler(closeButtonId){
+  // Add an event listener click close button event
+  const closeButton = document.getElementById(closeButtonId);
+  closeButton.addEventListener("click", (event) => {
+    event.preventDefault(); // Prevent the link from navigating
+
+    if (!is_quiz_start) {
+      // Hide the current sections and show the "statistic" section
+      quizField.style.display = "none";
+      statisticWindow.style.display = "block";
+      rulesSection.style.display = "none";
+      settingsSection.style.display = "none";
+    }
+
+    // Change background rules-link
+    rulesLink.style.backgroundColor = "";
+    settingsLink.style.backgroundColor = "";
+  });
+}
 
 /**
  * start the quiz.

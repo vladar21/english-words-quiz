@@ -188,6 +188,7 @@ function setTooltip(htmlElement){
     tooltipLeft = window.innerWidth - tooltipElement.clientWidth - 10; // 10px from the right edge
   }
 
+  tooltipElement.style.position = "fixed"; // Use fixed position to position relative to viewport
   tooltipElement.style.top = tooltipTop + "px";
   tooltipElement.style.left = tooltipLeft + "px";
 
@@ -197,7 +198,7 @@ function setTooltip(htmlElement){
   // Set a timer to remove the tooltip after 3 seconds
   setTimeout(() => {
     tooltipElement.remove();
-  }, 777);
+  }, 1000);
 
   if ((tooltipLeft + tooltipElement.clientWidth) > window.innerWidth){
     // Add a mouseout event listener to remove the tooltip on mouseout

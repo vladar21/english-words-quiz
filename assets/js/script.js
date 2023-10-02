@@ -200,12 +200,12 @@ function setTooltip(htmlElement, tooltipText) {
   // Append the tooltip element to the document body
   document.body.appendChild(tooltipElement);
 
-  if ((tooltipLeft + tooltipElement.clientWidth) > window.innerWidth) {
+  // if ((tooltipLeft + tooltipElement.clientWidth) > window.innerWidth) {
     // Add a mouseout event listener to remove the tooltip on mouseout
     htmlElement.addEventListener("mouseout", () => {
       tooltipElement.remove();
     });
-  } 
+  // } 
   // else {
   //   // Set a timer to remove the tooltip after 3 seconds
   //   setTimeout(() => {

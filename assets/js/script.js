@@ -133,7 +133,7 @@ wordsTypesCheckboxes.forEach((checkbox) => {
 });
 
 /**
- * Function to start the quiz.
+ * start the quiz.
  * 
  * @returns {void}
  */
@@ -194,7 +194,7 @@ function startQuiz() {
 }
 
 /**
- * Function to finish the quiz.
+ * finish the quiz.
  * 
  * @returns {void}
  */
@@ -312,7 +312,7 @@ function stopQuiz() {
 }
 
 /**
- * Function to get a string representation of the attempt index.
+ * get a string representation of the attempt index.
  *
  * @param {number} index - The attempt index.
  * @returns {string} - The attempt string.
@@ -343,7 +343,7 @@ function getAttemptString(index) {
 }
 
 /**
- * Function to take the next turn in the quiz.
+ * take the next turn in the quiz.
  * 
  * @returns {void}
  */
@@ -386,7 +386,7 @@ function takeAturn() {
 }
 
 /**
- * Function to add spent time to the last attempt.
+ * add spent time to the last attempt.
  * 
  * @returns {void}
  */
@@ -395,7 +395,7 @@ function addSpentTimeToLastAttempt() {
 }
 
 /**
- * Function to check the last answer.
+ * check the last answer.
  * 
  * @returns {void}
  */
@@ -423,7 +423,7 @@ function checkLastAnswer() {
 }
 
 /**
- * Function to get a random question for the quiz.
+ * get a random question for the quiz.
  *
  * @param {object} englishWordsRandomQuestion - The object containing random words.
  * @returns {object} - The random question object.
@@ -471,7 +471,7 @@ function getRandomQuestion(englishWordsRandomQuestion) {
 }
 
 /**
- * Function to display the question in the quiz.
+ * display the question in the quiz.
  *
  * @param {object} question - The question object to display.
  * @returns {object} - The current quiz object.
@@ -615,7 +615,7 @@ function displayQuestion(question) {
 }
 
 /**
- * Function to update the timer display.
+ * update the timer display.
  *
  * @returns {void}
  */
@@ -625,7 +625,7 @@ function updateTimerDisplay() {
 }
 
 /**
- * Function to start the timer.
+ * start the timer.
  *
  * @returns {void}
  */
@@ -654,7 +654,7 @@ function startTimer() {
 }
 
 /**
- * Function to stop the timer.
+ * stop the timer.
  *
  * @returns {void}
  */
@@ -663,7 +663,7 @@ function stopTimer() {
 }
 
 /**
- * Function to shuffle a copy of an array randomly.
+ * shuffle a copy of an array randomly.
  *
  * @param {array} array - The array to shuffle.
  * @returns {array} - The shuffled array.
@@ -680,7 +680,7 @@ function shuffleArray(array) {
 //////////// work with settings ////////////
 
 /**
- * Function to parse settings from the HTML table.
+ * parse settings from the HTML table.
  *
  * @returns {object} - The parsed settings object.
  */
@@ -711,7 +711,7 @@ function parseSettingsFromTable() {
 }
 
 /**
- * Function to apply selected settings and filter words accordingly.
+ * apply selected settings and filter words accordingly.
  *
  * @returns {void}
  */
@@ -728,7 +728,7 @@ function applyChangeSettings() {
 }
 
 /**
- * Function to filter word types based on user settings.
+ * filter word types based on user settings.
  *
  * @param {object} word - The word object to filter.
  * @param {object} settings - The user settings.
@@ -755,7 +755,7 @@ function filterWordTypes(word, settings) {
 }
 
 /**
- * Function to filter words by settings.
+ * filter words by settings.
  *
  * @param {object} englishWords - The original English words object.
  * @param {object} settings - The user settings.
@@ -792,7 +792,7 @@ function filterWordsBySettings(englishWords, settings) {
 }
 
 /**
- * Function to initialize settings.
+ * initialize settings.
  *
  * @returns {void}
  */
@@ -871,7 +871,7 @@ function initSettings() {
 }
 
 /**
- * Function to update the HTML settings table based on filtered words.
+ * update the HTML settings table based on filtered words.
  *
  * @param {object} filteredWords - The filtered English words object.
  * @returns {void}
@@ -978,7 +978,7 @@ function updateWordDisplay(filteredWords) {
 }
 
 /**
- * Function to get the length of an object.
+ * get the length of an object.
  *
  * @param {object} obj - The object to measure.
  * @returns {number} - The length of the object.

@@ -153,6 +153,7 @@ allCheckboxes.forEach((checkbox) => {
       } else {
         tooltipText = "Use Reset to restore settings";
       }
+      // add tip to mouseover event for disabled button
       setTooltip(checkbox, tooltipText);
     }
   });
@@ -161,8 +162,13 @@ allCheckboxes.forEach((checkbox) => {
 
 /////////////// Functions //////////////////
 
-function setTooltip(htmlElement, tooltipText){
- 
+/**
+ * Sets a tooltip element near the specified HTML element with the given text.
+ *
+ * @param {HTMLElement} htmlElement - The HTML element to position the tooltip near.
+ * @param {string} tooltipText - The text content of the tooltip.
+ */
+function setTooltip(htmlElement, tooltipText) {
   // Create a new tooltip element
   const tooltipElement = document.createElement("div");
   tooltipElement.className = "tooltip";
@@ -194,18 +200,19 @@ function setTooltip(htmlElement, tooltipText){
   // Append the tooltip element to the document body
   document.body.appendChild(tooltipElement);
 
-  if ((tooltipLeft + tooltipElement.clientWidth) > window.innerWidth){
+  if ((tooltipLeft + tooltipElement.clientWidth) > window.innerWidth) {
     // Add a mouseout event listener to remove the tooltip on mouseout
     htmlElement.addEventListener("mouseout", () => {
       tooltipElement.remove();
     });
-  }else{
+  } else {
     // Set a timer to remove the tooltip after 3 seconds
     setTimeout(() => {
       tooltipElement.remove();
     }, 1000);
   }
 }
+
 /**
  * Sets the style for the start button based on the total word count.
  *
@@ -257,7 +264,6 @@ function setStartButtonStyle(totalWordsCount) {
     });
   }
 }
-
 
 /**
  * close button handler.

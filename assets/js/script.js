@@ -138,52 +138,13 @@ wordsTypesCheckboxes.forEach((checkbox) => {
 // Make handler for tips to disabled settings checkboxes
 // Get all the checkboxes
 const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
-// Add a mouseover event handler to each disabled checkbox
 // Add a mouseover event handler to each checkbox
 allCheckboxes.forEach((checkbox) => {
   checkbox.addEventListener("mouseover", () => {
     // Check if the checkbox is not checked
-    if (!checkbox.checked) {
-      // Get the 'data-count' attribute value from the checkbox
-      const count = parseInt(checkbox.getAttribute("data-count"), 10);
-      let tooltipText = "";
-
-      // Determine the tooltip text based on the 'count' value
-      if (count === 0) {
-        tooltipText = "Sorry, but  *" + checkbox.value + "*  words are not yet in our quiz dictionary.";
-      } else {
-        tooltipText = "Use Reset to restore settings";
-      }
-
-      // Create a new tooltip element
-      const tooltipElement = document.createElement("div");
-      tooltipElement.className = "tooltip";
-      tooltipElement.textContent = tooltipText;
-
-      // Calculate the position of the tooltip relative to the checkbox
-      const checkboxPosition = checkbox.getBoundingClientRect();
-      let tooltipTop = checkboxPosition.top; // - tooltipElement.clientHeight - 10;
-
-      // Ensure the tooltip stays within the mobile screen boundaries
-      if (tooltipTop < 0) {
-        tooltipTop = 10; // Place it 10px from the top if it goes out of bounds
-      }
-
-      tooltipElement.style.top = tooltipTop + 'px';
-      tooltipElement.style.left = checkboxPosition.left + 'px';
-
-      // Append the tooltip element to the document body
-      document.body.appendChild(tooltipElement);
-
-      // Set a timer to remove the tooltip after 3 seconds
-      setTimeout(() => {
-        tooltipElement.remove();
-      }, 1000);
-
-      // Add a mouseout event listener to remove the tooltip on mouseout
-      // checkbox.addEventListener("mouseout", () => {
-      //   tooltipElement.remove();
-      // });
+    if (!checkbox.checked) {      
+      // set tips for disabled checkboxes
+      setTooltip(checkbox);
     }
   });
 });
@@ -191,6 +152,60 @@ allCheckboxes.forEach((checkbox) => {
 
 /////////////// Functions //////////////////
 
+function setTooltip(htmlElement){
+  // Get the 'data-count' attribute value from the htmlElement
+  const count = parseInt(htmlElement.getAttribute("data-count"), 10);
+
+  // Determine the tooltip text based on the 'count' value
+  let tooltipText = "";  
+  if (count === 0) {
+    tooltipText = "Sorry, but  *" + htmlElement.value + "*  words are not yet in our quiz dictionary.";
+  } else {
+    tooltipText = "Use Reset to restore settings";
+  }
+
+  // Create a new tooltip element
+  const tooltipElement = document.createElement("div");
+  tooltipElement.className = "tooltip";
+  tooltipElement.textContent = tooltipText;
+
+  // Calculate the position of the tooltip relative to the htmlElement
+  const htmlElementPosition = htmlElement.getBoundingClientRect();
+  let tooltipTop = htmlElementPosition.top - tooltipElement.clientHeight - 30;
+
+  // Ensure the tooltip stays within the mobile screen boundaries
+  if (tooltipTop < 0) {
+    // If the tooltip would go above the top of the screen, adjust its position
+    tooltipTop = 10; // Place it 10px from the top
+  }
+
+  // Calculate the left position of the tooltip, ensuring it doesn't go off-screen
+  let tooltipLeft = htmlElementPosition.left;
+
+  // Check if the tooltip would go off the right side of the screen
+  if ((tooltipLeft + tooltipElement.clientWidth) > window.innerWidth) {
+    // Adjust the left position to keep the tooltip within the screen
+    tooltipLeft = window.innerWidth - tooltipElement.clientWidth - 10; // 10px from the right edge
+  }
+
+  tooltipElement.style.top = tooltipTop + "px";
+  tooltipElement.style.left = tooltipLeft + "px";
+
+  // Append the tooltip element to the document body
+  document.body.appendChild(tooltipElement);
+
+  // Set a timer to remove the tooltip after 3 seconds
+  setTimeout(() => {
+    tooltipElement.remove();
+  }, 777);
+
+  if ((tooltipLeft + tooltipElement.clientWidth) > window.innerWidth){
+    // Add a mouseout event listener to remove the tooltip on mouseout
+    htmlElement.addEventListener("mouseout", () => {
+      tooltipElement.remove();
+    });
+  }
+}
 /**
  * Sets the style for the start button based on the total word count.
  *

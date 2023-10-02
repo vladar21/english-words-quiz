@@ -16,41 +16,60 @@
      <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
 </head>
 <body class="body-css">
+    <!-- Main container for the English Words Quiz application -->
     <div class="quizsquare">
+        <!-- Page Title -->
         <h1 id="english-words-quiz" class="quiz-title-css">English Words Quiz</h1>
-        <div id="quiz-field" class="quiz-field-css">
-            <div id="question-area">
-                <h2 class="quiz-task">Guess the word by definition:</h2>
-                <span class="word-type"></span>
-                <span class="word-definition"></span>
 
+        <!-- Main Quiz Field Container -->
+        <div id="quiz-field" class="quiz-field-css">
+            <!-- Question Area -->
+            <div id="question-area">
+                <!-- Title for the current task -->
+                <h2 class="quiz-task">Guess the word by definition:</h2>
+                <!-- Display word type -->
+                <span class="word-type"></span>
+                <!-- Display word definition -->
+                <span class="word-definition"></span>
             </div>
+
+            <!-- Content Task Container -->
             <div class="content-task-container">
+                <!-- Word Image Display Area -->
                 <div class="word-image">
                     <img class="img-word-image" src="#" alt="">
                 </div>
+                <!-- Answer List Area -->
                 <div id="answer-list-area">
                     <!-- Answer options go here -->
                     <div class="answers-container">
                         <h3 id="choose-answer">it is ...</h3>
                         <ul class="answers-list">
+                            <!-- Answer options will be added here dynamically -->
                         </ul>                
                     </div>             
                 </div>
             </div>
             
+            <!-- Control Buttons for the Quiz -->
             <div class="control-buttons">
+                <!-- Button to stop the quiz -->
                 <button id="stop-button">Stop</button>
+                 <!-- Timer display -->
                 <div id="timer-spinner" class="timer-spinner">30</div>
+                <!-- Button to move to the next question -->
                 <button id="next-button">Next</button>
             </div>
             
+            <!-- Score Area Display -->
             <div id="score-area" class="score-area">
+                <!-- Display answered and total questions count -->
                 <div class="score-label">
                     Answered/Total:
                     <span id="answered-count" class="count">0</span>&nbsp;/&nbsp;
                     <span id="total-count" class="count">0</span>
                 </div>
+                <!-- Display correct and wrong answers count -->
                 <div class="score-label">
                      Right/Wrong:
                     <span id="right-count" class="count right-count">0</span>&nbsp;/&nbsp;
@@ -59,11 +78,15 @@
             </div>
         </div>
 
+         <!-- Settings Panel -->
         <div id="settings"> 
             <div class="winners-results">
                 <div class="close-button-div">
+                    <!-- Button to close the settings panel -->
                     <button id="closeButtonSettings" class="close-button">x</button>
                 </div>
+
+                 <!-- Settings Table -->
                 <table id="settings-table" class="winners-table">
                     <caption>Settings</caption>
                     <thead>
@@ -75,6 +98,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                         <!-- Settings options  -->
                         <tr class="highlight">
                             <td>1</td>
                             <td> total number of words for quiz</td>
@@ -164,14 +188,18 @@
             </div>
         </div>
 
+        <!-- Rules Panel -->
         <div id="rules">
             <div class="winners-results">
                 <div class="close-button-div">
+                    <!-- Button to close the rules panel -->
                     <button id="closeButtonRules" class="close-button">x</button>
                 </div>
                 <div class="content-rules">
+                     <!-- Rules Title -->
                     <h2 class="rules-title">Rules</h2>
                     <div>
+                         <!-- Detailed rules description -->
                         <div>
                             <p class="highlight">1. Press <span class="rules-akcent">Start</span> button to begin the quiz.</p>
                         </div>
@@ -197,13 +225,17 @@
                         <div>
                             <p class="highlight">4. After pressing <span class="rules-akcent">Stop</span> button, you will be taken to the winners table, where you can see the results of the current attempt and all previous attempts.</p>
                         </div>
+                        <!-- ... -->
                     </div>
                 </div>       
             </div>
         </div>
+
+        <!-- Statistics Panel -->
         <div id="statistic-window">
             <div id="winner-quiz-field" class="winners-results">
                 <table id="winners-table" class="winners-table">
+                    <!-- Leaderboard -->
                     <caption>Winners Results</caption>
                     <thead>
                         <tr>
@@ -214,20 +246,24 @@
                         </tr>
                     </thead>
                     <tbody>
-
+                        <!-- Winners' results will be added here dynamically -->
                     </tbody>
                 </table>                
             </div>
         </div>
 
+         <!-- Links and Buttons for Rules, Starting the Quiz, and Settings -->
         <div class="rules-start-settings">
+            <!-- Link to view the rules -->
             <a href="#" id="rules-link" class="rules-link">Rules</a>
+            <!-- Button to start the quiz -->
             <button id="start-quiz-button">Start</button>
+            <!-- Link to open the settings panel -->
             <a href="#" id="settings-link" class="settings-link">Settings</a>
         </div>
-        
     </div>
 
+    <!-- JavaScript Files -->
     <script src="assets/js/english-words-data.js"></script>
     <script src="assets/js/script.js"></script>
 </body>

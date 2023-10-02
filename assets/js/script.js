@@ -54,7 +54,7 @@ const rulesLink = document.getElementById("rules-link");
 rulesLink.addEventListener("click", (event) => {
   event.preventDefault(); // Prevent the link from navigating
   // Add an event listener click close button event
-  closeButtonHandler('closeButtonRules');
+  closeButtonHandler("closeButtonRules");
   // Hide the current sections and show the "rules" section
   quizField.style.display = "none";
   statisticWindow.style.display = "none";
@@ -89,7 +89,7 @@ settingsLink.addEventListener("click", (event) => {
     initSettings();
   });
   // Add an event listener click close button event
-  closeButtonHandler('closeButtonSettings');
+  closeButtonHandler("closeButtonSettings");
 });
 
 // init settings
@@ -98,14 +98,14 @@ initSettings();
 // // Set the initial value for the word count slider
 const wordCountSlider = document.getElementById("word-count-slider");
 
- // update label value if slider value is changed
-const sliderLabel = document.getElementById('word-count-label');
-wordCountSlider.addEventListener("input", function() {
+// update label value if slider value is changed
+const sliderLabel = document.getElementById("word-count-label");
+wordCountSlider.addEventListener("input", function () {
   sliderLabel.textContent = wordCountSlider.value;
 });
 
 // add listener for change value of word count slider
-wordCountSlider.addEventListener("change", function(event){
+wordCountSlider.addEventListener("change", function (event) {
   const newWordCount = event.target.value;
   // Update wordCount with the new value
   let wordCount = parseInt(newWordCount);
@@ -119,7 +119,7 @@ wordCountSlider.addEventListener("change", function(event){
       return result;
     }, {});
 
-    applyChangeSettings();
+  applyChangeSettings();
 });
 
 // Set event listeners for CEFR checkboxes and word type checkboxes
@@ -135,12 +135,122 @@ wordsTypesCheckboxes.forEach((checkbox) => {
   checkbox.addEventListener("change", applyChangeSettings);
 });
 
+// Make handler for tips to disabled settings checkboxes
+// Get all the checkboxes
+const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+// Add a mouseover event handler to each disabled checkbox
+allCheckboxes.forEach((checkbox) => {
+  checkbox.addEventListener("mouseover", () => {
+    if (!checkbox.checked) {
+      // Get the tooltip text based on the 'data-count' attribute
+      const count = parseInt(checkbox.getAttribute("data-count"), 10);
+      let tooltipText = "";
+
+      if (count === 0) {
+        // Check if count is 0 at the start
+        tooltipText = "Sorry, but  *" + checkbox.value + "*  words are not yet in our quiz dictionary.";
+      } else {
+        // Check if count becomes 0 during user interaction
+        tooltipText = "Use Reset to restore settings";
+      }
+
+      // Create an element to display the tooltip
+      const tooltipElement = document.createElement("div");
+      tooltipElement.className = "tooltip";
+      tooltipElement.textContent = tooltipText;
+
+      // Set the tooltip's position next to the checkbox
+      const checkboxPosition = checkbox.getBoundingClientRect();
+      tooltipElement.style.left = checkboxPosition.right + "px";
+      tooltipElement.style.top = checkboxPosition.top + "px";
+
+      // Add the tooltip to the document
+      document.body.appendChild(tooltipElement);
+
+      // Remove the tooltip on mouseout
+      checkbox.addEventListener("mouseout", () => {
+        tooltipElement.remove();
+      });
+    }
+  });
+});
+
+
+/////////////// Functions //////////////////
+
+/**
+ * Sets the style for the start button based on the total word count.
+ *
+ * @param {number} totalWordsCount - The total number of words for the quiz.
+ */
+function setStartButtonStyle(totalWordsCount) {
+  // Get a reference to the button element you want to change
+  const startButton = document.getElementById('start-quiz-button');
+
+  // Define the background color for normal, hover, and disabled states
+  const normalColor = 'rgba(76, 175, 80, 0.9)';
+  const hoverColor = 'rgba(35, 105, 39, 0.9)';
+  const disabledColor = 'grey';
+
+  // Set the initial background color
+  startButton.style.backgroundColor = normalColor;
+
+  if (totalWordsCount >= 3) {
+    // Enable the button and add hover effects
+    startButton.disabled = false;
+
+    // Add a mouseover (hover) event listener
+    startButton.addEventListener('mouseover', () => {
+      startButton.style.backgroundColor = hoverColor;
+    });
+
+    // Add a mouseout (hover out) event listener to revert to normal color
+    startButton.addEventListener('mouseout', () => {
+      startButton.style.backgroundColor = normalColor;
+    });
+  } else {
+    // Disable the button and change its style
+    startButton.style.backgroundColor = disabledColor;
+    startButton.disabled = true;
+
+    // Add a mouseover (hover) event listener for the disabled state
+    startButton.addEventListener('mouseover', () => {
+      startButton.style.backgroundColor = disabledColor;
+
+      // add tip to mouseover event for disabled button
+      // Create an element to display the tooltip
+      const tooltipElement = document.createElement("div");
+      tooltipElement.className = "tooltip";
+      tooltipElement.textContent = 'Use Reset to restore settings';
+
+      // Set the tooltip's position next to the checkbox
+      const startButtonPosition = startButton.getBoundingClientRect();
+      tooltipElement.style.left = startButtonPosition.right + "px";
+      tooltipElement.style.top = startButtonPosition.top + "px";
+
+      // Add the tooltip to the document
+      document.body.appendChild(tooltipElement);
+
+      // Remove the tooltip on mouseout
+      startButton.addEventListener("mouseout", () => {
+        tooltipElement.remove();
+      });
+    });
+
+    // Add a mouseout (hover out) event listener for the disabled state
+    startButton.addEventListener('mouseout', () => {
+      startButton.style.backgroundColor = disabledColor;
+    });
+  }
+}
+
+
 /**
  * close button handler.
- * 
+ *
  * @returns {void}
  */
-function closeButtonHandler(closeButtonId){
+function closeButtonHandler(closeButtonId) {
   // Add an event listener click close button event
   const closeButton = document.getElementById(closeButtonId);
   closeButton.addEventListener("click", (event) => {
@@ -162,7 +272,7 @@ function closeButtonHandler(closeButtonId){
 
 /**
  * start the quiz.
- * 
+ *
  * @returns {void}
  */
 function startQuiz() {
@@ -223,7 +333,7 @@ function startQuiz() {
 
 /**
  * finish the quiz.
- * 
+ *
  * @returns {void}
  */
 function stopQuiz() {
@@ -373,7 +483,7 @@ function getAttemptString(index) {
 
 /**
  * take the next turn in the quiz.
- * 
+ *
  * @returns {void}
  */
 function takeAturn() {
@@ -402,7 +512,7 @@ function takeAturn() {
   answeredCountElement.textContent = answered;
   if (answered >= totalCountElementValue) {
     stopQuiz();
-  }else{
+  } else {
     // Display new question
     // englishWordsRandomQuestion = JSON.parse(JSON.stringify(englishWords));
     const randomQuestion = getRandomQuestion(englishWordsRandomQuestion);
@@ -416,7 +526,7 @@ function takeAturn() {
 
 /**
  * add spent time to the last attempt.
- * 
+ *
  * @returns {void}
  */
 function addSpentTimeToLastAttempt() {
@@ -425,7 +535,7 @@ function addSpentTimeToLastAttempt() {
 
 /**
  * check the last answer.
- * 
+ *
  * @returns {void}
  */
 function checkLastAnswer() {
@@ -609,15 +719,15 @@ function displayQuestion(question) {
     answersListElement.appendChild(li);
 
     // Add a click event handler for each <li>
-    li.addEventListener('click', () => {
+    li.addEventListener("click", () => {
       // Find the radio button inside the <li>
       const radio = li.querySelector('input[type="radio"]');
-  
+
       // Check the radio button
       radio.checked = true;
-  
+
       // Trigger a change event on the radio button to ensure it reflects its checked state
-      const event = new Event('change', { bubbles: true });
+      const event = new Event("change", { bubbles: true });
       radio.dispatchEvent(event);
     });
 
@@ -686,7 +796,9 @@ function startTimer() {
       stopQuiz(); // Stop quiz
     } else if (timer <= 10) {
       // If the timer is 10 seconds or less, change the background color to red and make it flash
-      timerSpinner.style.backgroundColor = isTimerSpinnerVisible ? "red" : "white";
+      timerSpinner.style.backgroundColor = isTimerSpinnerVisible
+        ? "red"
+        : "white";
       timerSpinner.style.color = isTimerSpinnerVisible ? "white" : "red";
 
       // Toggle the flag to control visibility
@@ -778,9 +890,7 @@ function applyChangeSettings() {
  */
 function filterWordTypes(word, settings) {
   word["word-types"] = word["word-types"].filter((type) => {
-    const shouldIncludeType = settings.wordTypes.includes(
-      type["word-type"]
-    );
+    const shouldIncludeType = settings.wordTypes.includes(type["word-type"]);
     if (!shouldIncludeType) {
       // Remove the definition if it does not match the settings
       return false;
@@ -811,7 +921,7 @@ function filterWordsBySettings(englishWords, settings) {
   for (const wordKey in filteredWords) {
     if (filteredWords.hasOwnProperty(wordKey)) {
       const word = filteredWords[wordKey];
-  
+
       if (!filterWordTypes(word, settings)) {
         // If filterWordTypes returns false, remove the word from filteredWords
         delete filteredWords[wordKey];
@@ -841,13 +951,15 @@ function filterWordsBySettings(englishWords, settings) {
 function initSettings() {
   // Iterate through all CEFR levels and words
   const cefrCheckboxes = document.querySelectorAll('input[name="cefr-level"]');
+
+  englishWords = JSON.parse(JSON.stringify(englishWordsInit));
+  const words = Object.values(englishWords);
+
   cefrCheckboxes.forEach((checkbox) => {
     const cefrLevel = checkbox.value;
     const cefrCountSpan = document.getElementById(
       `cefr-level-count-${cefrLevel}`
     );
-    englishWords = JSON.parse(JSON.stringify(englishWordsInit));
-    const words = Object.values(englishWords);
 
     // Filter words by CEFR level
     const filteredWords = words.filter((word) => word.cefr.level === cefrLevel);
@@ -859,9 +971,11 @@ function initSettings() {
     if (filteredWords.length === 0) {
       checkbox.checked = false;
       checkbox.disabled = true;
+      checkbox.setAttribute("data-count", 0);
     } else {
       checkbox.disabled = false;
       checkbox.checked = true;
+      checkbox.setAttribute("data-count", filteredWords.length);
     }
   });
 
@@ -889,9 +1003,11 @@ function initSettings() {
     if (filteredWords.length === 0) {
       checkbox.checked = false;
       checkbox.disabled = true;
+      checkbox.setAttribute("data-count", 0);
     } else {
       checkbox.disabled = false;
       checkbox.checked = true;
+      checkbox.setAttribute("data-count", filteredWords.length);
     }
   });
 
@@ -901,15 +1017,9 @@ function initSettings() {
   document.getElementById("word-count-slider").value = totalWordsCount;
   document.getElementById("word-count-slider").min = 3;
   document.getElementById("word-count-slider").max = totalWordsCount;
-    // change disabled and background in start quiz button for different cases
-    const startButton = document.getElementById("start-quiz-button");
-    if (totalWordsCount < 3) {
-      startButton.style.backgroundColor = "grey";
-      startButton.disabled = true;
-    } else {
-      startButton.style.backgroundColor = "rgba(76, 175, 80, 0.9)";
-      startButton.disabled = false;
-    }
+
+  // change disabled and background in start quiz button for different cases
+  setStartButtonStyle(totalWordsCount);
 }
 
 /**
@@ -1009,14 +1119,9 @@ function updateWordDisplay(filteredWords) {
   // change disabled and background in start quiz button for different cases
   document.getElementById("word-count-label").textContent = totalWordsCount;
   document.getElementById("word-count-slider").value = totalWordsCount;
-  const startButton = document.getElementById("start-quiz-button");
-  if (totalWordsCount < 3) {
-    startButton.style.backgroundColor = "grey";
-    startButton.disabled = true;
-  } else {
-    startButton.style.backgroundColor = "rgba(76, 175, 80, 0.9)";
-    startButton.disabled = false;
-  }
+
+  // change disabled and background in start quiz button for different cases
+  setStartButtonStyle(totalWordsCount);
 }
 
 /**

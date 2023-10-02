@@ -334,9 +334,9 @@
     box-shadow: 2px 2px 15px -2px rgb(50, 50, 50);
 }
 
-#start-quiz-button:hover {
-    background-color: #1c6920; /* Darker color on hover */
-}
+/* #start-quiz-button:hover {
+    background-color: rgba(35, 105, 39, 0.9);
+} */
 
 /* Statistic Window */
 #statistic-window {
@@ -599,6 +599,16 @@ input[type="checkbox"]::before {
     color: white;
     font-size: bold;
 }  
+
+/* Tooltip styles */
+.tooltip {
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 15px;
+    z-index: 999;
+  }
 
 /* Add some styles for the table on large screens */
 @media screen and (min-width: 600px) {

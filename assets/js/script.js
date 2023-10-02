@@ -161,7 +161,14 @@ allCheckboxes.forEach((checkbox) => {
 
       // Calculate the position of the tooltip relative to the checkbox
       const checkboxPosition = checkbox.getBoundingClientRect();
-      tooltipElement.style.top = checkboxPosition.top - tooltipElement.clientHeight - 30 + 'px';
+      let tooltipTop = checkboxPosition.top - tooltipElement.clientHeight - 30;
+      
+      // Ensure the tooltip stays within the mobile screen boundaries
+      if (tooltipTop < 0) {
+        tooltipTop = 10; // Place it 10px from the top if it goes out of bounds
+      }
+
+      tooltipElement.style.top = tooltipTop + 'px';
       tooltipElement.style.left = checkboxPosition.left + 'px';
 
       // Append the tooltip element to the document body

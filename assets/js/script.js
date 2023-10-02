@@ -144,7 +144,16 @@ allCheckboxes.forEach((checkbox) => {
     // Check if the checkbox is not checked
     if (!checkbox.checked) {      
       // set tips for disabled checkboxes
-      setTooltip(checkbox);
+      // Determine the tooltip text based on the 'count' value
+      let tooltipText = "";  
+       // Get the 'data-count' attribute value from the htmlElement
+      const count = parseInt(checkbox.getAttribute("data-count"), 10);
+      if (count === 0) {
+        tooltipText = "Sorry, but  *" + checkbox.value + "*  words are not yet in our quiz dictionary.";
+      } else {
+        tooltipText = "Use Reset to restore settings";
+      }
+      setTooltip(checkbox, tooltipText);
     }
   });
 });
@@ -152,18 +161,8 @@ allCheckboxes.forEach((checkbox) => {
 
 /////////////// Functions //////////////////
 
-function setTooltip(htmlElement){
-  // Get the 'data-count' attribute value from the htmlElement
-  const count = parseInt(htmlElement.getAttribute("data-count"), 10);
-
-  // Determine the tooltip text based on the 'count' value
-  let tooltipText = "";  
-  if (count === 0) {
-    tooltipText = "Sorry, but  *" + htmlElement.value + "*  words are not yet in our quiz dictionary.";
-  } else {
-    tooltipText = "Use Reset to restore settings";
-  }
-
+function setTooltip(htmlElement, tooltipText){
+ 
   // Create a new tooltip element
   const tooltipElement = document.createElement("div");
   tooltipElement.className = "tooltip";
@@ -195,16 +194,16 @@ function setTooltip(htmlElement){
   // Append the tooltip element to the document body
   document.body.appendChild(tooltipElement);
 
-  // Set a timer to remove the tooltip after 3 seconds
-  setTimeout(() => {
-    tooltipElement.remove();
-  }, 1000);
-
   if ((tooltipLeft + tooltipElement.clientWidth) > window.innerWidth){
     // Add a mouseout event listener to remove the tooltip on mouseout
     htmlElement.addEventListener("mouseout", () => {
       tooltipElement.remove();
     });
+  }else{
+    // Set a timer to remove the tooltip after 3 seconds
+    setTimeout(() => {
+      tooltipElement.remove();
+    }, 1000);
   }
 }
 /**
@@ -247,35 +246,9 @@ function setStartButtonStyle(totalWordsCount) {
       startButton.style.backgroundColor = disabledColor;
 
       // add tip to mouseover event for disabled button
-      // Create an element to display the tooltip
-      const tooltipElement = document.createElement("div");
-      tooltipElement.className = "tooltip";
-      tooltipElement.textContent = 'Use Reset to restore settings';
+      let tooltipText = 'Use Reset to restore settings';
+      setTooltip(startButton, tooltipText);
 
-      // Set the tooltip's position next to the checkbox
-      const startButtonPosition = startButton.getBoundingClientRect();
-      let tooltipTop = startButtonPosition.top - tooltipElement.clientHeight - 10;
-
-      // Ensure the tooltip stays within the mobile screen boundaries
-      if (tooltipTop < 0) {
-        tooltipTop = 10; // Place it 10px from the top if it goes out of bounds
-      }
-
-      tooltipElement.style.top = tooltipTop + 'px';
-      tooltipElement.style.top = startButtonPosition.top + "px";
-
-      // Add the tooltip to the document
-      document.body.appendChild(tooltipElement);
-
-      // Set a timer to remove the tooltip after 3 seconds
-      setTimeout(() => {
-        tooltipElement.remove();
-      }, 1000);
-
-      // Remove the tooltip on mouseout
-      // startButton.addEventListener("mouseout", () => {
-      //   tooltipElement.remove();
-      // });
     });
 
     // Add a mouseout (hover out) event listener for the disabled state

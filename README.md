@@ -261,7 +261,7 @@ These enhancements will make the English Words Quiz project even more versatile 
 
 1. The W3C Markup Validator, and W3C CSS Validator, and JSHint Javascript Validator Services were used to validate every page of the project to ensure there were no syntax errors in the project.
 
--   [W3C Markup Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - [Results]()
+-   [W3C Markup Validator](https://validator.w3.org/nu/) - [Results](https://validator.w3.org/nu/?doc=https%3A%2F%2Fvladar21.github.io%2Fenglish-words-quiz%2F)
 -   [W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - [Results](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fvladar21.github.io%2Fenglish-words-quiz%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
 -   [JSHint JavaScript Validator](https://jshint.com/) - [Results]()
 

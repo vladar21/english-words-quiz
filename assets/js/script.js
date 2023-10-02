@@ -357,15 +357,16 @@ function takeAturn() {
   answeredCountElement.textContent = answered;
   if (answered >= totalCountElementValue) {
     stopQuiz();
+  }else{
+    // Display new question
+    // englishWordsRandomQuestion = JSON.parse(JSON.stringify(englishWords));
+    const randomQuestion = getRandomQuestion(englishWordsRandomQuestion);
+    currentQuiz = displayQuestion(randomQuestion);
+    currentQuiz.attempt = attempt;
+    currentQuiz.spentTime = 0;
+
+    quizData.push(currentQuiz);
   }
-
-  // Display new question
-  const randomQuestion = getRandomQuestion(englishWordsRandomQuestion);
-  currentQuiz = displayQuestion(randomQuestion);
-  currentQuiz.attempt = attempt;
-  currentQuiz.spentTime = 0;
-
-  quizData.push(currentQuiz);
 }
 
 // add spentTime by question

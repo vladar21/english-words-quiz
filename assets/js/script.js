@@ -816,9 +816,7 @@ function startTimer() {
       stopQuiz(); // Stop quiz
     } else if (timer <= 10) {
       // If the timer is 10 seconds or less, change the background color to red and make it flash
-      timerSpinner.style.backgroundColor = isTimerSpinnerVisible
-        ? "red"
-        : "white";
+      timerSpinner.style.backgroundColor = isTimerSpinnerVisible ? "red" : "white";
       timerSpinner.style.color = isTimerSpinnerVisible ? "white" : "red";
 
       // Toggle the flag to control visibility

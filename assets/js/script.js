@@ -1,3 +1,5 @@
+/* eslint-disable esversion: 9 */
+
 let quizData = []; // Array to store quiz data
 let englishWords = {};
 let englishWordsRandomQuestion = {};
@@ -19,8 +21,6 @@ let isTimerSpinnerVisible = true;
 // get total tasks count
 const totalCountElement = document.getElementById("total-count");
 let totalCountElementValue = 0;
-// Initialize a variable to keep track of the current word index
-let currentWordIndex = 0;
 
 // Find sectionы you want to hide or show
 let showStartWindow = document.getElementById("english-words-quiz");
@@ -611,9 +611,7 @@ function startTimer() {
       stopQuiz(); // Stop quiz
     } else if (timer <= 10) {
       // If the timer is 10 seconds or less, change the background color to red and make it flash
-      timerSpinner.style.backgroundColor = isTimerSpinnerVisible
-        ? "red"
-        : "white";
+      timerSpinner.style.backgroundColor = isTimerSpinnerVisible ? "red" : "white";
       timerSpinner.style.color = isTimerSpinnerVisible ? "white" : "red";
 
       // Toggle the flag to control visibility
@@ -679,6 +677,27 @@ function applyChangeSettings() {
   updateWordDisplay(filteredWords);
 }
 
+// Filter word types based on user settings.
+function filterWordTypes(word, settings) {
+  word["word-types"] = word["word-types"].filter((type) => {
+    const shouldIncludeType = settings.wordTypes.includes(
+      type["word-type"]
+    );
+    if (!shouldIncludeType) {
+      // Remove the definition if it does not match the settings
+      return false;
+    }
+    return true;
+  });
+
+  if (word["word-types"].length === 0) {
+    // If the word has no more definitions, remove it from filteredWords
+    return false;
+  }
+
+  return true;
+}
+
 function filterWordsBySettings(englishWords, settings) {
   // Copy the source words into a new object so that we don't modify the original data
   const filteredWords = { ...englishWords };
@@ -687,20 +706,9 @@ function filterWordsBySettings(englishWords, settings) {
   for (const wordKey in filteredWords) {
     if (filteredWords.hasOwnProperty(wordKey)) {
       const word = filteredWords[wordKey];
-
-      word["word-types"] = word["word-types"].filter((type) => {
-        const shouldIncludeType = settings.wordTypes.includes(
-          type["word-type"]
-        );
-        if (!shouldIncludeType) {
-          // Remove the definition if it does not match the settings
-          return false;
-        }
-        return true;
-      });
-
-      if (word["word-types"].length === 0) {
-        // If the word has no more definitions, remove it from filteredWords
+  
+      if (!filterWordTypes(word, settings)) {
+        // If filterWordTypes returns false, remove the word from filteredWords
         delete filteredWords[wordKey];
       }
     }
@@ -894,15 +902,6 @@ function updateWordDisplay(filteredWords) {
   } else {
     startButton.style.backgroundColor = "rgba(76, 175, 80, 0.9)";
     startButton.disabled = false;
-  }
-}
-
-// Function to check the total count of selected words
-function checkWordCount() {
-  const selectedWordCount = 3;
-  if (selectedWordCount < 3) {
-    // Call the function to reset settings
-    initSettings();
   }
 }
 

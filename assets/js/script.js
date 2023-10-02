@@ -205,12 +205,13 @@ function setTooltip(htmlElement, tooltipText) {
     htmlElement.addEventListener("mouseout", () => {
       tooltipElement.remove();
     });
-  } else {
-    // Set a timer to remove the tooltip after 3 seconds
-    setTimeout(() => {
-      tooltipElement.remove();
-    }, 1000);
-  }
+  } 
+  // else {
+  //   // Set a timer to remove the tooltip after 3 seconds
+  //   setTimeout(() => {
+  //     tooltipElement.remove();
+  //   }, 1000);
+  // }
 }
 
 /**

@@ -91,7 +91,7 @@ The English Words Quiz project includes the following features:
 
 The core of the project is the `englishWordsInit` object. This object contains a comprehensive set of English words, their definitions, audio pronunciations and tips images, difficulty levels, translations and word types. It serves as the foundation for the quiz questions and answers. The structure of this object allows for dynamic quiz generation based on user-selected difficulty levels.
 
-```json
+```
 const englishWordsInit = {    
     ...,
     "embrace": {

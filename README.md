@@ -263,7 +263,11 @@ These enhancements will make the English Words Quiz project even more versatile 
 
 -   [W3C Markup Validator](https://validator.w3.org/nu/) - [Results](https://validator.w3.org/nu/?doc=https%3A%2F%2Fvladar21.github.io%2Fenglish-words-quiz%2F)
 -   [W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - [Results](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fvladar21.github.io%2Fenglish-words-quiz%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
--   [JSHint JavaScript Validator](https://jshint.com/) - [Results]()
+-   [JSHint JavaScript Validator](https://jshint.com/)
+
+See the JSHint validation **Results** in the image below:
+
+![JSHint validation results:](/assets/images/readme/JsHintValidationResult.jpg)
 
 2. Accessibility: I confirmed that the colors and fonts chosen are easy to read and accessible by running it through lighthouse in devtools.
 

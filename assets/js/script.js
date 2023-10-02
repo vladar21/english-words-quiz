@@ -1,5 +1,3 @@
-/* eslint-disable esversion: 9 */
-
 let quizData = []; // Array to store quiz data
 let englishWords = {};
 let englishWordsRandomQuestion = {};
@@ -765,7 +763,7 @@ function filterWordTypes(word, settings) {
  */
 function filterWordsBySettings(englishWords, settings) {
   // Copy the source words into a new object so that we don't modify the original data
-  const filteredWords = { ...englishWords };
+  const filteredWords = JSON.parse(JSON.stringify(englishWords));
 
   // Remove definitions and words without definitions according to the word-types settings
   for (const wordKey in filteredWords) {

@@ -460,6 +460,7 @@ function displayQuestion(question) {
   wordTypeElement.textContent = question.wordType;
   wordDefinitionElement.textContent = question.definition;
   imgWordeElement.src = question.imageUrl;
+  imgWordeElement.alt = question.definition;
 
   // Clear any previous answer options
   answersListElement.innerHTML = "";

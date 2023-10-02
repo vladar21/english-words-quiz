@@ -141,33 +141,38 @@ const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
 // Add a mouseover event handler to each disabled checkbox
 allCheckboxes.forEach((checkbox) => {
   checkbox.addEventListener("mouseover", () => {
+    // Check if the checkbox is not checked
     if (!checkbox.checked) {
-      // Get the tooltip text based on the 'data-count' attribute
+      // Get the 'data-count' attribute value from the checkbox
       const count = parseInt(checkbox.getAttribute("data-count"), 10);
       let tooltipText = "";
 
+      // Determine the tooltip text based on the 'count' value
       if (count === 0) {
-        // Check if count is 0 at the start
         tooltipText = "Sorry, but  *" + checkbox.value + "*  words are not yet in our quiz dictionary.";
       } else {
-        // Check if count becomes 0 during user interaction
         tooltipText = "Use Reset to restore settings";
       }
 
-      // Create an element to display the tooltip
+      // Create a new tooltip element
       const tooltipElement = document.createElement("div");
       tooltipElement.className = "tooltip";
       tooltipElement.textContent = tooltipText;
 
-      // Set the tooltip's position next to the checkbox
+      // Calculate the position of the tooltip relative to the checkbox
       const checkboxPosition = checkbox.getBoundingClientRect();
-      tooltipElement.style.left = checkboxPosition.right + "px";
-      tooltipElement.style.top = checkboxPosition.top + "px";
+      tooltipElement.style.top = checkboxPosition.top - tooltipElement.clientHeight - 30 + 'px';
+      tooltipElement.style.left = checkboxPosition.left + 'px';
 
-      // Add the tooltip to the document
+      // Append the tooltip element to the document body
       document.body.appendChild(tooltipElement);
 
-      // Remove the tooltip on mouseout
+      // Set a timer to remove the tooltip after 3 seconds
+      setTimeout(() => {
+        tooltipElement.remove();
+      }, 3000);
+
+      // Add a mouseout event listener to remove the tooltip on mouseout
       checkbox.addEventListener("mouseout", () => {
         tooltipElement.remove();
       });

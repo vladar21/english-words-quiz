@@ -334,10 +334,6 @@
     box-shadow: 2px 2px 15px -2px rgb(50, 50, 50);
 }
 
-/* #start-quiz-button:hover {
-    background-color: rgba(35, 105, 39, 0.9);
-} */
-
 /* Statistic Window */
 #statistic-window {
     display: block;
@@ -553,8 +549,7 @@ input[type="checkbox"]::before {
 }
 
 #resetSettingsDefault {
-    font-size: 15px;
-    margin-top: 10px;
+    font-size: 20px;
     font-weight: bold;
     color: white;
     border: none;

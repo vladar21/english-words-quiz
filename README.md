@@ -65,6 +65,60 @@ Each word in the quiz is accompanied by audio pronunciation and an image to enha
 - Benefit from audio pronunciation and visual images to enhance language learning.
 - View detailed statistics upon completing the quiz.
 
+## User Stories
+
+As a user of the English Words Quiz application, I want to:
+
+1. Easily start the quiz and navigate through the questions.
+2. Receive immediate feedback on whether my answers are correct or not.
+3. Be able to see my progress and score during the quiz.
+4. Have the option to choose the difficulty level of the quiz.
+5. Customize the quiz by selecting the number of words to include.
+6. Select the types or categories of words for the quiz (e.g., nouns, verbs, adjectives).
+7. Learn the meanings and pronunciations of English words while taking the quiz.
+8. Review my quiz history and performance.
+
+## Project Strategy
+
+The goal of the English Words Quiz project is to create an engaging and educational platform for users to improve their English language skills. The project's strategy includes:
+
+- Developing an intuitive and user-friendly quiz interface.
+- Integrating a database of English words and their meanings/pronunciations.
+- Implementing a scoring system and progress tracking.
+- Providing customization options for users to tailor their learning experience.
+- Offering additional resources and support for language learners.
+
+## Project Scope
+
+The project's scope encompasses:
+
+- Building a web-based quiz application.
+- Populating the quiz database with a diverse range of English words.
+- Creating a responsive design for seamless access on various devices.
+- Incorporating audio and visual aids for word pronunciation and definitions.
+- Implementing user accounts for tracking progress and quiz history.
+
+## Project Structure
+
+The English Words Quiz project is structured as follows:
+
+1. **Home Page**: A welcoming landing page with an introduction to the quiz.
+2. **Quiz Interface**: The core quiz section where users answer questions.
+3. **Scoreboard**: Displays the user's score and progress.
+4. **Settings**: Allows users to customize quiz parameters.
+5. **Word Library**: Provides access to a library of English words and their details.
+6. **User Profile**: Stores user information, progress, and quiz history.
+7. **Contact Us**: A page for user inquiries, feedback, or support requests.
+
+## Design and Layout
+
+The design of the English Words Quiz application is aimed at providing a visually appealing and user-centric experience. It includes:
+
+- A clean and intuitive user interface.
+- Engaging visuals and audio elements for word presentation.
+- Responsive design for seamless navigation on desktop and mobile devices.
+- A consistent color palette and typography to enhance readability.
+
 ## Features Implemented
 
 The English Words Quiz project includes the following features:
@@ -73,7 +127,10 @@ The English Words Quiz project includes the following features:
 
 2. **Word-Definition Matching Quiz:** Users can match English word definitions to the correct words.
 
-3. **Difficulty Levels:** Users can choose from six different CEFR difficulty levels to customize their quiz experience.
+3. **Customizable Quiz:** Users can customize their quiz by selecting:
+   - The difficulty levels of words (Users can choose from six different CEFR difficulty levels to customize their quiz experience).
+   - The number of words in the quiz.
+   - The types of words they want to include (e.g., nouns, verbs, adjectives).
 
 4. **Audio Pronunciation:** Users can play audio pronunciation of words to improve their listening skills.
 

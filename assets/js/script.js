@@ -165,7 +165,7 @@ allCheckboxes.forEach((checkbox) => {
       
       // Ensure the tooltip stays within the mobile screen boundaries
       if (tooltipTop < 0) {
-        tooltipTop = 10; // Place it 10px from the top if it goes out of bounds
+        tooltipTop = 30; // Place it 10px from the top if it goes out of bounds
       }
 
       tooltipElement.style.top = tooltipTop + 'px';
@@ -237,11 +237,23 @@ function setStartButtonStyle(totalWordsCount) {
 
       // Set the tooltip's position next to the checkbox
       const startButtonPosition = startButton.getBoundingClientRect();
-      tooltipElement.style.left = startButtonPosition.right + "px";
+      let tooltipTop = startButtonPosition.top - tooltipElement.clientHeight - 30;
+
+      // Ensure the tooltip stays within the mobile screen boundaries
+      if (tooltipTop < 0) {
+        tooltipTop = 0; // Place it 10px from the top if it goes out of bounds
+      }
+
+      tooltipElement.style.top = tooltipTop + 'px';
       tooltipElement.style.top = startButtonPosition.top + "px";
 
       // Add the tooltip to the document
       document.body.appendChild(tooltipElement);
+
+      // Set a timer to remove the tooltip after 3 seconds
+      setTimeout(() => {
+        tooltipElement.remove();
+      }, 3000);
 
       // Remove the tooltip on mouseout
       startButton.addEventListener("mouseout", () => {

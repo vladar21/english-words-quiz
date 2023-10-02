@@ -134,7 +134,11 @@ wordsTypesCheckboxes.forEach((checkbox) => {
   checkbox.addEventListener("change", applyChangeSettings);
 });
 
-// Function to start the quiz
+/**
+ * Function to start the quiz.
+ * 
+ * @returns {void}
+ */
 function startQuiz() {
   // set quiz settings
   applyChangeSettings();
@@ -191,7 +195,11 @@ function startQuiz() {
   totalCountElement.textContent = totalCountElementValue;
 }
 
-// Function to finish the quiz
+/**
+ * Function to finish the quiz.
+ * 
+ * @returns {void}
+ */
 function stopQuiz() {
   // stop quiz flag to false
   is_quiz_start = false;
@@ -305,6 +313,12 @@ function stopQuiz() {
   quizsquareFieldElement.style.background = "rgba(39, 34, 34, 0.7)";
 }
 
+/**
+ * Function to get a string representation of the attempt index.
+ *
+ * @param {number} index - The attempt index.
+ * @returns {string} - The attempt string.
+ */
 function getAttemptString(index) {
   const attemptStrings = [
     "first",
@@ -330,7 +344,11 @@ function getAttemptString(index) {
   return attemptStrings[index] || "first";
 }
 
-// Function to next turn in the quiz
+/**
+ * Function to take the next turn in the quiz.
+ * 
+ * @returns {void}
+ */
 function takeAturn() {
   addSpentTimeToLastAttempt();
 
@@ -369,12 +387,20 @@ function takeAturn() {
   }
 }
 
-// add spentTime by question
+/**
+ * Function to add spent time to the last attempt.
+ * 
+ * @returns {void}
+ */
 function addSpentTimeToLastAttempt() {
   quizData[quizData.length - 1].spentTime = 30 - timer;
 }
 
-// check last answer
+/**
+ * Function to check the last answer.
+ * 
+ * @returns {void}
+ */
 function checkLastAnswer() {
   const lastQuiz = quizData[quizData.length - 1]; // Get the last quiz data
 
@@ -398,7 +424,12 @@ function checkLastAnswer() {
   }
 }
 
-// Function to get a random question
+/**
+ * Function to get a random question for the quiz.
+ *
+ * @param {object} englishWordsRandomQuestion - The object containing random words.
+ * @returns {object} - The random question object.
+ */
 function getRandomQuestion(englishWordsRandomQuestion) {
   // Get all word keys
   const wordKeys = Object.keys(englishWordsRandomQuestion);
@@ -441,7 +472,12 @@ function getRandomQuestion(englishWordsRandomQuestion) {
   return question;
 }
 
-// Function to display the question
+/**
+ * Function to display the question in the quiz.
+ *
+ * @param {object} question - The question object to display.
+ * @returns {object} - The current quiz object.
+ */
 function displayQuestion(question) {
   // Get DOM elements
   const quizTaskElement = document.querySelector(".quiz-task");
@@ -580,22 +616,21 @@ function displayQuestion(question) {
   return currentQuiz;
 }
 
-// Function to shuffle an array randomly
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
-
-// Function to update the timer display
+/**
+ * Function to update the timer display.
+ *
+ * @returns {void}
+ */
 function updateTimerDisplay() {
   const timerDisplay = document.querySelector(".timer-spinner");
   timerDisplay.textContent = `${timer}`;
 }
 
-// Function to start the timer
+/**
+ * Function to start the timer.
+ *
+ * @returns {void}
+ */
 function startTimer() {
   timer = 30; // Set the initial time to 30 seconds
   updateTimerDisplay(); // Update the timer display with the initial time
@@ -620,12 +655,21 @@ function startTimer() {
   }, 1000);
 }
 
-// Function to stop the timer
+/**
+ * Function to stop the timer.
+ *
+ * @returns {void}
+ */
 function stopTimer() {
   clearInterval(timerInterval);
 }
 
-// Function to shuffle a copy of an array randomly
+/**
+ * Function to shuffle a copy of an array randomly.
+ *
+ * @param {array} array - The array to shuffle.
+ * @returns {array} - The shuffled array.
+ */
 function shuffleArray(array) {
   const shuffledArray = [...array]; // Создаем копию исходного массива
   for (let i = shuffledArray.length - 1; i > 0; i--) {
@@ -635,9 +679,13 @@ function shuffleArray(array) {
   return shuffledArray;
 }
 
-// work with settings
+//////////// work with settings ////////////
 
-// parese settings from html
+/**
+ * Function to parse settings from the HTML table.
+ *
+ * @returns {object} - The parsed settings object.
+ */
 function parseSettingsFromTable() {
   const settings = {
     cefrLevels: [],
@@ -664,7 +712,11 @@ function parseSettingsFromTable() {
   return settings;
 }
 
-// Function to apply settings, including the default word count
+/**
+ * Function to apply selected settings and filter words accordingly.
+ *
+ * @returns {void}
+ */
 function applyChangeSettings() {
   // Parse the selected settings
   const selectedSettings = parseSettingsFromTable();
@@ -677,7 +729,13 @@ function applyChangeSettings() {
   updateWordDisplay(filteredWords);
 }
 
-// Filter word types based on user settings.
+/**
+ * Function to filter word types based on user settings.
+ *
+ * @param {object} word - The word object to filter.
+ * @param {object} settings - The user settings.
+ * @returns {boolean} - Returns true if the word has matching word types, or false if removed.
+ */
 function filterWordTypes(word, settings) {
   word["word-types"] = word["word-types"].filter((type) => {
     const shouldIncludeType = settings.wordTypes.includes(
@@ -698,6 +756,13 @@ function filterWordTypes(word, settings) {
   return true;
 }
 
+/**
+ * Function to filter words by settings.
+ *
+ * @param {object} englishWords - The original English words object.
+ * @param {object} settings - The user settings.
+ * @returns {object} - The filtered English words object.
+ */
 function filterWordsBySettings(englishWords, settings) {
   // Copy the source words into a new object so that we don't modify the original data
   const filteredWords = { ...englishWords };
@@ -728,7 +793,11 @@ function filterWordsBySettings(englishWords, settings) {
   return englishWords;
 }
 
-// init settings
+/**
+ * Function to initialize settings.
+ *
+ * @returns {void}
+ */
 function initSettings() {
   // Iterate through all CEFR levels and words
   const cefrCheckboxes = document.querySelectorAll('input[name="cefr-level"]');
@@ -803,7 +872,12 @@ function initSettings() {
     }
 }
 
-// Function to update the HTML settings table
+/**
+ * Function to update the HTML settings table based on filtered words.
+ *
+ * @param {object} filteredWords - The filtered English words object.
+ * @returns {void}
+ */
 function updateWordDisplay(filteredWords) {
   // Update CEFR levels in the settings table
   const cefrLevels = ["A1", "A2", "B1", "B2", "C1", "C2"];
@@ -905,7 +979,12 @@ function updateWordDisplay(filteredWords) {
   }
 }
 
-// get lenght of object
+/**
+ * Function to get the length of an object.
+ *
+ * @param {object} obj - The object to measure.
+ * @returns {number} - The length of the object.
+ */
 function getObjectLength(obj) {
   return Object.keys(obj).length;
 }

@@ -139,6 +139,7 @@ wordsTypesCheckboxes.forEach((checkbox) => {
 // Get all the checkboxes
 const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
 // Add a mouseover event handler to each disabled checkbox
+// Add a mouseover event handler to each checkbox
 allCheckboxes.forEach((checkbox) => {
   checkbox.addEventListener("mouseover", () => {
     // Check if the checkbox is not checked
@@ -162,10 +163,10 @@ allCheckboxes.forEach((checkbox) => {
       // Calculate the position of the tooltip relative to the checkbox
       const checkboxPosition = checkbox.getBoundingClientRect();
       let tooltipTop = checkboxPosition.top - tooltipElement.clientHeight - 30;
-      
+
       // Ensure the tooltip stays within the mobile screen boundaries
       if (tooltipTop < 0) {
-        tooltipTop = 30; // Place it 10px from the top if it goes out of bounds
+        tooltipTop = 10; // Place it 10px from the top if it goes out of bounds
       }
 
       tooltipElement.style.top = tooltipTop + 'px';

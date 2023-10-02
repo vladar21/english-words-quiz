@@ -269,6 +269,15 @@ See the JSHint validation **Results** in the image below:
 
 ![JSHint validation results:](/assets/images/readme/JsHintValidationResult.jpg)
 
+Thats:
+
+```json
+One undefined variable
+807	englishWordsInit
+```
+
+because the englishWordsInit is placed in a separate file, english-words-data.js.
+
 2. Accessibility: I confirmed that the colors and fonts chosen are easy to read and accessible by running it through lighthouse in devtools.
 
 ![Lighthouse Chrome devtool test results](/assets/images/readme/LighthouseEstemation.jpg)

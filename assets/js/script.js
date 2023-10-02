@@ -162,7 +162,7 @@ allCheckboxes.forEach((checkbox) => {
 
       // Calculate the position of the tooltip relative to the checkbox
       const checkboxPosition = checkbox.getBoundingClientRect();
-      let tooltipTop = checkboxPosition.top - tooltipElement.clientHeight - 30;
+      let tooltipTop = checkboxPosition.top - tooltipElement.clientHeight - 10;
 
       // Ensure the tooltip stays within the mobile screen boundaries
       if (tooltipTop < 0) {
@@ -178,7 +178,7 @@ allCheckboxes.forEach((checkbox) => {
       // Set a timer to remove the tooltip after 3 seconds
       setTimeout(() => {
         tooltipElement.remove();
-      }, 3000);
+      }, 1500);
 
       // Add a mouseout event listener to remove the tooltip on mouseout
       checkbox.addEventListener("mouseout", () => {
@@ -238,11 +238,11 @@ function setStartButtonStyle(totalWordsCount) {
 
       // Set the tooltip's position next to the checkbox
       const startButtonPosition = startButton.getBoundingClientRect();
-      let tooltipTop = startButtonPosition.top - tooltipElement.clientHeight - 30;
+      let tooltipTop = startButtonPosition.top - tooltipElement.clientHeight - 10;
 
       // Ensure the tooltip stays within the mobile screen boundaries
       if (tooltipTop < 0) {
-        tooltipTop = 0; // Place it 10px from the top if it goes out of bounds
+        tooltipTop = 10; // Place it 10px from the top if it goes out of bounds
       }
 
       tooltipElement.style.top = tooltipTop + 'px';
@@ -254,7 +254,7 @@ function setStartButtonStyle(totalWordsCount) {
       // Set a timer to remove the tooltip after 3 seconds
       setTimeout(() => {
         tooltipElement.remove();
-      }, 3000);
+      }, 1500);
 
       // Remove the tooltip on mouseout
       startButton.addEventListener("mouseout", () => {

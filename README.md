@@ -271,7 +271,7 @@ See the JSHint validation **Results** in the image below:
 
 Thats:
 
-```json
+```
 One undefined variable
 807	englishWordsInit
 ```

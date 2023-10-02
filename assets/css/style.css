@@ -569,14 +569,40 @@ input[type="checkbox"]::before {
     background-color:  rgba(85, 56, 97, 0.85);
 }
 
+/* close button */
+.winners-results {
+    position: relative;
+}
+
+.close-button-div {
+    padding:0;
+    margin:0;
+    position: absolute;
+    cursor: pointer;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(85, 56, 97, 0.85);
+    width: 20px;
+    height: 20px;
+    border: 0;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.close-button {
+    padding:0;
+    margin:0;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    font-size: 18px;  
+    color: white;
+    font-size: bold;
+}  
+
 /* Add some styles for the table on large screens */
 @media screen and (min-width: 600px) {
-  /* .body-css {
-    height: 100vh;
-  } */
-
   .quizsquare {
-    /* max-height: 85vh; */
     padding: 30px;
     padding-top: 20px;
     border-radius: 5px;

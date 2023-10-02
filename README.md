@@ -267,7 +267,7 @@ These enhancements will make the English Words Quiz project even more versatile 
 
 2. Accessibility: I confirmed that the colors and fonts chosen are easy to read and accessible by running it through lighthouse in devtools.
 
-![Lighthouse Chrome devtool test results]()
+![Lighthouse Chrome devtool test results](/assets/images/readme/LighthouseEstemation.jpg)
 
 3. I tested that this page works in different browsers: Chrome, Firefox, Mircrosoft Edge.
 

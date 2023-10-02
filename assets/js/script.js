@@ -207,10 +207,10 @@ function setTooltip(htmlElement, tooltipText) {
     });
   // } 
   // else {
-  //   // Set a timer to remove the tooltip after 3 seconds
-  //   setTimeout(() => {
-  //     tooltipElement.remove();
-  //   }, 1000);
+    // Set a timer to remove the tooltip after 3 seconds
+    setTimeout(() => {
+      tooltipElement.remove();
+    }, 1000);
   // }
 }
 
